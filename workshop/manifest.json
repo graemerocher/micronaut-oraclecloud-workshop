@@ -1,0 +1,84 @@
+{
+  "workshoptitle": "Building Cloud Applications with Micronaut, GraalVM and OCI",
+    "tutorials": [
+   
+        {
+            "title": "Introduction",
+            "description": "Introduction to building Micronaut applications with Autonomous database.",
+            "filename": "../introduction/introduction.md"
+        },
+        {
+            "title": "Prerequisites",
+            "description": "What you need before we begin",
+            "filename": "../introduction/prerequisites.md"
+        },        
+        {
+            "title": "Lab 1: Getting to Know Micronaut",
+            "description": "Getting to Know Micronaut",
+            "filename": "../01_lab_gettingstarted/01_lab_gettingstarted.md"
+        },
+        {
+            "title": "Lab 2: Configuring Micronaut",
+            "description": "Configuring Micronaut",
+            "filename": "../02_lab_configuration/02_lab_configuration.md"
+        },
+        {
+            "title": "Lab 3: Understanding Dependency Injection",
+            "description": "Understanding Dependency Injection",
+            "filename": "../setup/setup.md"
+        },
+        {
+            "title": "Lab 4: Understanding Aspect Oriented Programming (AOP)",
+            "filename": "../create/create.md"
+        },
+        {
+            "title": "Lab 5: Writing Web Controllers",
+            "filename": "../micronaut/micronaut.md"
+        },
+        {
+            "title": "Lab 6: Validating User Input",
+            "filename": "../helidon/helidon.md"
+        },
+        {
+            "title": "Lab 7: Integration Testing",
+            "filename": "../deploy/deploy.md"
+        },
+        {
+            "title": "Lab 8: Using the HTTP Client",
+            "filename": "../destroy/destroy.md"
+        },
+        {
+            "title": "Lab 9: Setting up a Database Schema",
+            "filename": "../destroy/destroy.md"
+        },
+        {
+            "title": "Lab 10: Mapping Entities to the Database",
+            "filename": "../destroy/destroy.md"
+        },
+        {
+            "title": "Lab 11: Writing JDBC Data Access Repositories",
+            "filename": "../destroy/destroy.md"
+        },
+        {
+            "title": "Lab 12: Writing JPA Data Access Repositories",
+            "filename": "../destroy/destroy.md"
+        },
+        {
+            "title": "Lab 13: Exposing OpenAPI Documentation",
+            "filename": "../destroy/destroy.md"
+        },
+        {
+            "title": "Lab 14: Adding Management & Monitoring",
+            "filename": "../destroy/destroy.md"
+        },
+        {
+            "title": "Lab 15: Building a Native Image",
+            "filename": "../destroy/destroy.md"
+        },
+        {
+            "title": "Lab 16: Going to Production",
+            "filename": "../destroy/destroy.md"
+        }
+
+    ]
+}
