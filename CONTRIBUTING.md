@@ -1,7 +1,12 @@
-From the root `micronaut-oci-atp` directory run:
+Make sure you have livereload installed:
 
 ```
 pip install livereload
+```
+
+From the root directory run:
+
+```
 livereload . -p 3000
 ```
 
