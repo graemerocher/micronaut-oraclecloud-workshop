@@ -15,65 +15,65 @@
         {
             "title": "Lab 1: Getting to Know Micronaut",
             "description": "Getting to Know Micronaut",
-            "filename": "../01_lab_gettingstarted/01_lab_gettingstarted.md"
+            "filename": "lab_gettingstarted/01_lab_gettingstarted.md"
         },
         {
             "title": "Lab 2: Configuring Micronaut",
             "description": "Configuring Micronaut",
-            "filename": "../02_lab_configuration/02_lab_configuration.md"
+            "filename": "../lab_configuration/lab_configuration.md"
         },
         {
             "title": "Lab 3: Understanding Dependency Injection",
             "description": "Understanding Dependency Injection",
-            "filename": "../03_lab_dependency_injection/03_lab_dependency_injection.md"
+            "filename": "../lab_dependency_injection/lab_dependency_injection.md"
         },
         {
             "title": "Lab 4: Understanding Aspect Oriented Programming (AOP)",
-            "filename": "../04_lab_aop/04_lab_aop.md"
+            "filename": "../lab_aop/lab_aop.md"
         },
         {
             "title": "Lab 5: Writing Web Controllers",
-            "filename": "../05_lab_controllers/05_lab_controllers.md"
+            "filename": "../lab_controllers/lab_controllers.md"
         },
         {
             "title": "Lab 6: Validating User Input",
-            "filename": "../06_lab_validation/06_lab_validation.md"
+            "filename": "../lab_validation/lab_validation.md"
         },
         {
             "title": "Lab 7: Integration Testing",
-            "filename": "../07_lab_testing/07_lab_testing.md"
+            "filename": "../lab_testing/lab_testing.md"
         },
         {
             "title": "Lab 8: Using the HTTP Client",
-            "filename": "../08_lab_httpclient/08_lab_httpclient.md"
+            "filename": "../lab_httpclient/lab_httpclient.md"
         },
         {
             "title": "Lab 9: Setting up a Database Schema",
-            "filename": "../09_lab_schemamigration/09_lab_schemamigration.md"
+            "filename": "../lab_schemamigration/lab_schemamigration.md"
         },
         {
             "title": "Lab 10: Writing JDBC Data Access Repositories",
-            "filename": "../11_lab_data_jdbc/11_lab_data_jdbc.md"
+            "filename": "../lab_data_jdbc/lab_data_jdbc.md"
         },
         {
             "title": "Lab 11: Writing JPA Data Access Repositories",
-            "filename": "../12_lab_data_jpa/12_lab_data_jpa.md"
+            "filename": "../lab_data_jpa/lab_data_jpa.md"
         },
         {
             "title": "Lab 12: Exposing OpenAPI Documentation",
-            "filename": "../13_lab_openapi/13_lab_openapi.md"
+            "filename": "../lab_openapi/lab_openapi.md"
         },
         {
             "title": "Lab 13: Adding Management & Monitoring",
-            "filename": "../14_lab_management/14_lab_management.md"
+            "filename": "../lab_management/lab_management.md"
         },
         {
             "title": "Lab 14: Building a Native Image",
-            "filename": "../15_lab_native_image/15_lab_native_image.md"
+            "filename": "../lab_native_image/lab_native_image.md"
         },
         {
             "title": "Lab 15: Going to Production",
-            "filename": "../16_lab_deployment/16_lab_deployment.md"
+            "filename": "../lab_deployment/lab_deployment.md"
         }
 
     ]
