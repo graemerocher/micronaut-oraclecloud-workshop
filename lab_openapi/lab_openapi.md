@@ -16,7 +16,15 @@ In this lab you will:
 
 - Access to your project instance
 
-## TODO
+## Configuring OpenAPI Generation
+
+TODO 
+
+## Documentating Micronaut APIs
+
+TODO 
+
+## Exposing Swagger UI
 
 TODO 
 

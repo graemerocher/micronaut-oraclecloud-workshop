@@ -16,9 +16,15 @@ In this lab you will:
 
 - Access to your project instance
 
-## TODO
+## Building a Native Image with Gradle
 
 TODO 
+
+## Building a Native Image with Maven
+
+TODO
+
+
 
 You may now *proceed to the next lab*.
 

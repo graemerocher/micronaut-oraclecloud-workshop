@@ -17,7 +17,10 @@ In this lab you will:
 - Access to your project instance
 - Basic knowledge of JPA and JPA-QL
 
-## TODO
+## Configuring Micronaut Data JPA
+
+
+## Writing Query Methods
 
 TODO 
 

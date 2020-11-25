@@ -16,7 +16,15 @@ In this lab you will:
 
 - Access to your project instance
 
-## TODO
+## Deploying a Runnable JAR to a VM
+
+TODO 
+
+## Deploying a Container to Oracle Container Registry
+
+TODO 
+
+## Deploying a Container to Container Engine for Kubernetes (OKE)
 
 TODO 
 

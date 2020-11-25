@@ -16,7 +16,15 @@ In this lab you will:
 
 - Access to your project instance
 
-## TODO
+## Enabling Management Endpoints
+
+TODO 
+
+## Defining Health Checks
+
+TODO 
+
+## Exposing Prometheus Metrics
 
 TODO 
 

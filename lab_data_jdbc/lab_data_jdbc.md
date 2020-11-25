@@ -17,7 +17,19 @@ In this lab you will:
 - Access to your project instance
 - Basic knowledge of SQL
 
-## TODO
+## Configuring Micronaut Data JDBC
+
+TODO 
+
+## Mapping Entities to Database Tables
+
+TODO 
+
+## Defining Repository Interfaces
+
+TODO 
+
+## Writing Query Methods
 
 TODO 
 
