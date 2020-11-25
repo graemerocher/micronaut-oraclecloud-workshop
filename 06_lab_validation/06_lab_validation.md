@@ -13,3 +13,17 @@ In this lab you will:
 * Understand how to handle errors
 
 ### Prerequisites
+
+## Validate Controller Input
+
+TODO 
+
+## Handle Validation Errors
+
+TODO 
+
+You may now *proceed to the next lab*.
+
+### Acknowledgements
+- **Owners** - Graeme Rocher, Architect, Oracle Labs - Databases and Optimization
+- **Contributors** - Palo Gressa, Todd Sharp, Eric Sedlar

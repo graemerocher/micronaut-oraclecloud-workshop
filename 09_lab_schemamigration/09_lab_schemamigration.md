@@ -17,3 +17,21 @@ In this lab you will:
 
 - Access to your project instance
 - Basic knowledge of SQL
+
+## Configuring Access to Oracle Autonomous Database
+
+TODO 
+
+## Configuring Flyway
+
+TODO 
+
+## Defining a SQL Migration Script
+
+TODO 
+
+You may now *proceed to the next lab*.
+
+### Acknowledgements
+- **Owners** - Graeme Rocher, Architect, Oracle Labs - Databases and Optimization
+- **Contributors** - Palo Gressa, Todd Sharp, Eric Sedlar

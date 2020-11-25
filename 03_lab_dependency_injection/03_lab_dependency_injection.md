@@ -214,3 +214,8 @@ Micronaut will automatically lookup and populate the available `OwnerConfigurati
 
 Notice that for each entry under the `owner` configuration namespace you get a new instance of `OwnerConfiguration` thanks to how `@EachProperty` works. Also notice how you can pass configuration to the `run` method of the `ApplicationContext` in order to configure your application.
 
+You may now *proceed to the next lab*.
+
+### Acknowledgements
+- **Owners** - Graeme Rocher, Architect, Oracle Labs - Databases and Optimization
+- **Contributors** - Palo Gressa, Todd Sharp, Eric Sedlar

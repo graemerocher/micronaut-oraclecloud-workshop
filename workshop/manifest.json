@@ -52,31 +52,27 @@
             "filename": "../09_lab_schemamigration/09_lab_schemamigration.md"
         },
         {
-            "title": "Lab 10: Mapping Entities to the Database",
-            "filename": "../10_lab_data_mapping/10_lab_data_mapping.md"
-        },
-        {
-            "title": "Lab 11: Writing JDBC Data Access Repositories",
+            "title": "Lab 10: Writing JDBC Data Access Repositories",
             "filename": "../11_lab_data_jdbc/11_lab_data_jdbc.md"
         },
         {
-            "title": "Lab 12: Writing JPA Data Access Repositories",
+            "title": "Lab 11: Writing JPA Data Access Repositories",
             "filename": "../12_lab_data_jpa/12_lab_data_jpa.md"
         },
         {
-            "title": "Lab 13: Exposing OpenAPI Documentation",
+            "title": "Lab 12: Exposing OpenAPI Documentation",
             "filename": "../13_lab_openapi/13_lab_openapi.md"
         },
         {
-            "title": "Lab 14: Adding Management & Monitoring",
+            "title": "Lab 13: Adding Management & Monitoring",
             "filename": "../14_lab_management/14_lab_management.md"
         },
         {
-            "title": "Lab 15: Building a Native Image",
+            "title": "Lab 14: Building a Native Image",
             "filename": "../15_lab_native_image/15_lab_native_image.md"
         },
         {
-            "title": "Lab 16: Going to Production",
+            "title": "Lab 15: Going to Production",
             "filename": "../16_lab_deployment/16_lab_deployment.md"
         }
 

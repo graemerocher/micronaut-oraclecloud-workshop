@@ -66,3 +66,10 @@ You can run tests in the project simply by right-clicking on the test you wish t
 Try this now:
 
 ![Running tests](images/running-tests.png)
+
+You may now *proceed to the next lab*.
+
+### Acknowledgements
+- **Owners** - Graeme Rocher, Architect, Oracle Labs - Databases and Optimization
+- **Contributors** - Palo Gressa, Todd Sharp, Eric Sedlar
+
