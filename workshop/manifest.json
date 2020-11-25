@@ -25,59 +25,59 @@
         {
             "title": "Lab 3: Understanding Dependency Injection",
             "description": "Understanding Dependency Injection",
-            "filename": "../setup/setup.md"
+            "filename": "../03_lab_dependency_injection/03_lab_dependency_injection.md"
         },
         {
             "title": "Lab 4: Understanding Aspect Oriented Programming (AOP)",
-            "filename": "../create/create.md"
+            "filename": "../04_lab_aop/04_lab_aop.md"
         },
         {
             "title": "Lab 5: Writing Web Controllers",
-            "filename": "../micronaut/micronaut.md"
+            "filename": "../05_lab_controllers/05_lab_controllers.md"
         },
         {
             "title": "Lab 6: Validating User Input",
-            "filename": "../helidon/helidon.md"
+            "filename": "../06_lab_validation/06_lab_validation.md"
         },
         {
             "title": "Lab 7: Integration Testing",
-            "filename": "../deploy/deploy.md"
+            "filename": "../07_lab_testing/07_lab_testing.md"
         },
         {
             "title": "Lab 8: Using the HTTP Client",
-            "filename": "../destroy/destroy.md"
+            "filename": "../08_lab_httpclient/08_lab_httpclient.md"
         },
         {
             "title": "Lab 9: Setting up a Database Schema",
-            "filename": "../destroy/destroy.md"
+            "filename": "../09_lab_schemamigration/09_lab_schemamigration.md"
         },
         {
             "title": "Lab 10: Mapping Entities to the Database",
-            "filename": "../destroy/destroy.md"
+            "filename": "../10_lab_data_mapping/10_lab_data_mapping.md"
         },
         {
             "title": "Lab 11: Writing JDBC Data Access Repositories",
-            "filename": "../destroy/destroy.md"
+            "filename": "../11_lab_data_jdbc/11_lab_data_jdbc.md"
         },
         {
             "title": "Lab 12: Writing JPA Data Access Repositories",
-            "filename": "../destroy/destroy.md"
+            "filename": "../12_lab_data_jpa/12_lab_data_jpa.md"
         },
         {
             "title": "Lab 13: Exposing OpenAPI Documentation",
-            "filename": "../destroy/destroy.md"
+            "filename": "../13_lab_openapi/13_lab_openapi.md"
         },
         {
             "title": "Lab 14: Adding Management & Monitoring",
-            "filename": "../destroy/destroy.md"
+            "filename": "../14_lab_management/14_lab_management.md"
         },
         {
             "title": "Lab 15: Building a Native Image",
-            "filename": "../destroy/destroy.md"
+            "filename": "../15_lab_native_image/15_lab_native_image.md"
         },
         {
             "title": "Lab 16: Going to Production",
-            "filename": "../destroy/destroy.md"
+            "filename": "../16_lab_deployment/16_lab_deployment.md"
         }
 
     ]
