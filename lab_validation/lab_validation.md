@@ -21,44 +21,44 @@ Validation via `javax.validation` is integrated directly into Micronaut across a
 
 Try adding some validation constraints to the fields of the `OwnerConfiguration` class:
 
-```
-package example.micronaut;
+    <copy>
+    package example.micronaut;
 
-import io.micronaut.context.annotation.Context;
-import io.micronaut.context.annotation.EachProperty;
+    import io.micronaut.context.annotation.Context;
+    import io.micronaut.context.annotation.EachProperty;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+    import javax.validation.constraints.Min;
+    import javax.validation.constraints.NotBlank;
 
-@EachProperty("owners")
-@Context
-public class OwnerConfiguration {
-    @NotBlank
-    private String name;
-    @Min(18)
-    private int age;
+    @EachProperty("owners")
+    @Context
+    public class OwnerConfiguration {
+        @NotBlank
+        private String name;
+        @Min(18)
+        private int age;
 
-    public String getName() {
-        return name;
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        Owner create() {
+            return new Owner(name, age);
+        }
     }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    Owner create() {
-        return new Owner(name, age);
-    }
-}
-```
+    </copy>
 
 In this example the `@NotBlank` annotation ensures the name cannot be blank and the `@Min` annotation ensures owners must be at least 18 years of age.
 
@@ -66,18 +66,18 @@ Notice as well the addition of the [@Context](https://docs.micronaut.io/latest/a
 
 Try modify the `testOwners` test now I pass in invalid data:
 
-```
-@Test
-void testOwners() {
-    Map<String, Object> configuration = Map.of(
-            "owners.fred.name", "Fred",
-            "owners.fred.age", "10",
-            "owners.barney.name", "Barney",
-            "owners.barney.age", "30"
-    );
-	...
-}
-```
+    <copy>
+    @Test
+    void testOwners() {
+        Map<String, Object> configuration = Map.of(
+                "owners.fred.name", "Fred",
+                "owners.fred.age", "10",
+                "owners.barney.name", "Barney",
+                "owners.barney.age", "30"
+        );
+    	...
+    }
+    </copy>
 
 Then run the test and you will see an error such as the following:
 
@@ -96,48 +96,48 @@ In addition to validating configuration, a common use case for validation is acc
 
 To demonstrate this first modify the `OwnerService` to store users in an in-memory map for the moment:
 
-```
-package example.micronaut;
+    <copy>
+    package example.micronaut;
 
-import javax.inject.Singleton;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.ConcurrentLinkedDeque;
+    import javax.inject.Singleton;
+    import java.util.Collection;
+    import java.util.List;
+    import java.util.concurrent.ConcurrentLinkedDeque;
 
-@Singleton
-public class OwnerService {
-    private final Collection<Owner> owners = new ConcurrentLinkedDeque<>();
+    @Singleton
+    public class OwnerService {
+        private final Collection<Owner> owners = new ConcurrentLinkedDeque<>();
 
-    public OwnerService(List<OwnerConfiguration> ownerConfiguration) {
-        for (OwnerConfiguration configuration : ownerConfiguration) {
-            Owner owner = configuration.create();
+        public OwnerService(List<OwnerConfiguration> ownerConfiguration) {
+            for (OwnerConfiguration configuration : ownerConfiguration) {
+                Owner owner = configuration.create();
+                owners.add(owner);
+            }
+        }
+
+        @Logged
+        public Collection<Owner> getInitialOwners() {
+            return owners;
+        }
+        
+        public void addOwner(Owner owner) {
             owners.add(owner);
         }
     }
-
-    @Logged
-    public Collection<Owner> getInitialOwners() {
-        return owners;
-    }
-    
-    public void addOwner(Owner owner) {
-        owners.add(owner);
-    }
-}
-```
+    </copy>
 
 The `Owner` service now manages a mutable collection of `Owner` instances initialized from configuration. The `addOwner` method can be used to add a new owner.
 
 Now add a new route to the `OwnerController` that handles POST requests and allows adding new `Owner` instances:
 
-```
-@Post("/")
-Owner add(@NotBlank String name, @Min(18) int age) {
-    Owner owner = new Owner(name, age);
-    ownerService.addOwner(owner);
-    return owner;
-}
-```
+    <copy>
+    @Post("/")
+    Owner add(@NotBlank String name, @Min(18) int age) {
+        Owner owner = new Owner(name, age);
+        ownerService.addOwner(owner);
+        return owner;
+    }
+    </copy>
 
 The add method takes 2 arguments the `Owner` name and age and uses validation constraints on the parameters to ensure only validate arguments are supplied. The valid owner instance is constructed and passed to the `OwnerService`'s `addOwner` method.
 
@@ -162,47 +162,47 @@ Using individual parameters of a controller method is one way to define validati
 
 Try modifying the `Owner` class with the validation constraints such as the below:
 
-```
-package example.micronaut;
+    <copy>
+    package example.micronaut;
 
-import io.micronaut.core.annotation.Introspected;
+    import io.micronaut.core.annotation.Introspected;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+    import javax.validation.constraints.Min;
+    import javax.validation.constraints.NotBlank;
 
-@Introspected
-public class Owner {
-    @NotBlank
-    private final String name;
-    @Min(18)
-    private final int age;
+    @Introspected
+    public class Owner {
+        @NotBlank
+        private final String name;
+        @Min(18)
+        private final int age;
 
-    public Owner(String name, int age) {
-        this.name = name;
-        this.age = age;
+        public Owner(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-}
-```
+    </copy>
 
 In this case the constraints are defined directly on the fields of the `Owner` class.
 
 Now modify the `add` method of the `OwnerController` to instead validate an instance of `Owner`:
 
-```
-@Post("/")
-Owner add(@Valid @Body Owner owner) {
-    ownerService.addOwner(owner);
-    return owner;
-}
-```
+    <copy>
+    @Post("/")
+    Owner add(@Valid @Body Owner owner) {
+        ownerService.addOwner(owner);
+        return owner;
+    }
+    </copy>
 
 In this case the `javax.validation.Valid` annotation is used to indicate that only a valid instance of `Owner` is accepted. Note that the `io.micronaut.http.annotation.Body` is used to indicate that the whole body should be bound to the `Owner` parameter.
 

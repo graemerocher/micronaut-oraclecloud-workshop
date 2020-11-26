@@ -23,13 +23,13 @@ By default Micronaut will search any configuration files you have located in `sr
 
 Let's try and modfify the application configuration. Alter the `src/main/resources/application.yml` file and add configuration to alter the [server port](https://docs.micronaut.io/latest/guide/configurationreference.html#io.micronaut.http.server.HttpServerConfiguration) to 8081 by default:
 
-```yaml
-micronaut:
-  application:
-    name: demo
-  server:
-    port: 8081
-```
+	<copy>
+	micronaut:
+	  application:
+	    name: demo
+	  server:
+	    port: 8081
+	</copy>
 
 Now run your application again and you will notice it starts on port 8081:
 
@@ -47,9 +47,9 @@ You can configure Micronaut differently based on the currently detected environm
 
 To demonstrate this create a new configuration file in `.properties` file format called `src/main/resources/application-oraclecloud.properties` and place the following configuration within the file:
 
-```
-micronaut.server.port=8085
-```
+	<copy>
+	micronaut.server.port=8085
+	</copy>
 
 Now run the application again and note the output:
 
@@ -101,11 +101,11 @@ Then remove the Oracle Cloud specific configuration by simply deleting `applicat
 
 Finally, restore your `application.yml` to a clean slate by replacing its contents with:
 
-```yaml
-micronaut:
-	application:
-		name: demo
-```
+	<copy>
+	micronaut:
+		application:
+			name: demo
+	</copy>
 
 You may now *proceed to the next lab*.
 

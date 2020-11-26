@@ -24,20 +24,20 @@ The annotation-based programming model should be very familiar to anyone who has
 
 To get started with an example create a file called `src/main/java/example/micronaut/OwnerController.java` and populate it with the following contents:
 
-```
-package example.micronaut;
+    <copy>
+    package example.micronaut;
 
-import io.micronaut.http.annotation.Controller;
+    import io.micronaut.http.annotation.Controller;
 
-@Controller("/owners")
-public class OwnerController {
-    private final OwnerService ownerService;
+    @Controller("/owners")
+    public class OwnerController {
+        private final OwnerService ownerService;
 
-    public OwnerController(OwnerService ownerService) {
-        this.ownerService = ownerService;
+        public OwnerController(OwnerService ownerService) {
+            this.ownerService = ownerService;
+        }
     }
-}
-```
+    </copy>
 
 As you can see the `OwnerController` defines a constructor that injects the `OwnerService` and on the class the `@Controller` annotation is used to define the root URI to this controller.
 
@@ -46,12 +46,12 @@ As you can see the `OwnerController` defines a constructor that injects the `Own
 
 To expose an individual route over HTTP you need to define methods that are annotated with an applicable annotation for each HTTP method you wish to expose. Try add the following definition:
 
-```
-@Get("/")
-java.util.Collection<Owner> getOwners() {
-    return ownerService.getInitialOwners();
-}
-```
+    <copy>
+    @Get("/")
+    java.util.Collection<Owner> getOwners() {
+        return ownerService.getInitialOwners();
+    }
+    </copy>
 
 This uses the `io.micronaut.http.annotation.Get` annotation to indicate that HTTP get requests to the root URI under `/owners` should match this method and invoke it. The return type indicates the response that will be sent over HTTP which by default is assumed to be JSON.
 
@@ -62,33 +62,33 @@ As mentioned the default response content type is JSON. However to allow many ta
 
 To create a Bean Introspection you can annotate any classes required with [@Introspected](https://docs.micronaut.io/latest/api/io/micronaut/core/annotation/Introspected.html). Modify the `Owner` class you created earlier and add the annotation:
 
-```
-package example.micronaut;
+    <copy>
+    package example.micronaut;
 
-import io.micronaut.core.annotation.Introspected;
+    import io.micronaut.core.annotation.Introspected;
 
-@Introspected // <-- add the annotation here
-public class Owner {
-    // remaining code
-}
+    @Introspected // <-- add the annotation here
+    public class Owner {
+        // remaining code
+    }
+    </copy>
 
-```
 
 
 Now let's expose some `Owner` objects over HTTP. To see that in action configure some initial owners by modifying your `src/main/resources/application.yml` file so that 2 `OwnerConfiguration` beans are created:
 
-```
-micronaut:
-  application:
-    name: demo
-owners:
-  fred:
-    name: Fred
-    age: 35
-  barney:
-    name: Barney
-    age: 30
-```
+    <copy>
+    micronaut:
+      application:
+        name: demo
+    owners:
+      fred:
+        name: Fred
+        age: 35
+      barney:
+        name: Barney
+        age: 30
+    </copy>
 
 Now run your `Application` class from the IDE (as described in lab 1) and open up Terminal from the IDE and run `curl` to see your response:
 

@@ -203,9 +203,9 @@ Next modify `OwnerController` to inject the interface you have defined instead o
 	}
 	</copy>
 
-Now if you wish to supply a mock version of `OwnerOperations` you can use the `@MockBean` annotation on a method of your test. Try the following example where the test itself implements a mock version of `OwnerOperations`:
+Now if you wish to supply a mock version of `OwnerOperations` you can use the `@MockBean` annotation on a method of your test. Try the following altered version of `OwnerControllerTest` where the test itself implements a mock version of `OwnerOperations`:
 
-	<code>
+	<copy>
 	package example.micronaut;
 
 	import io.micronaut.test.annotation.MockBean;
@@ -253,7 +253,7 @@ Now if you wish to supply a mock version of `OwnerOperations` you can use the `@
 	        owners.add(owner);
 	    }
 	}
-	</code>
+	</copy>
 
 Note if you don't want to implement the whole interface yourself you can instead consider returning a Mock object using a framework like [Mokito](https://site.mockito.org).
 

@@ -22,35 +22,35 @@ This is where Micronaut's support for [Aspect Oriented Programming (AOP)](https:
 
 Firsts define a class in a file called `src/main/java/example/micronaut/LoggingInterceptor.java` with the following contents:
 
-```
-package example.micronaut;
+    <copy>
+    package example.micronaut;
 
-import io.micronaut.aop.MethodInterceptor;
-import io.micronaut.aop.MethodInvocationContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+    import io.micronaut.aop.MethodInterceptor;
+    import io.micronaut.aop.MethodInvocationContext;
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
 
-import javax.inject.Singleton;
+    import javax.inject.Singleton;
 
-@Singleton
-public class LoggingInterceptor implements MethodInterceptor<Object, Object> {
-    @Override
-    public Object intercept(MethodInvocationContext<Object, Object> context) {
-        Logger log = LoggerFactory.getLogger(context.getDeclaringType());
-        log.trace("Executing : {}", context.getExecutableMethod());
-        try {
-            Object result = context.proceed();
-            log.trace("Method {} resulted in : {}", context.getExecutableMethod(), result);
-            return result;
-        } catch(RuntimeException e) {
-            log.trace("Method {} caused error : {}", 
-            			context.getExecutableMethod(), 
-        				e.getMessage());
-            throw e;
+    @Singleton
+    public class LoggingInterceptor implements MethodInterceptor<Object, Object> {
+        @Override
+        public Object intercept(MethodInvocationContext<Object, Object> context) {
+            Logger log = LoggerFactory.getLogger(context.getDeclaringType());
+            log.trace("Executing : {}", context.getExecutableMethod());
+            try {
+                Object result = context.proceed();
+                log.trace("Method {} resulted in : {}", context.getExecutableMethod(), result);
+                return result;
+            } catch(RuntimeException e) {
+                log.trace("Method {} caused error : {}", 
+                			context.getExecutableMethod(), 
+            				e.getMessage());
+                throw e;
+            }
         }
     }
-}
-```
+    </copy>
 
 A `MethodInterceptor` like the one above intercepts a method invocation and allows you to wrap the invocation in additional functionality before proceeding (by calling `proceed()`). In the above case the method invocation is logged and the result logged or if an error occurs the error message is logged before the error is rethrown.
 
@@ -58,21 +58,21 @@ A `MethodInterceptor` like the one above intercepts a method invocation and allo
 
 To apply this interceptor to a class you need a trigger annotation. Create a new annotation class in a file called `src/main/java/example/micronaut/Logged.java` with the following contents:
 
-```
-package example.micronaut;
+    <copy>
+    package example.micronaut;
 
-import io.micronaut.aop.Around;
-import io.micronaut.context.annotation.Type;
+    import io.micronaut.aop.Around;
+    import io.micronaut.context.annotation.Type;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+    import java.lang.annotation.Retention;
+    import java.lang.annotation.RetentionPolicy;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Around
-@Type(LoggingInterceptor.class)
-public @interface Logged {
-}
-```
+    @Retention(RetentionPolicy.RUNTIME)
+    @Around
+    @Type(LoggingInterceptor.class)
+    public @interface Logged {
+    }
+    </copy>
 
 The annotation itself is annotated with [@Around](https://docs.micronaut.io/latest/api/io/micronaut/aop/Around.html) which indicates this interceptor will be applied around a method invocation and the `@Type` annotation is used to indicate the implementation interceptor.
 
@@ -80,24 +80,24 @@ The annotation itself is annotated with [@Around](https://docs.micronaut.io/late
 
 Now apply the `@Logged` annotation to the `getInitialOwners()` method you defined in the previous lab:
 
-```
-@Logged
-List<Owner> getInitialOwners() {
-    return ownerConfiguration.stream()
-             .map(OwnerConfiguration::create)
-            .collect(Collectors.toList());
-}
-```
+    <copy>
+    @Logged
+    List<Owner> getInitialOwners() {
+        return ownerConfiguration.stream()
+                 .map(OwnerConfiguration::create)
+                .collect(Collectors.toList());
+    }
+    </copy>
 
 Next modify your logging configuration by modifying the `src/main/resources/logback.xml` file to include the following definition:
 
-```
-<configuration>
-	<!-- remaining contents omitted for brevity -->
+    <copy>
+    <configuration>
+    	<!-- remaining contents omitted for brevity -->
 
-    <logger name="example.micronaut" level="trace" />
-</configuration>
-```
+        <logger name="example.micronaut" level="trace" />
+    </configuration>
+    </copy>
 
 Finally run the `OwnerServiceTest` from the previous lab and you will see the following output when the `testOwners` test is executed:
 
