@@ -186,7 +186,16 @@ public class OwnerService {
 }
 ```
 
-Micronaut will automatically lookup and populate the available `OwnerConfiguration` instances. So how do you make them available? Try adding the following test to the `OwnerServiceTest` you created early:
+Micronaut will automatically lookup and populate the available `OwnerConfiguration` instances using constructor injection. You can also alternatively use field injection in the form:
+
+```
+@javax.inject.Inject List<OwnerConfiguration> ownerConfiguration;
+```
+
+However, constructor injection is prefered as it encourages immutability and more clearly expresses the requirements of the class.
+
+
+So how do you make the `OwnerConfiguration` instances available? Try adding the following test to the `OwnerServiceTest` you created early:
 
 ```
     @Test
@@ -213,6 +222,14 @@ Micronaut will automatically lookup and populate the available `OwnerConfigurati
 ```
 
 Notice that for each entry under the `owner` configuration namespace you get a new instance of `OwnerConfiguration` thanks to how `@EachProperty` works. Also notice how you can pass configuration to the `run` method of the `ApplicationContext` in order to configure your application.
+
+You can additionally lookup an individual named instance used the `@javax.inject.Named(..)` qualifier, for example:
+
+
+    public OwnerService(@Named("fred") OwnerConfiguration> fredConfiguration) {
+        this.ownerConfiguration = fredConfiguration;
+    }
+
 
 You may now *proceed to the next lab*.
 
