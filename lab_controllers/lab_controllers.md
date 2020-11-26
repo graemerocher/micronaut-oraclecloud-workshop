@@ -47,10 +47,10 @@ As you can see the `OwnerController` defines a constructor that injects the `Own
 To expose an individual route over HTTP you need to define methods that are annotated with an applicable annotation for each HTTP method you wish to expose. Try add the following definition:
 
 ```
-    @Get("/")
-    List<Owner> getOwners() {
-        return ownerService.getInitialOwners();
-    }
+@Get("/")
+java.util.Collection<Owner> getOwners() {
+    return ownerService.getInitialOwners();
+}
 ```
 
 This uses the `io.micronaut.http.annotation.Get` annotation to indicate that HTTP get requests to the root URI under `/owners` should match this method and invoke it. The return type indicates the response that will be sent over HTTP which by default is assumed to be JSON.

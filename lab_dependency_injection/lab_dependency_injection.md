@@ -168,6 +168,7 @@ package example.micronaut;
 
 import javax.inject.Singleton;
 import java.util.List;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Singleton
@@ -178,7 +179,7 @@ public class OwnerService {
         this.ownerConfiguration = ownerConfiguration;
     }
 
-    List<Owner> getInitialOwners() {
+    Collection<Owner> getInitialOwners() {
         return ownerConfiguration.stream()
                  .map(OwnerConfiguration::create)
                 .collect(Collectors.toList());
@@ -208,7 +209,7 @@ So how do you make the `OwnerConfiguration` instances available? Try adding the 
         );
         try (ApplicationContext context = ApplicationContext.run(configuration)) {
             OwnerService ownerService = context.getBean(OwnerService.class);
-            List<Owner> initialOwners = ownerService.getInitialOwners();
+            Collection<Owner> initialOwners = ownerService.getInitialOwners();
             assertEquals(
                     2,
                     initialOwners.size()
