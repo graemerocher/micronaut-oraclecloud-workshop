@@ -25,6 +25,7 @@ In the examples so far we have used in-memory data structures to store data. Let
 First add the following dependencies if you are using Gradle to the `build.gradle` file in the root of your project inside the `dependencies` block:
 
 	<copy>
+	runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("com.oracle.database.jdbc:ojdbc8")
     runtimeOnly("com.oracle.database.security:oraclepki:19.8.0.0")
     runtimeOnly("com.oracle.database.security:osdt_cert:19.8.0.0")
@@ -71,7 +72,7 @@ In this virtual lab the wallet file is already downloaded and extracted to the `
 	    url: "jdbc:oracle:thin:@${DB_NAME}"
 	    driverClassName: oracle.jdbc.OracleDriver
 	    databaseName: "${DB_SCHEMA}"
-	    username: "${DB_USERNAME}"
+	    username: "${DB_USER}"
 	    password: "${DB_PASSWORD}"
 	    dialect: ORACLE
 	    data-source-properties:
@@ -131,6 +132,10 @@ The next step is to define a SQL migration script that will create the applicati
 	</copy>
 
 The SQL above will create 2 tables called `owner` and `pet` which will store the data for owners and their pets in Autonomous Database.
+
+Before running your application make sure you refresh your Gradle or Maven dependencies:
+
+![Project Dialog](../images/dependency-refresh.png)
 
 Try run your application now and it should start successfully and run the migration scripts.
 
