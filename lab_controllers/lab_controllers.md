@@ -58,7 +58,24 @@ This uses the `io.micronaut.http.annotation.Get` annotation to indicate that HTT
 
 ## Return JSON Responses
 
-As mentioned the default response content type is JSON. To see that in action configure some initial owners by modifying your `src/main/resources/application.yml` file so that 2 `OwnerConfiguration` beans are created:
+As mentioned the default response content type is JSON. However to allow many tasks to be peformed on a Java object such as JSON serialization/deserialization, validation and so on Micronaut needs acesss what to what is known as a [Bean Introspection](https://docs.micronaut.io/latest/guide/index.html#introspection) which allows reading and writing to Java objects according to the rules defined in the [JavaBean specification](https://www.oracle.com/java/technologies/javase/javabeans-spec.html).
+
+To create a Bean Introspection you can annotate any classes required with [@Introspected](https://docs.micronaut.io/latest/api/io/micronaut/core/annotation/Introspected.html). Modify the `Owner` class you created earlier and add the annotation:
+
+```
+package example.micronaut;
+
+import io.micronaut.core.annotation.Introspected;
+
+@Introspected // <-- add the annotation here
+public class Owner {
+    // remaining code
+}
+
+```
+
+
+Now let's expose some `Owner` objects over HTTP. To see that in action configure some initial owners by modifying your `src/main/resources/application.yml` file so that 2 `OwnerConfiguration` beans are created:
 
 ```
 micronaut:
