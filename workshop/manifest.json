@@ -15,7 +15,7 @@
         {
             "title": "Lab 1: Getting to Know Micronaut",
             "description": "Getting to Know Micronaut",
-            "filename": "lab_gettingstarted/01_lab_gettingstarted.md"
+            "filename": "../lab_gettingstarted/lab_gettingstarted.md"
         },
         {
             "title": "Lab 2: Configuring Micronaut",
