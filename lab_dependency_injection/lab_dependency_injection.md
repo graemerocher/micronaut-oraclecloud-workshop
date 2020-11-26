@@ -179,7 +179,7 @@ public class OwnerService {
         this.ownerConfiguration = ownerConfiguration;
     }
 
-    Collection<Owner> getInitialOwners() {
+    public Collection<Owner> getInitialOwners() {
         return ownerConfiguration.stream()
                  .map(OwnerConfiguration::create)
                 .collect(Collectors.toList());

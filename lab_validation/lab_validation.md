@@ -116,11 +116,11 @@ public class OwnerService {
     }
 
     @Logged
-    Collection<Owner> getInitialOwners() {
+    public Collection<Owner> getInitialOwners() {
         return owners;
     }
     
-    void addOwner(Owner owner) {
+    public void addOwner(Owner owner) {
         owners.add(owner);
     }
 }
@@ -205,6 +205,8 @@ Owner add(@Valid @Body Owner owner) {
 ```
 
 In this case the `javax.validation.Valid` annotation is used to indicate that only a valid instance of `Owner` is accepted. Note that the `io.micronaut.http.annotation.Body` is used to indicate that the whole body should be bound to the `Owner` parameter.
+
+Now you can repeat the same `curl` command from the previous section and the same error will result.
 
 You may now *proceed to the next lab*.
 
