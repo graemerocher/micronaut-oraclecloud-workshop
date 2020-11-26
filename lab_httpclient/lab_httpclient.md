@@ -71,9 +71,73 @@ Micronaut features a built-in declarative HTTP client that can be used to simpli
 	}
 	</copy>
 
-The kep part of this code is the `OwnerClient` interface which is defined as an inner class and then injected as a bean. By specifying a URI of `/owners` to the declarative client it is assumed you will be making requests to the current server.
+The key part of this code is the `OwnerClient` interface which is defined as an inner class and then injected as a bean. By specifying a URI of `/owners` to the declarative client it is assumed you will be making requests to the current server.
 
 > If you wish to debug the HTTP requests and responses try adding a logger definition like `<logger name="io.micronaut.http.client" level="trace" />`
+
+
+Micronaut will at compilation time produce an implementation of the `OwnerClient` interface which is injectable into your code (If you are interested to know how this works see, the [Introduction Advice](https://docs.micronaut.io/latest/guide/index.html#introductionAdvice) section of the Micronaut documentation).
+
+## Non-Blocking Client Requests
+
+Note as well that in this example the interface is returning `Owner` and `Collection` directly which means that Micronaut must block until the response is received from a client. This is fine for unit testing but in production code it is far better to avoid blocking I/O where you can. To achieve this you can instead return Reactive types from the interface such as those defined by [RxJava](https://github.com/ReactiveX/RxJava).
+
+Try the following example:
+
+	<copy>
+	package example.micronaut;
+
+	import io.micronaut.http.HttpStatus;
+	import io.micronaut.http.annotation.Body;
+	import io.micronaut.http.annotation.Get;
+	import io.micronaut.http.annotation.Post;
+	import io.micronaut.http.client.annotation.Client;
+	import io.micronaut.http.client.exceptions.HttpClientResponseException;
+	import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+	import io.reactivex.Flowable;
+	import io.reactivex.Single;
+	import org.junit.jupiter.api.Test;
+
+	import javax.inject.Inject;
+
+	import static org.junit.jupiter.api.Assertions.*;
+
+	@MicronautTest
+	public class OwnerControllerTest  {
+	    @Inject OwnerClient ownerClient;
+
+	    @Test
+	    void testAddOwnerInvalid() {
+	        HttpClientResponseException e = assertThrows(HttpClientResponseException.class, () ->
+	                ownerClient.add(new Owner("Bob", 10))
+	        );
+	        assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
+	        assertEquals("owner.age: must be greater than or equal to 18", e.getMessage());
+
+	    }
+
+	    @Test
+	    void testAddOwnerValid() {
+	        Owner bob = ownerClient.add(new Owner("Bob", 35)).blockingGet();
+	        assertNotNull(bob);
+	        assertEquals("Bob", bob.getName());
+	        assertEquals(35, bob.getAge());
+
+	        assertEquals(3, ownerClient.getOwners().toList().blockingGet().size());
+	    }
+
+	    @Client("/owners")
+	    interface OwnerClient {
+	        @Get("/")
+	        Flowable<Owner> getOwners();
+
+	        @Post("/")
+	        Single<Owner> add(@Body Owner owner);
+	    }
+	}
+	</copy>
+
+Note that the test itself is still blocking to obtain the results, however in production code you can use [Reactive response processing](https://docs.micronaut.io/latest/guide/index.html#reactiveServer) to for example invoke another HTTP service and return a response without blocking at all.
 
 ## HTTP Services
 
@@ -87,10 +151,10 @@ To demonstrate Service IDs in action modify the `OwnerClient` defined in the pre
     @Client(id = "owners", path = "/owners")
     interface OwnerClient {
         @Get("/")
-        Collection<Owner> getOwners();
+        Flowable<Owner> getOwners();
 
         @Post("/")
-        Owner add(@Body Owner owner);
+        Single<Owner> add(@Body Owner owner);
     }
 	</copy>
 
