@@ -16,7 +16,7 @@ In this lab you will:
 
 ## Define a Controller
 
-Micronaut's built in HTTP server is based on the Netty I/O toolkit in combination with an annotation-based programming model for defining routes with built in support for emitting and consuming JSON via the Jackson library.
+Micronaut's built-in HTTP server is based on the Netty I/O toolkit in combination with an annotation-based programming model for defining routes with support for emitting and consuming JSON via the Jackson library.
 
 > Note that Micronaut does include optional additional modules that add support for things like [Server-side view rendering with template engines like Thymleaf and Velocity](https://micronaut-projects.github.io/micronaut-views/latest/guide/) and [XML responses](https://micronaut-projects.github.io/micronaut-jackson-xml/latest/guide/index.html).
 

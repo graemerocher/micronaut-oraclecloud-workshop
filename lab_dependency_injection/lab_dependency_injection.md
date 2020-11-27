@@ -25,7 +25,7 @@ In order for Micronaut to do that you need designate which classes in your appli
 
 This is done by defining an annotation on the class that itself is annotated with `javax.inject.Scope`. 
 
-A scope is defines the lifecycle of a bean and aspects such as how many instances are allowed. The most common scope is `javax.inject.Singleton` which indicates that at most 1 instance is allowed of the object. 
+A scope defines the lifecycle of a bean and aspects such as how many instances are allowed. The most common scope is `javax.inject.Singleton` which indicates that at most 1 instance is allowed of the object. 
 
 For more information on other available scopes see the [Scopes](https://docs.micronaut.io/latest/guide/index.html#scopes) section of the Micronaut documentation.
 

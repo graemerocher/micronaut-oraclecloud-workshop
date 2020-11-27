@@ -16,7 +16,7 @@ In this lab you will:
 
 ## Define a MethodInterceptor
 
-It is often a requirement to define cross cutting concerns (logging, security, tracing, validation etc.) that apply to many methods in an application.
+It is often a requirement to define cross-cutting concerns (logging, security, tracing, validation etc.) that apply to many methods in an application.
 
 This is where Micronaut's support for [Aspect Oriented Programming (AOP)](https://docs.micronaut.io/latest/guide/index.html#aop) comes to the fore. There are several types of "advice" you can define in a Micronaut application. We are going to look at "Around" advice which is the most simple by defining a [MethodInterceptor](https://docs.micronaut.io/latest/api/io/micronaut/aop/MethodInterceptor.html) that logs the result of a method execution.
 

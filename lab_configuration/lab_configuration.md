@@ -8,7 +8,7 @@ Estimated Lab Time: 10 minutes
 ### Objectives
 
 In this lab you will:
-* Learn how to modify a Micronaut applications configuration
+* Learn how to modify a Micronaut application's configuration
 * Learn how to alter configuration via the environment
 * Understand Micronaut environments
 
@@ -19,9 +19,9 @@ In this lab you will:
 
 Micronaut applications are Cloud Native in that they are able to automatically detect their environment, resolving configuration from the environment as needed.
 
-By default Micronaut will search any configuration files you have located in `src/main/resources` and has out of the box support for many popular formats such as `.properties`, `.yml`, `.json` and so on.
+By default Micronaut will search any configuration files you have located in `src/main/resources` and has out-of-the-box support for many popular formats such as `.properties`, `.yml`, `.json` and so on.
 
-Let's try and modfify the application configuration. Alter the `src/main/resources/application.yml` file and add configuration to alter the [server port](https://docs.micronaut.io/latest/guide/configurationreference.html#io.micronaut.http.server.HttpServerConfiguration) to 8081 by default:
+Let's try and modify the application configuration. Alter the `src/main/resources/application.yml` file and add configuration to alter the [server port](https://docs.micronaut.io/latest/guide/configurationreference.html#io.micronaut.http.server.HttpServerConfiguration) to 8081 by default:
 
 	<copy>
 	micronaut:
@@ -30,6 +30,8 @@ Let's try and modfify the application configuration. Alter the `src/main/resourc
 	  server:
 	    port: 8081
 	</copy>
+
+> TIP: A full [configuration reference](https://docs.micronaut.io/latest/guide/configurationreference.html) is available on the Micronaut documentation website
 
 Now run your application again and you will notice it starts on port 8081:
 
@@ -62,7 +64,7 @@ As you can see the application starts on port 8085 because the `application-orac
 
 ## Using Environment Variables
 
-Micronaut has a specific property resolution order that which is [described in the user guide ](https://docs.micronaut.io/latest/guide/index.html#propertySource). Configuration is resolved in the following precedence:
+Micronaut has a specific property resolution order which is [described in the user guide ](https://docs.micronaut.io/latest/guide/index.html#propertySource). Configuration is resolved in the following precedence:
 
 1. Command line arguments
 2. Java System Properties
