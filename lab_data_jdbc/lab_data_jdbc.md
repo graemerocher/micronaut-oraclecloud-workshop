@@ -308,6 +308,105 @@ Micronaut Data makes implementing query methods a breeze. To demonstrate this ad
 	Collection<Pet> getPetsWithHeath(String owner, Pet.PetHealth health);
 	</copy>
 
+Now modify the `PetRepository` data access repository interface to include methods that implement these different use cases:
+
+	<copy>
+	package example.micronaut;
+
+	import io.micronaut.data.annotation.Join;
+	import io.micronaut.data.jdbc.annotation.JdbcRepository;
+	import io.micronaut.data.model.query.builder.sql.Dialect;
+	import io.micronaut.data.repository.CrudRepository;
+
+	import java.util.Collection;
+
+	@JdbcRepository(dialect = Dialect.ORACLE)
+	public interface PetRepository extends CrudRepository<Pet, Long> {
+	    @Join("owner")
+	    Collection<Pet> findByOwnerName(String owner);
+
+	    @Join("owner")
+	    Pet findByNameAndOwnerName(String pet, String owner);
+
+	    @Join("owner")
+	    Collection<Pet> findByOwnerNameAndHealth(String owner, Pet.PetHealth health);
+	}
+	</copy>
+
+Micronaut Data supports [method patterns](https://micronaut-projects.github.io/micronaut-data/latest/guide/#querying) which are automatically implemented for you at compilation time, producing the appropriate SQL query.
+
+Note that the [@Join](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/annotation/Join.html) annotation is used to fetch the associated `Owner` instance for each `Pet` with a single query.
+
+Also take note how a method like `findByOwnerName` can query the `name` property of the associated `Owner`. 
+
+In addition, you can use `And` or `Or` to query multiple properties as demonstrated by the `findByOwnerNameAndHealth` method.
+
+Now let's modify `OwnerService` to implement the new methods in the `OwnerOperations` interface:
+
+	<copy>
+	@Override
+	public Pet getPet(String owner, String pet) {
+	    return petRepository.findByNameAndOwnerName(pet, owner);
+	}
+
+	@Override
+	public Collection<Pet> getPets(String owner) {
+	    return petRepository.findByOwnerName(owner);
+	}
+
+	@Override
+	public Collection<Pet> getPetsWithHeath(String owner, Pet.PetHealth health) {
+	    return petRepository.findByOwnerNameAndHealth(owner, health);
+	}
+	</copy>
+
+Finally modify `OwnerController` to include new routes to retrieve all an `Owner`'s pets (or only the healthy ones) plus retrieving a unique pet by name for an `Owner`:
+
+	<copy>
+	@Get("/{owner}/pets{?health}")
+	Collection<Pet> getPets(String owner, @Nullable Pet.PetHealth health) {
+	    if (health != null) {
+	        return ownerOperations.getPetsWithHeath(owner, health);
+	    } else {
+	        return ownerOperations.getPets(owner);
+	    }
+	}
+
+	@Get("/{owner}/pets/{pet}")
+	Pet getPet(String owner, String pet) {
+	    return ownerOperations.getPet(owner, pet);
+	}
+	</copy>
+
+Note that the `getPets` method demonstrates the use of [URI Templates](https://docs.micronaut.io/latest/guide/index.html#routing) within routes in Micronaut. You can specify optional URI variables with the `{..}` syntax and add optional query parameters with `{?health}`. 
+
+> The syntax for URI templates is based on the [RFC-6570 URI template specification](https://tools.ietf.org/html/rfc6570)
+
+Finally, let's write some tests! Add the following two definitions to the `OwnerClient` defined within `OwnerControllerTest`:
+
+	<copy>
+	@Get("/{owner}/pets{?health}")
+	Collection<Pet> getPets(String owner, @Nullable Pet.PetHealth health);
+
+	@Get("/{owner}/pets/{pet}")
+	Pet getPet(String owner, String pet);
+	</copy>
+
+And define a test within `OwnerControllerTest` that executes the new route:
+
+	<copy>
+	@Test
+	void testGetHealthPets() {
+	    Collection<Pet> pets = ownerClient.getPets("Barney", Pet.PetHealth.VACCINATED);
+	    assertEquals(
+	            1,
+	            pets.size()
+	    );
+	}	
+	</copy>
+
+Run your test and see the result!
+	
 You may now *proceed to the next lab*.
 
 ### Acknowledgements
