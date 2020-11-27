@@ -76,11 +76,11 @@ The key part of this code is the `OwnerClient` interface which is defined as an 
 > If you wish to debug the HTTP requests and responses try adding a logger definition like `<logger name="io.micronaut.http.client" level="trace" />`
 
 
-Micronaut will at compilation time produce an implementation of the `OwnerClient` interface which is injectable into your code (If you are interested to know how this works see, the [Introduction Advice](https://docs.micronaut.io/latest/guide/index.html#introductionAdvice) section of the Micronaut documentation).
+Micronaut will at compilation time produces an implementation of the `OwnerClient` interface which is injectable into your code (If you are interested to know how this works see, the [Introduction Advice](https://docs.micronaut.io/latest/guide/index.html#introductionAdvice) section of the Micronaut documentation).
 
 ## Non-Blocking Client Requests
 
-Note as well that in this example the interface is returning `Owner` and `Collection` directly which means that Micronaut must block until the response is received from a client. This is fine for unit testing but in production code it is far better to avoid blocking I/O where you can. To achieve this you can instead return Reactive types from the interface such as those defined by [RxJava](https://github.com/ReactiveX/RxJava).
+It should be noted that in the example in the previous section the `OwnerClient` interface is returning `Owner` and `Collection` directly which means that Micronaut must block until the response is received from a client. This is fine for unit testing but in production code it is far better to avoid blocking I/O where you can. To achieve this you can instead return Reactive types from the interface such as those defined by [RxJava](https://github.com/ReactiveX/RxJava).
 
 Try the following example:
 
@@ -179,7 +179,7 @@ Now modify `src/main/resources/application.yml` as follows:
 	    age: 30
 	</copy>
 
-The above configures Micronaut to look for services with an ID of `owners` at the given address or addresses (if there are many Micronaut will client-side load balance between them).
+The above configures Micronaut to look for services with an ID of `owners` at the given address or addresses (if there are many Micronaut will client-side load balance between them) using the `micronaut.http.services.owners.url` property where `owners` is the Service ID.
 
 Now ensure your application is _not_ running and run `OwnerControllerTest`, which will fail with errors like the following:
 

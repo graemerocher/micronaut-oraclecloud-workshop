@@ -64,7 +64,7 @@ In this example the `@NotBlank` annotation ensures the name cannot be blank and 
 
 Notice as well the addition of the [@Context](https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Context.html) annotation, this ensure that any configurations are bound to the lifecycle of the `ApplicationContext` such that they are created on startup instead of lazily initialized. This ensures any validation rules are executed on application startup.
 
-Try modify the `testOwners` test now I pass in invalid data:
+Try modify the `testOwners` test now and pass in invalid data such as an `age` that violates the previously defined constraint:
 
     <copy>
     @Test
@@ -141,7 +141,7 @@ Now add a new route to the `OwnerController` that handles POST requests and allo
 
 The add method takes 2 arguments the `Owner` name and age and uses validation constraints on the parameters to ensure only validate arguments are supplied. The valid owner instance is constructed and passed to the `OwnerService`'s `addOwner` method.
 
-Try running your application again as described in Lab 1 and then run the following `curl` command from Terminal:
+Try running your application again as described in Lab 1 and then run the following `curl` command from Terminal, again supplying an invalid `age` value:
 
 ```
 $ curl -H "Content-Type:application/json" -X POST -i http://localhost:8080/owners -d '{"name":"Fred", "age":10}'

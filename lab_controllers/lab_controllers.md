@@ -53,12 +53,12 @@ To expose an individual route over HTTP you need to define methods that are anno
     }
     </copy>
 
-This uses the `io.micronaut.http.annotation.Get` annotation to indicate that HTTP get requests to the root URI under `/owners` should match this method and invoke it. The return type indicates the response that will be sent over HTTP which by default is assumed to be JSON.
+This uses the `io.micronaut.http.annotation.Get` annotation to indicate that HTTP `GET` requests to the root URI under `/owners` should match this method and invoke it. The return type represents the response that will be sent over HTTP which by default is assumed to be JSON.
 
 
 ## Return JSON Responses
 
-As mentioned the default response content type is JSON. However to allow many tasks to be peformed on a Java object such as JSON serialization/deserialization, validation and so on Micronaut needs acesss what to what is known as a [Bean Introspection](https://docs.micronaut.io/latest/guide/index.html#introspection) which allows reading and writing to Java objects according to the rules defined in the [JavaBean specification](https://www.oracle.com/java/technologies/javase/javabeans-spec.html).
+As mentioned the default response content type is JSON. However to allow many tasks to be peformed without the use of reflection on a Java object such as JSON serialization/deserialization, validation and so on Micronaut needs access what is known as a [Bean Introspection](https://docs.micronaut.io/latest/guide/index.html#introspection) which allows reading and writing to Java objects according to the rules defined in the [JavaBean specification](https://www.oracle.com/java/technologies/javase/javabeans-spec.html).
 
 To create a Bean Introspection you can annotate any classes required with [@Introspected](https://docs.micronaut.io/latest/api/io/micronaut/core/annotation/Introspected.html). Modify the `Owner` class you created earlier and add the annotation:
 
@@ -90,7 +90,7 @@ Now let's expose some `Owner` objects over HTTP. To see that in action configure
         age: 30
     </copy>
 
-Now run your `Application` class from the IDE (as described in lab 1) and open up Terminal from the IDE and run `curl` to see your response:
+Now run your `Application` class from the IDE (as described in Lab 1) and open up Terminal from the IDE and run `curl` to see your response:
 
 ```
 curl -i http://localhost:8080/owners
