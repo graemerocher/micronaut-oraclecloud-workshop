@@ -67,6 +67,15 @@ In order to connect to Autonomous Database you typically need to download a [Wal
 In this virtual lab the wallet file is already downloaded and extracted to the `/tmp/wallet` directory and the necessary `TNS_ADMIN` environment variable set, so all that is required is to correctly configure the JDBC connection which you can do by modifying the `src/main/resources/application.yml` configuration file with the following settings:
 
 	<copy>
+	micronaut:
+	  application:
+	    name: demo
+      executors:
+      	io:
+      	   type: fixed
+      	   n-threads: 75
+	  server:
+	    thread-selection: IO	
 	datasources:
 	  default:
 	    url: "jdbc:oracle:thin:@${DB_NAME}"
@@ -81,6 +90,8 @@ In this virtual lab the wallet file is already downloaded and extracted to the `
 	          fanEnabled: false
 	</copy>	
 
+> In addition to the database configuration described below, this configuration also sets `micronaut.server.thread-selection` to `IO` which tells Micronaut to run all server operations on the I/O thread pool since the application is going to be doing primarily blocking operations via JDBC and the underlying server (Netty) is based on an event-loop model. The I/O executor is also configured to occupy 75 threads. This may be adjusted according to your production server.
+
 Within the virtual environment of the lab the following environment variables exist:
 
 * `DB_NAME` - the database name
@@ -88,7 +99,7 @@ Within the virtual environment of the lab the following environment variables ex
 * `DB_USERNAME` - the database username
 * `DB_PASSWORD` - the database password
 
-Here we use the ability to specify `${..}` expressions to reference these environment variables within the configuration and appropriately configure the [datasource properties](https://micronaut-projects.github.io/micronaut-sql/latest/guide/configurationreference.html#io.micronaut.configuration.jdbc.hikari.DatasourceConfiguration).
+In the `datasources` configuration we use the ability to specify `${..}` expressions to reference these environment variables within the configuration and appropriately configure the [datasource properties](https://micronaut-projects.github.io/micronaut-sql/latest/guide/configurationreference.html#io.micronaut.configuration.jdbc.hikari.DatasourceConfiguration).
 
 The above configuration configures the "default" datasource to connect to Autonomous database and exposes a `javax.sql.DataSource` bean that can be injected as a bean into your application's classes.
 
