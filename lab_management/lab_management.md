@@ -184,7 +184,47 @@ There are some important aspects to note about this test:
 
 ## Exposing Prometheus Metrics
 
-Exposing application metrics and data points about the behaviour of your application in a Microservice architecture also helps to improve visibility and 
+Exposing application metrics and data points about the behaviour of your application in a Microservice architecture can be critical to maintaining production systems.
+
+Micronaut has support for the [Micrometer](https://micrometer.io) library for exporting application metrics which supports pluggable meter registries.
+
+To get started modify your Gradle build by adding the following dependencies to your `build.gradle` file within the `dependencies` block:
+
+	<copy>	
+	runtimeOnly("io.micronaut.micrometer:micronaut-micrometer-registry-prometheus")
+	</copy>
+
+Or if you are using Maven first add the `micronaut-micrometer-registry-prometheus` dependency under `<dependencies>`:
+
+	<copy>
+	<dependency>
+    	<groupId>io.micronaut.micrometer</groupId>
+    	<artifactId>micronaut-micrometer-registry-prometheus</artifactId>
+    	<scope>runtime</scope>
+	</dependency>
+	</copy>		
+
+
+Before proceeding you should refresh your project dependencies:
+
+![Project Dialog](../images/dependency-refresh.png)		
+
+Then add the following configuration to your `application.yml`:
+
+	<copy>
+	micronaut:
+	  metrics:
+	    enabled: true
+	    export:
+	      prometheus:
+	        enabled: true
+	</copy>	
+
+To access application metrics in JSON format you can visit: `http://localhost:8080/metrics`	
+
+To access application metrics in Prometheus format you can visit: `http://localhost:8080/prometheus`
+
+The latter is the URL you can use to configure Prometheus to scrape metrics from the service with.
 
 You may now *proceed to the next lab*.
 
