@@ -39,7 +39,9 @@ dependencies {
     runtimeOnly("io.micronaut.micrometer:micronaut-micrometer-registry-prometheus")
 }
 
-
+nativeImage {
+    args("--enable-all-security-services")
+}
 application {
     mainClass.set("example.micronaut.Application")
 }
