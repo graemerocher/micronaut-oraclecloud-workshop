@@ -20,10 +20,6 @@ micronaut {
     }
 }
 
-nativeImage {
-    args('--report-unsupported-elements-at-runtime')
-}
-
 dependencies {
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
@@ -35,7 +31,10 @@ dependencies {
     implementation("io.micronaut:micronaut-management")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari")
-    runtimeOnly("com.h2database:h2")
+    runtimeOnly("com.oracle.database.jdbc:ojdbc8")
+    runtimeOnly("com.oracle.database.security:oraclepki:19.8.0.0")
+    runtimeOnly("com.oracle.database.security:osdt_cert:19.8.0.0")
+    runtimeOnly("com.oracle.database.security:osdt_core:19.8.0.0")
     runtimeOnly("io.micronaut.flyway:micronaut-flyway")
     runtimeOnly("io.micronaut.micrometer:micronaut-micrometer-registry-prometheus")
 }
