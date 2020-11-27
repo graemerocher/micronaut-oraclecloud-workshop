@@ -19,19 +19,294 @@ In this lab you will:
 
 ## Configuring Micronaut Data JDBC
 
-TODO 
+To simplify reading and writing objects to the database from the tables you created in the previous lab we're going to use [Micronaut Data JDBC](https://micronaut-projects.github.io/micronaut-data/latest/guide/#sql) which allows pre-computing your SQL queries at compilation time.
+
+To configure Micronau Data JDBC you need to add the following dependencies to your `build.gradle` files `dependencies` block:
+
+	<copy>
+	annotationProcessor("io.micronaut.data:micronaut-data-processor")
+    implementation("io.micronaut.data:micronaut-data-jdbc")
+	</copy>
+
+Or if you are using Maven first add the `micronaut-data-jdbc` dependency under `<dependencies>`:
+
+	<copy>
+	<dependency>
+		<groupId>io.micronaut.data</groupId>
+		<artifactId>micronaut-data-jdbc</artifactId>
+		<scope>compile</scope>
+	</dependency>
+	</copy>	
+
+Then add `micronaut-data-processor` under `<annotationProcessorPaths>`:
+
+	<copy>
+	<path>
+      <groupId>io.micronaut.data</groupId>
+      <artifactId>micronaut-data-processor</artifactId>
+      <version>${micronaut.data.version}</version>
+    </path>
+	</copy>	
 
 ## Mapping Entities to Database Tables
 
-TODO 
+To map entities to the underlying databse tables simply define classes that match the table names (the default convention is underscore-separated lowercase, however this is configurable) and annotate them with `@MappedEntity`.
+
+For example try and alter the existing `Owner` class as follows:
+
+	<copy>
+	package example.micronaut;
+
+	import io.micronaut.data.annotation.GeneratedValue;
+	import io.micronaut.data.annotation.Id;
+	import io.micronaut.data.annotation.MappedEntity;
+	import javax.validation.constraints.Min;
+	import javax.validation.constraints.NotBlank;
+
+	@MappedEntity
+	public class Owner {
+	    @GeneratedValue
+	    @Id
+	    private Long id;
+	    @NotBlank
+	    private final String name;
+	    @Min(18)
+	    private final int age;
+
+	    public Owner(String name, int age) {
+	        this.name = name;
+	        this.age = age;
+	    }
+
+	    public String getName() {
+	        return name;
+	    }
+
+	    public int getAge() {
+	        return age;
+	    }
+
+	    public Long getId() {
+	        return id;
+	    }
+
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
+	}
+	</copy>
+
+The only real difference is the addition of `@MappedEntity` as well as an `id` field that is mutable field that represents the database identifier.
+
+Now create a new class that represents the `Pet` entity in a file called `src/main/java/example/micronaut/Pet.java`:
+
+	<copy>
+	package example.micronaut;
+
+	import edu.umd.cs.findbugs.annotations.NonNull;
+	import io.micronaut.data.annotation.GeneratedValue;
+	import io.micronaut.data.annotation.Id;
+	import io.micronaut.data.annotation.MappedEntity;
+	import io.micronaut.data.annotation.Relation;
+
+	@MappedEntity
+	public class Pet {
+
+	    @Id
+	    @GeneratedValue
+	    private Long id;
+	    private final String name;
+	    @Relation(Relation.Kind.MANY_TO_ONE)
+	    private final Owner owner;
+	    private PetHealth health = PetHealth.VACCINATED;
+
+	    public Pet(String name, @NonNull Owner owner) {
+	        this.name = name;
+	        this.owner = owner;
+	    }
+
+	    public Owner getOwner() {
+	        return owner;
+	    }
+
+	    public String getName() {
+	        return name;
+	    }
+
+	    public Long getId() {
+	        return id;
+	    }
+
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
+
+	    public PetHealth getHealth() {
+	        return health;
+	    }
+
+	    public void setHealth(@NonNull PetHealth health) {
+	        this.health = health;
+	    }
+
+	    public enum PetHealth {
+	        VACCINATED,
+	        REQUIRES_VACCINATION
+	    }
+	}
+	</copy>	
 
 ## Defining Repository Interfaces
 
-TODO 
+The next step is to define data access repository interfaces. First define an `OwnerRepository` in a file called `src/main/java/example/micronaut/OwnerRepository.java`:
 
-## Writing Query Methods
+	<copy>
+	package example.micronaut;
 
-TODO 
+	import edu.umd.cs.findbugs.annotations.NonNull;
+	import io.micronaut.data.jdbc.annotation.JdbcRepository;
+	import io.micronaut.data.model.query.builder.sql.Dialect;
+	import io.micronaut.data.repository.CrudRepository;
+
+	import java.util.Collection;
+
+	@JdbcRepository(dialect = Dialect.ORACLE)
+	public interface OwnerRepository extends CrudRepository<Owner, Long> {
+	    @NonNull
+	    @Override
+	    Collection<Owner> findAll();
+	}
+
+	</copy>
+
+> Notice the `Dialect` used here is set to `Oracle` so that Micronaut Data JDBC knows how to produce the correct SQL dialect at compilation time.
+
+Define another repository interface to manage instances of `Pet`:
+
+	<copy>
+	package example.micronaut;
+
+	import io.micronaut.data.jdbc.annotation.JdbcRepository;
+	import io.micronaut.data.model.query.builder.sql.Dialect;
+	import io.micronaut.data.repository.CrudRepository;
+
+	@JdbcRepository(dialect = Dialect.ORACLE)
+	public interface PetRepository extends CrudRepository<Pet, Long> {
+	}
+	</copy>
+
+Each of these repository interfaces extend from [CrudRepository](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/repository/CrudRepository.html) which contains methods to perform Create, Read, Update and Delete operations.
+
+## Writing Data	
+
+To see these in action, let's first modify the `OwnerConfiguration` and add a `pets` property to model each pet an initial `Owner` can have:
+
+	<copy>
+	private List<String> pets = Collections.emptyList();
+
+	public List<String> getPets() {
+	    return pets;
+	}
+
+	public void setPets(List<String> pets) {
+	    this.pets = pets;
+	}
+	</copy>
+
+Now modify `application.yml` to include some pets for each initial `Owner`:
+
+	<copy>
+	owners:
+	  fred:
+	    name: Fred
+	    age: 35
+	    pets:
+	      - Dino
+	      - Baby Puss
+	  barney:
+	    name: Barney
+	    age: 30
+	    pets:
+	      - Hoppy
+	</copy>
+
+Finally re-write the `OwnerService` which currently uses an in-memory collection to instead use the data access repository:
+
+	<copy>
+	package example.micronaut;
+
+	import io.micronaut.context.event.StartupEvent;
+	import io.micronaut.runtime.event.annotation.EventListener;
+
+	import javax.inject.Singleton;
+	import javax.transaction.Transactional;
+	import java.util.Collection;
+	import java.util.List;
+	import java.util.stream.Collectors;
+
+	@Singleton
+	public class OwnerService implements OwnerOperations {
+	    private final OwnerRepository ownerRepository;
+	    private final PetRepository petRepository;
+	    private final List<OwnerConfiguration> ownerConfigurations;
+
+	    OwnerService(OwnerRepository ownerRepository,
+	                 PetRepository petRepository,
+	                 List<OwnerConfiguration> ownerConfigurations) {
+	        this.ownerRepository = ownerRepository;
+	        this.petRepository = petRepository;
+	        this.ownerConfigurations = ownerConfigurations;
+	    }
+
+	    @EventListener
+	    @Transactional
+	    void init(StartupEvent startupEvent) {
+	        if (ownerRepository.count() == 0) {
+	            for (OwnerConfiguration ownerConfiguration : ownerConfigurations) {
+	                Owner owner = ownerConfiguration.create();
+	                ownerRepository.save(owner);
+	                List<Pet> pets = ownerConfiguration.getPets().stream().map(n ->
+	                        new Pet(n, owner)
+	                ).collect(Collectors.toList());
+	                petRepository.saveAll(pets);
+	            }
+	        }
+	    }
+
+	    @Override
+	    @Logged
+	    public Collection<Owner> getInitialOwners() {
+	        return ownerRepository.findAll();
+	    }
+
+	    @Override
+	    @Transactional
+	    public void addOwner(Owner owner) {
+	        ownerRepository.save(owner);
+	    }
+	}
+	</copy>	
+
+There are a few important aspects to note about this code. First to create the initial set of `Owner` instances the logic has been moved into an `init` method that is annotated with [@EventListener](https://docs.micronaut.io/latest/api/io/micronaut/runtime/event/annotation/EventListener.html) and receives [StartupEvent](https://docs.micronaut.io/latest/api/io/micronaut/context/event/StartupEvent.html). This ensures that the initialization logic is executed when the `ApplicationContext` first startts.
+
+Secondly the `init` method is wrapped in `javax.transaction.Transactional` which ensures that the method executes within the context of a database transaction and if anything goes wrong during the execution of the method the changes will be rolled back.
+
+The remainder of the methods of `OwnerService` have been rewritten to use methods that read and write to the database.
+
+## Implementing Query Methods
+
+Micronaut Data makes implementing query methods a breeze. To demonstrate this add a few new methods to the `OwnerOperations` interface:
+
+	<copy>
+	// lookup by owner and pet name
+	Pet getPet(String owner, String pet);
+
+	// lookup all by owner
+	Collection<Pet> getPets(String owner);
+
+	// lookup all by owner and health
+	Collection<Pet> getPetsWithHeath(String owner, Pet.PetHealth health);
+	</copy>
 
 You may now *proceed to the next lab*.
 

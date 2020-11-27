@@ -109,7 +109,7 @@ Try the following example:
 	    @Test
 	    void testAddOwnerInvalid() {
 	        HttpClientResponseException e = assertThrows(HttpClientResponseException.class, () ->
-	                ownerClient.add(new Owner("Bob", 10))
+	                ownerClient.add(new Owner("Bob", 10)).blockingGet()
 	        );
 	        assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
 	        assertEquals("owner.age: must be greater than or equal to 18", e.getMessage());
