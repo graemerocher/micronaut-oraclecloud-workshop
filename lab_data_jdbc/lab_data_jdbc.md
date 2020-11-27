@@ -3,6 +3,8 @@
 ## Introduction
 In this lab you will learn how to define Data access repository interfaces that simplify your database access code.
 
+> IMPORTANT: If you prefer a full ORM and JPA you can skip this lab and go onto the next lab directly which explains how to use Micronaut Data JPA.
+
 Estimated Lab Time: 10 minutes
 
 ### Objectives
@@ -156,6 +158,8 @@ Now create a new class that represents the `Pet` entity in a file called `src/ma
 	}
 	</copy>	
 
+The `Pet` class maps to the `pet` table and includes a many-to-one relationship (defined with `@Relation(Relation.Kind.MANY_TO_ONE)`) to the `Owner`. An `enum` is used to represent the health of the `Pet`.	
+
 ## Defining Repository Interfaces
 
 The next step is to define data access repository interfaces. First define an `OwnerRepository` in a file called `src/main/java/example/micronaut/OwnerRepository.java`:
@@ -181,16 +185,19 @@ The next step is to define data access repository interfaces. First define an `O
 
 > Notice the `Dialect` used here is set to `Oracle` so that Micronaut Data JDBC knows how to produce the correct SQL dialect at compilation time.
 
+The `@JdbcRepository` annotation is used to designate this interface as a data access repository.
+
 Define another repository interface to manage instances of `Pet`:
 
 	<copy>
 	package example.micronaut;
 
-	import io.micronaut.data.jdbc.annotation.JdbcRepository;
-	import io.micronaut.data.model.query.builder.sql.Dialect;
+	import io.micronaut.data.annotation.Repository;
 	import io.micronaut.data.repository.CrudRepository;
 
-	@JdbcRepository(dialect = Dialect.ORACLE)
+	import java.util.Collection;
+
+	@Repository
 	public interface PetRepository extends CrudRepository<Pet, Long> {
 	}
 	</copy>
@@ -314,13 +321,12 @@ Now modify the `PetRepository` data access repository interface to include metho
 	package example.micronaut;
 
 	import io.micronaut.data.annotation.Join;
-	import io.micronaut.data.jdbc.annotation.JdbcRepository;
-	import io.micronaut.data.model.query.builder.sql.Dialect;
+	import io.micronaut.data.annotation.Repository;
 	import io.micronaut.data.repository.CrudRepository;
 
 	import java.util.Collection;
 
-	@JdbcRepository(dialect = Dialect.ORACLE)
+	@Repository
 	public interface PetRepository extends CrudRepository<Pet, Long> {
 	    @Join("owner")
 	    Collection<Pet> findByOwnerName(String owner);
@@ -333,7 +339,7 @@ Now modify the `PetRepository` data access repository interface to include metho
 	}
 	</copy>
 
-Micronaut Data supports [method patterns](https://micronaut-projects.github.io/micronaut-data/latest/guide/#querying) which are automatically implemented for you at compilation time, producing the appropriate SQL query.
+Micronaut Data supports [method patterns](https://micronaut-projects.github.io/micronaut-data/latest/guide/#querying) which are automatically implemented for you at compilation time, producing the appropriate JPA-QL query.
 
 Note that the [@Join](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/annotation/Join.html) annotation is used to fetch the associated `Owner` instance for each `Pet` with a single query.
 
@@ -406,7 +412,7 @@ And define a test within `OwnerControllerTest` that executes the new route:
 	</copy>
 
 Run your test and see the result!
-	
+
 You may now *proceed to the next lab*.
 
 ### Acknowledgements
