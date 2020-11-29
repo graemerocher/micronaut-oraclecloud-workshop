@@ -69,11 +69,11 @@ Now open up your `Application` class and add the following annotations to the cl
 
 With that in place open up Terminal and run `./gradlew compileJava` and you will note output like:
 
-```
-> Task :compileJava
-Note: Generating OpenAPI Documentation
-Note: Writing OpenAPI YAML to destination: .../build/classes/java/main/META-INF/swagger/pets-api-0.1.yml
-```	
+
+	Task :compileJava
+	Note: Generating OpenAPI Documentation
+	Note: Writing OpenAPI YAML to destination: .../build/classes/java/main/META-INF/swagger/pets-api-0.1.yml
+
 
 Congratulations you are producing an initial version of the API!
 
@@ -140,19 +140,19 @@ To resolve these issues first add some javadoc to the `Owner` entity description
 
 Next add javadoc API documentation to the endpoint:
 
-<copy>
-/**
- * Gets a Pet for the given Owner name and Pet name
- * @param owner The name of the Owner
- * @param pet The name of Pet
- * @return A pet if it exists
- */
-@Get("/{owner}/pets/{pet}")
-@ApiResponse(responseCode = "404", description = "If a pet is not found")
-Pet getPet(String owner, String pet) {
-    return ownerOperations.getPet(owner, pet);
-}
-</copy>
+	<copy>
+	/**
+	 * Gets a Pet for the given Owner name and Pet name
+	 * @param owner The name of the Owner
+	 * @param pet The name of Pet
+	 * @return A pet if it exists
+	 */
+	@Get("/{owner}/pets/{pet}")
+	@ApiResponse(responseCode = "404", description = "If a pet is not found")
+	Pet getPet(String owner, String pet) {
+	    return ownerOperations.getPet(owner, pet);
+	}
+	</copy>
 
 In this case in addition to the javadoc, the `io.swagger.v3.oas.annotations.responses.ApiResponse` annotation is used to document what happens in the case a `Pet` is not found. When `null` is returned from a controller method in Micronaut a 404 responses is automatically produced.
 

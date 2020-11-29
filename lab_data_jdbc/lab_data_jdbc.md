@@ -187,7 +187,7 @@ The next step is to define data access repository interfaces. First define an `O
 
 The `@JdbcRepository` annotation is used to designate this interface as a data access repository.
 
-Define another repository interface to manage instances of `Pet`:
+Define another repository interface to manage instances of `Pet` in a file called `src/main/java/example/micronaut/PetRepository.java`:
 
 	<copy>
 	package example.micronaut;
@@ -294,7 +294,7 @@ Finally re-write the `OwnerService` which currently uses an in-memory collection
 	}
 	</copy>	
 
-There are a few important aspects to note about this code. First to create the initial set of `Owner` instances the logic has been moved into an `init` method that is annotated with [@EventListener](https://docs.micronaut.io/latest/api/io/micronaut/runtime/event/annotation/EventListener.html) and receives [StartupEvent](https://docs.micronaut.io/latest/api/io/micronaut/context/event/StartupEvent.html). This ensures that the initialization logic is executed when the `ApplicationContext` first startts.
+There are a few important aspects to note about this code. First to create the initial set of `Owner` instances the logic has been moved into an `init` method that is annotated with [@EventListener](https://docs.micronaut.io/latest/api/io/micronaut/runtime/event/annotation/EventListener.html) and receives [StartupEvent](https://docs.micronaut.io/latest/api/io/micronaut/context/event/StartupEvent.html). This ensures that the initialization logic is executed when the `ApplicationContext` first starts. See the section on [Context Events](https://docs.micronaut.io/latest/guide/index.html#contextEvents) in the Micronaut documentation for further informatio.
 
 Secondly the `init` method is wrapped in `javax.transaction.Transactional` which ensures that the method executes within the context of a database transaction and if anything goes wrong during the execution of the method the changes will be rolled back.
 

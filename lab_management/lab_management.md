@@ -42,14 +42,14 @@ Before proceeding you should refresh your project dependencies:
 
 Now add the following configuration to your `src/main/resources/application.yml` file:
 
-<copy>
-endpoints:
-  all:
-    enabled: true
-    sensitive: false
-  health:
-    details-visible: anonymous
-</copy>
+	<copy>
+	endpoints:
+	  all:
+	    enabled: true
+	    sensitive: false
+	  health:
+	    details-visible: anonymous
+	</copy>
 
 Note that Micronaut is very conservative about exposing management endpoints that could leak information and result in a security vulnerability so the majority of endpoints default to `sensitive: true`.
 
@@ -61,16 +61,16 @@ Now run your application and then open up terminal and issue a request to `http:
 
 TODO: replace with output from Oracle Cloud
 
-```
-curl -i http://localhost:8080/health
-HTTP/1.1 200 Ok
-Date: Fri, 27 Nov 2020 11:10:14 GMT
-Content-Type: application/json
-content-length: 416
-connection: keep-alive
 
-{"name":"demo","status":"UP","details":{"jdbc":{"name":"demo","status":"UP","details":{"jdbc:h2:mem:devDb":{"name":"demo","status":"UP","details":{"database":"H2","version":"1.4.199 (2019-03-13)"}}}},"compositeDiscoveryClient()":{"name":"demo","status":"UP"},"diskSpace":{"name":"demo","status":"UP","details":{"total":1000240963584,"free":35355635712,"threshold":10485760}},"service":{"name":"demo","status":"UP"}}}%
-```	
+	curl -i http://localhost:8080/health
+	HTTP/1.1 200 Ok
+	Date: Fri, 27 Nov 2020 11:10:14 GMT
+	Content-Type: application/json
+	content-length: 416
+	connection: keep-alive
+
+	{"name":"demo","status":"UP","details":{"jdbc":{"name":"demo","status":"UP","details":{"jdbc:h2:mem:devDb":{"name":"demo","status":"UP","details":{"database":"H2","version":"1.4.199 (2019-03-13)"}}}},"compositeDiscoveryClient()":{"name":"demo","status":"UP"},"diskSpace":{"name":"demo","status":"UP","details":{"total":1000240963584,"free":35355635712,"threshold":10485760}},"service":{"name":"demo","status":"UP"}}}%
+
 
 As you can see a HTTP 200 response is returned and a status of `UP` indicated. There are various built in health checks that monitor diskspace and the database health. 
 
