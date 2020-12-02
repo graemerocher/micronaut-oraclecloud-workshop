@@ -25,7 +25,7 @@ In the examples so far we have used in-memory data structures to store data. Let
 First add the following dependencies if you are using Gradle to the `build.gradle` file in the root of your project inside the `dependencies` block:
 
 	<copy>
-	runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari")
+	runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari:3.3.4")
     runtimeOnly("com.oracle.database.jdbc:ojdbc8")
     runtimeOnly("com.oracle.database.security:oraclepki:19.8.0.0")
     runtimeOnly("com.oracle.database.security:osdt_cert:19.8.0.0")
