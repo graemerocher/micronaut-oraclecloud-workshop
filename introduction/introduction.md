@@ -17,31 +17,30 @@ Micronaut also includes a persistence framework called Micronaut Data that preco
 
 
 ### Objectives
-
-This 3-hour lab walks you through the steps to use Micronaut, Micronaut Data
+This 4-hour lab walks you through the steps to use Micronaut, Micronaut Data
 and Oracle Cloud to connected to an Oracle Database.
 
-- Lab: Getting to know Micronaut
-- Lab: Configuring Micronaut 
-- Lab: Understanding Dependency Injection
-- Lab: Understanding Aspect Oriented Programming (AOP)
-- Lab: Writing Controllers
-- Lab: Validating User Input
-- Lab: Integration Testing
-- Lab: Defining an HTTP Client
-- Lab: Setting up a Database Schema
-- Lab: Mapping Entities to the Database
-- Lab: Writing Data Access Repositories
-- Lab: Exposing OpenAPI Documentation
-- Lab: Adding Management and Monitoring
-- Lab: Deploying to a Virtual Machine
-- Lab: Deploying to Container Registry
-- Lab: Building a Native Image
+- Lab 1: Getting to know Micronaut
+- Lab 2: Configuring Micronaut 
+- Lab 3: Understanding Dependency Injection
+- Lab 4: Understanding Aspect Oriented Programming (AOP)
+- Lab 5: Writing Web Controllers
+- Lab 6: Validating User Input
+- Lab 7: Integration Testing
+- Lab 8: Defining an HTTP Client
+- Lab 9: Setting up a Database Schema
+- Lab 10: Writing JDBC Data Access Repositories
+- Lab 11: Writing JPA Data Access Repositories
+- Lab 12: Exposing OpenAPI Documentation
+- Lab 13: Adding Management and Monitoring
+- Lab 14: Building a Native Image
+- Lab 15: Going to Production
+
 
 ### Prerequisites
-
 - Understanding of the Java programming language
 - A Modern Web Browser (Chrome, Firefox etc.)
+- Access to the Lab Virtual Environment (Provided by Instructor)
 
 ## More Information
 - [Micronaut](https://micronaut.io/)
@@ -50,10 +49,6 @@ and Oracle Cloud to connected to an Oracle Database.
 
 ## Acknowledgements
 - **Owners** - Graeme Rocher, Architect, Oracle Labs - Databases and Optimization
-- **Contributors** - Chris Bensen, Todd Sharp, Eric Sedlar
-- **Last Updated By** - Kay Malcolm, DB Product Management, August 2020
-
-<!-- ## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/building-java-cloud-applications-with-micronaut-and-oci). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
+- **Contributors** - Todd Sharp, Eric Sedlar
 
 If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. -->
