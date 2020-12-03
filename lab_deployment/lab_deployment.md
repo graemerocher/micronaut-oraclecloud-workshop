@@ -126,8 +126,31 @@ And to publish the native version use:
 
 ### Maven
 
+For Maven use the `deploy` target to deploy an image passing a `packaging` of `docker` for the Java/JIT version and the name of the full name of the image to use:
 
+	<copy>
+	./mvnw deploy -Dpackaging=docker -Djib.to.image=[REGION].ocir.io/[TENANCY]/[REPOSITORY]/[NAME]:[VERSION]
+	</copy>	
 
+Replacing the following variables:
+
+* `[REGION]` - Your Oracle Cloud Region
+* `[TENANCY]` - Your Oracle Cloud Tenancy
+* `[REPOSITORY]` - A unique repository name (try using your name and surname)
+* `[NAME]` - The name of the image
+* `[VERSION]` - The version of the image
+
+For example:
+
+	<copy>
+	./mvnw deploy -Dpackaging=docker -Djib.to.image=us-phoenix-1.ocir.io/cloudnative-devrel/joebloggs/example:0.1
+	</copy>
+
+And to publish the native version use the `docker-native` packaging instead:
+
+	<copy>
+	./mvnw deploy -Dpackaging=docker-native -Djib.to.image=us-phoenix-1.ocir.io/cloudnative-devrel/joebloggs/example:0.1
+	</copy>
 
 
 You may now *proceed to the next lab*.
