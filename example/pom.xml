@@ -141,6 +141,15 @@
         <artifactId>micronaut-maven-plugin</artifactId>
       </plugin>
       <plugin>
+        <groupId>org.graalvm.nativeimage</groupId>
+        <artifactId>native-image-maven-plugin</artifactId>
+        <configuration>
+          <buildArgs combine.children="append">
+            <buildArg>--enable-all-security-services</buildArg>
+          </buildArgs>
+        </configuration>
+      </plugin>      
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
@@ -157,6 +166,11 @@
               <artifactId>micronaut-openapi</artifactId>
               <version>${micronaut.openapi.version}</version>
             </path>
+            <path>
+              <groupId>io.micronaut</groupId>
+              <artifactId>micronaut-graal</artifactId>
+              <version>${micronaut.version}</version>
+            </path>            
           </annotationProcessorPaths>
           <compilerArgs>
             <arg>-Amicronaut.processing.group=example</arg>

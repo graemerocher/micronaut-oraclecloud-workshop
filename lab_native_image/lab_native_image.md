@@ -92,16 +92,40 @@ You can now run the native executable from Terminal:
 
 ## Building a Native Image with Maven
 
-If instead you are using Maven then a slightly different command is needed. Try run:
+If you are a building a Native Image with Maven add the following under `<annotationProcessorPaths>`:
 
-<copy>
-./mvnw package -Dpackaging=native-image -Dmicronaut.native-image.args="--enable-all-security-services"
-</copy>
+	<copy>
+    <path>
+      <groupId>io.micronaut</groupId>
+      <artifactId>micronaut-graal</artifactId>
+      <version>${micronaut.version}</version>
+    </path>
+	</copy>	
+
+Then run under `<plugins>` add the following configuration in order to enable security services via the `--enable-all-security-services` flag to connect to Autonomous Database:
+
+	<copy>
+	<plugin>
+	<groupId>org.graalvm.nativeimage</groupId>
+	<artifactId>native-image-maven-plugin</artifactId>
+	<configuration>
+	  <buildArgs combine.children="append">
+	    <buildArg>--enable-all-security-services</buildArg>
+	  </buildArgs>
+	</configuration>
+	</plugin>  
+	</copy>
+
+Now run the following command in Terminal to build the native image:
+
+	<copy>
+	./mvnw clean package -Dpackaging=native-image 
+	</copy>
 
 Which will build the native image into the `target/native-image` directory which you can run with:
 
 	<copy>
-	./target/application
+	./target/example
 	</copy>
 
 

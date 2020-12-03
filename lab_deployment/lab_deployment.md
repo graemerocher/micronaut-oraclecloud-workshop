@@ -40,19 +40,25 @@ To run the JAR file if you built with Gradle run:
 
 > NOTE: Make sure you run the JAR that ends with `-all`!
 
-Of if you used Maven:
+Of if you used Maven you can use the following command:
 
-<copy>
+	<copy>
+	java -jar target/example-0.1.jar 
+	</copy>
 
-</copy>
+Once the application is up and running, you can access it via `http://[YOUR IP]:8080/owners`.
+
+## Deploying the Native Image to a VM
+
+The Native Image you built in the previous Lab can also easily be executed directly on a VM	
 
 ## Deploying a Container to Oracle Container Registry
 
-TODO 
+A common way to deploy applications is via Containers and services such as [Oracle Container Engine for Kubernetes](https://www.oracle.com/cloud-native/container-engine-kubernetes/) allow orchestrating and running these containers.
 
-## Deploying a Container to Container Engine for Kubernetes (OKE)
+[Oracle Cloud Infrastructure Registry](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryoverview.htm) allows pushing Docker containers to Oracle Cloud can be used as a public or private Docker registry.
 
-TODO 
+
 
 You may now *proceed to the next lab*.
 
