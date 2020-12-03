@@ -82,7 +82,7 @@ Once the application is up and running, you can access it via `http://[YOUR IP]:
 
 A common way to deploy applications is via Containers and services such as [Oracle Container Engine for Kubernetes](https://www.oracle.com/cloud-native/container-engine-kubernetes/) allow orchestrating and running these containers.
 
-[Oracle Cloud Infrastructure Registry (OCIR)](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryoverview.htm) allows pushing Docker containers to Oracle Cloud can be used as a public or private Docker registry.
+[Oracle Cloud Infrastructure Registry (OCIR)](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryoverview.htm) allows pushing Docker containers to Oracle Cloud that can be used as a public or private Docker registry.
 
 ### Gradle
 
@@ -98,9 +98,9 @@ To Deploy a container to OCIR via Gradle your `build.gradle` first needs to be c
 	}
 	</copy>
 
-The first `dockerBuild` definition defines the image to publish for the Java version of the application whilst the `dockerBuildNative` definition defines the image for the native version.
+The first `dockerBuild` definition defines the image to publish for the JVM version of the application whilst the `dockerBuildNative` definition defines the image for the native version.
 
-Images in OCIR are specified in the form `[REGION].ocir.io/[TENANCY]/[REPOSITORY]/[NAME]/[VERSION]` where each parent of the image name corresponds the the following:
+Images in OCIR are specified in the form `[REGION].ocir.io/[TENANCY]/[REPOSITORY]/[NAME]:[VERSION]` where each part of the image name corresponds the the following:
 
 * `[REGION]` - Your Oracle Cloud Availability [Region](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab)
 * `[TENANCY]` - Your Oracle Cloud Tenancy
@@ -120,7 +120,7 @@ And to publish the GraalVM native version use:
 
 	<copy>
 	./gradlew dockerPushNative
-	</copy>
+	</copy>	
 
 ### Maven
 
@@ -138,7 +138,7 @@ To Deploy a container to OCIR via Maven your `pom.xml` first needs to be configu
       </plugin>
 	</copy>
 
-Images in OCIR are specified in the form `[REGION].ocir.io/[TENANCY]/[REPOSITORY]/[NAME]/[VERSION]` where each parent of the image name corresponds the the following:
+Images in OCIR are specified in the form `[REGION].ocir.io/[TENANCY]/[REPOSITORY]/[NAME]:[VERSION]` where each part of the image name corresponds the the following:
 
 * `[REGION]` - Your Oracle Cloud Availability [Region](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab)
 * `[TENANCY]` - Your Oracle Cloud Tenancy
