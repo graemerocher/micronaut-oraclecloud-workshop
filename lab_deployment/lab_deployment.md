@@ -100,7 +100,7 @@ To Deploy a container to OCIR via Gradle add the following configuration to your
 
 The first `dockerBuild` definition defines the image to publish for the Java version of the application whilst the `dockerBuildNative` definition defines the image for the native version.
 
-You should the values for `[REGION]`, `[TENANCY]` and `[REPO]` with your region, your tenancy and a unique repository name (for example your name and surname). For example:
+You should the values for `[REGION]`, `[TENANCY]` and `[REPO]` with your [region](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab), your tenancy and a unique repository name (for example your name and surname). For example:
 
 	<copy>
 	dockerBuild {

@@ -184,6 +184,15 @@
           </compilerArgs>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <configuration>
+          <to>
+            <image>phx.ocir.io/cloudnative-devrel/micronaut-labs/${env.DOCKER_USER}/${project.artifactId}:${project.version}</image>
+          </to>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
