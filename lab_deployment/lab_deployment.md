@@ -104,13 +104,11 @@ You should the values for `[REGION]`, `[TENANCY]` and `[REPO]` with your region,
 
 	<copy>
 	dockerBuild {
-		images = ["us-phoenix-1.ocir.io/cloudnative-devrel
-	/joebloggs/$project.name:$project.version"]
+		images = ["us-phoenix-1.ocir.io/cloudnative-devrel/joebloggs/$project.name:$project.version"]
 	}
 
 	dockerBuildNative {
-	    images = ["us-phoenix-1.ocir.io/cloudnative-devrel
-	/joebloggs/$project.name-native:$project.version"]
+	    images = ["us-phoenix-1.ocir.io/cloudnative-devrel/joebloggs/$project.name-native:$project.version"]
 	}
 	</copy>
 
