@@ -86,39 +86,37 @@ A common way to deploy applications is via Containers and services such as [Orac
 
 ### Gradle
 
-To Deploy a container to OCIR via Gradle add the following configuration to your `build.gradle`:
+To Deploy a container to OCIR via Gradle your `build.gradle` first needs to be configured. The example presented in this workshop has already been configured with the following entries:
 
 	<copy>
 	dockerBuild {
-		images = ["[REGION].ocir.io/[TENANCY]/[REPO]/$project.name:$project.version"]
+	    images = ["phx.ocir.io/cloudnative-devrel/micronaut-labs/${System.env.DOCKER_USER}/$project.name:$project.version"]
 	}
 
 	dockerBuildNative {
-	    images = ["[REGION].ocir.io/[TENANCY]/[REPO]/$project.name-native:$project.version"]
+	    images = ["phx.ocir.io/cloudnative-devrel/micronaut-labs/${System.env.DOCKER_USER}/$project.name:$project.version"]
 	}
 	</copy>
 
 The first `dockerBuild` definition defines the image to publish for the Java version of the application whilst the `dockerBuildNative` definition defines the image for the native version.
 
-You should the values for `[REGION]`, `[TENANCY]` and `[REPO]` with your [region](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab), your tenancy and a unique repository name (for example your name and surname). For example:
+Images in OCIR are specified in the form `[REGION].ocir.io/[TENANCY]/[REPOSITORY]/[NAME]/[VERSION]` where each parent of the image name corresponds the the following:
 
-	<copy>
-	dockerBuild {
-		images = ["us-phoenix-1.ocir.io/cloudnative-devrel/joebloggs/$project.name:$project.version"]
-	}
+* `[REGION]` - Your Oracle Cloud Availability [Region](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab)
+* `[TENANCY]` - Your Oracle Cloud Tenancy
+* `[REPOSITORY]` - A unique repository name (try using your name and surname)
+* `[NAME]` - The name of the image
+* `[VERSION]` - The version of the image
 
-	dockerBuildNative {
-	    images = ["us-phoenix-1.ocir.io/cloudnative-devrel/joebloggs/$project.name-native:$project.version"]
-	}
-	</copy>
+The example above is publishing to the Phoenix region (`phx`) using the Tenancy `cloudnative-devrel`, a repository name prefixed with `micronaut-labs/` and followed by the name of the current Docker user which is exposed in an environment variable called `DOCKER_USER` for this example.  
 
-Now to publisher a Container containing the Java version use:
+Now to publish a Docker Container for the JVM version use:
 
 	<copy>
 	./gradlew dockerPush
 	</copy>
 
-And to publish the native version use:
+And to publish the GraalVM native version use:
 
 	<copy>
 	./gradlew dockerPushNative
@@ -126,34 +124,49 @@ And to publish the native version use:
 
 ### Maven
 
-For Maven use the `deploy` target to deploy an image passing a `packaging` of `docker` for the Java/JIT version and the name of the full name of the image to use:
+To Deploy a container to OCIR via Maven your `pom.xml` first needs to be configured. The example presented in this workshop has already been configured with the following plugin under the `<plugins>` section:
 
 	<copy>
-	./mvnw deploy -Dpackaging=docker -Djib.to.image=[REGION].ocir.io/[TENANCY]/[REPOSITORY]/[NAME]:[VERSION]
-	</copy>	
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <configuration>
+          <to>
+            <image>phx.ocir.io/cloudnative-devrel/micronaut-labs/${env.DOCKER_USER}/${project.artifactId}:${project.version}</image>
+          </to>
+        </configuration>
+      </plugin>
+	</copy>
 
-Replacing the following variables:
+Images in OCIR are specified in the form `[REGION].ocir.io/[TENANCY]/[REPOSITORY]/[NAME]/[VERSION]` where each parent of the image name corresponds the the following:
 
-* `[REGION]` - Your Oracle Cloud Region
+* `[REGION]` - Your Oracle Cloud Availability [Region](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab)
 * `[TENANCY]` - Your Oracle Cloud Tenancy
 * `[REPOSITORY]` - A unique repository name (try using your name and surname)
 * `[NAME]` - The name of the image
 * `[VERSION]` - The version of the image
 
-For example:
+The example above is publishing to the Phoenix region (`phx`) using the Tenancy `cloudnative-devrel`, a repository name prefixed with `micronaut-labs/` and followed by the name of the current Docker user which is exposed in an environment variable called `DOCKER_USER` for this example.  
+
+Now to publish a Docker Container for the JVM version use:
 
 	<copy>
-	./mvnw deploy -Dpackaging=docker -Djib.to.image=us-phoenix-1.ocir.io/cloudnative-devrel/joebloggs/example:0.1
+	./mvnw deploy -Dpackaging=docker
 	</copy>
 
 And to publish the native version use the `docker-native` packaging instead:
 
 	<copy>
-	./mvnw deploy -Dpackaging=docker-native -Djib.to.image=us-phoenix-1.ocir.io/cloudnative-devrel/joebloggs/example:0.1
+	./mvnw deploy -Dpackaging=docker-native 
 	</copy>
 
 
-You may now *proceed to the next lab*.
+Congratulations, you have completed the workshop and deployed your Micronaut application to Oracle Cloud!
+
+For further reading see the following links:
+
+- [Micronaut](https://micronaut.io/)
+- [GraalVM](https://www.graalvm.org/)
 
 ### Acknowledgements
 - **Owners** - Graeme Rocher, Architect, Oracle Labs - Databases and Optimization
