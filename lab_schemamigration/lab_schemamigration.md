@@ -35,6 +35,18 @@ First add the following dependencies if you are using Gradle to the `build.gradl
 Alternatively if you are using Maven add the following dependencies to your `pom.xml` inside the `<dependencies>` element:
 
 	<copy>
+    <dependency>
+      <groupId>io.micronaut.sql</groupId>
+      <artifactId>micronaut-jdbc-hikari</artifactId>
+      <scope>compile</scope>
+      <version>3.3.4</version>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut.sql</groupId>
+      <artifactId>micronaut-jdbc</artifactId>
+      <scope>compile</scope>
+      <version>3.3.4</version>
+    </dependency>   	
 	<dependency>
 		<groupId>com.oracle.database.jdbc</groupId>
 		<artifactId>ojdbc8</artifactId>
