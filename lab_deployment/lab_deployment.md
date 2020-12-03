@@ -18,7 +18,33 @@ In this lab you will:
 
 ## Deploying a Runnable JAR to a VM
 
-TODO 
+To deploy the application as a Runnable JAR open up Terminal (ALT + F12) and run the following command in Gradle:
+
+	<copy>
+	./gradlew assemble
+	</copy>
+
+Or with Maven:
+
+	<copy>
+	./mvnw package
+	</copy>
+
+A runnable JAR file will be built that is ready to be executed in production on a VM. 
+
+To run the JAR file if you built with Gradle run:
+
+	<copy>
+	java -jar build/libs/example-0.1-all.jar
+	</copy>
+
+> NOTE: Make sure you run the JAR that ends with `-all`!
+
+Of if you used Maven:
+
+<copy>
+
+</copy>
 
 ## Deploying a Container to Oracle Container Registry
 

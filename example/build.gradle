@@ -18,7 +18,6 @@ micronaut {
         incremental(true)
         annotations("example.*")
     }
-    maven { url "https://oss.jfrog.org/oss-snapshot-local" }
 }
 
 dependencies {
@@ -31,7 +30,7 @@ dependencies {
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-management")
     runtimeOnly("ch.qos.logback:logback-classic")
-    runtimeOnly("io.micronaut.sql:micronaut-jdbc-ucp:3.3.4.BUILD-SNAPSHOT")
+    runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari:3.3.4")
     runtimeOnly("com.oracle.database.jdbc:ojdbc8")
     runtimeOnly("com.oracle.database.security:oraclepki:19.8.0.0")
     runtimeOnly("com.oracle.database.security:osdt_cert:19.8.0.0")
