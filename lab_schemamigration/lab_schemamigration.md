@@ -133,6 +133,17 @@ To enable Flyway to run on startup add the following configuration to your `appl
 	      enabled: true 
 	</copy>
 
+In addition create a new file called `src/main/resources/application-test.yml` which will contain your test configuration and set Flyway to clean the schema when then application starts to ensure tests run with fresh data:
+
+	<copy>
+	flyway:
+	  datasources:
+	    default:
+	      clean-schema: true
+	</copy>
+
+> Note that in a real world scenario you would setup a separate database to run your tests against
+
 ## Defining a SQL Migration Script
 
 The next step is to define a SQL migration script that will create the application's initial schema. To do that create a new SQL script in a file called `src/main/resources/db/migration/V1__create-schema.sql` and add the following SQL:
