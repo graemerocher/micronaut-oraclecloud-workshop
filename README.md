@@ -1,8 +1,12 @@
 # Building Java Cloud Native Applications with Micronaut, GraalVM and OCI
 
-Oracle provides an open, modern, easy and intelligent platform and infrastructure for developers to build and innovate. Micronaut is an innovative new framework that precomputes your framework infrastructure at compilation time.
+Oracle provides an open, modern, easy and intelligent platform and infrastructure for developers to build and innovate. [Micronaut](https://micronaut.io) is an innovative new framework that precomputes your framework infrastructure at compilation time.
 
 This workshop will take you through combining Micronaut and Oracle Cloud with Autonomous Database to build an efficient and lean Microservice application.
+
+This workshop requires the instructor to provide access to a virtual environment before continuing.
+
+The full workshop content can be accessed [here](https://graemerocher.github.io/micronaut-oraclecloud-workshop/workshop/).
 
 ## Product Pages
 - [Micronaut](https://micronaut.io/)
