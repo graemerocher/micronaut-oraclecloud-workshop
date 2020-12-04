@@ -2,7 +2,7 @@
 
 ## About this Workshop
 
-This workshop is for Java Developers looking to start building applications with Micronaut and Oracle Cloud with Autonomous Database. 
+This workshop is for Java Developers looking to start building applications with [Micronaut](https://micronaut.io) and [Oracle Cloud](https://www.oracle.com/cloud/) with [Autonomous Database](https://www.oracle.com/autonomous-database/). 
 
 The workshop features several labs that walk you through the
 steps to get going with Micronaut and Oracle Cloud.
