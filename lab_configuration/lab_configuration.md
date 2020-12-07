@@ -21,7 +21,7 @@ Micronaut applications are Cloud Native in that they are able to automatically d
 
 By default Micronaut will search any configuration files you have located in `src/main/resources` and has out-of-the-box support for many popular formats such as `.properties`, `.yml`, `.json` and so on.
 
-Let's try and modify the application configuration. Alter the `src/main/resources/application.yml` file and add configuration to alter the [server port](https://docs.micronaut.io/latest/guide/configurationreference.html#io.micronaut.http.server.HttpServerConfiguration) to 8081 by default:
+Let's try and modify the application configuration. Edit the `src/main/resources/application.yml` file and add configuration to change the default [server port](https://docs.micronaut.io/latest/guide/configurationreference.html#io.micronaut.http.server.HttpServerConfiguration) to 8081:
 
     <copy>
     micronaut:
@@ -88,7 +88,7 @@ And note the output:
 
 As you can see the configuration resolved via the environment variable is resolved and replaces the values that were defined earlier in either `application.yml` or `application-oraclecloud.properties`.
 
-Note that with environment variables you use upper-case and underscore separated variable names which are normalized into the lower-case equivalent. In this case `MICRONAUT_SERVER_PORT` becomes `micronaut.server.port`.
+Note that with environment variables you use upper-case and underscore separated variable names which Micronaut normalizes into the lower-case equivalent. In this case `MICRONAUT_SERVER_PORT` becomes `micronaut.server.port`.
 
 ## Rolling Back Configuration Changes
 

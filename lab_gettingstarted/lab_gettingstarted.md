@@ -1,7 +1,7 @@
 # Getting to Know Micronaut
 
 ## Introduction
-In this lab you are going to learn how to navigate around a Micronaut project structure.
+In this lab you will learn how to navigate around a Micronaut project structure.
 
 Estimated Lab Time: 10 minutes
 
@@ -23,11 +23,11 @@ The following logical structure exists for the application:
 * `src/main/java` - This directory contains your Java source code
 * `src/main/resources` - The resources directory contains application configuration
 * `src/main/resources/application.yml` - A Micronaut application can be configured using YAML, properties files, JSON and many other means. The default is `application.yml` where you can find your application configuration.
-* `src/main/resources/logback.xml` - By default Micronaut using [logback](http://logback.qos.ch) for logging configuration. The `logback.xml` file defines your logging configuration.
+* `src/main/resources/logback.xml` - By default Micronaut uses [logback](http://logback.qos.ch) for logging. The `logback.xml` file defines your logging configuration.
 * `build.gradle` or `pom.xml` - Depending which build tool you chose you will either have a `build.gradle` for the [Gradle build tool](https://gradle.org) or `pom.xml` for the [Maven build tool](https://maven.apache.org) which defines your application build file.
 
 ## Running the Application
-A Micronaut application can be run using the `Application` class that features a `main` method that can be executed. A simple `Application` class looks like the following:
+You can run a Micronaut application using the `Application` class which features an executable `main` method. A simple `Application` class looks like the following:
 
 ```java
 package com.example;
@@ -42,9 +42,9 @@ public class Application {
 }
 ```
 
-The `io.micronaut.runtime.Micronaut` class is used to bootstrap Micronaut and start the application on port 8080 by default using the embedded Netty-based server.
+The `io.micronaut.runtime.Micronaut` class bootstraps Micronaut and starts the application (on port 8080 by default) using the embedded Netty-based server.
 
-You can run the application by right clicking in the cloud IDE and running the main method and then accessing the application via `http://[YOUR IP]:8080`.
+You can run the application by right-clicking in the cloud IDE and running the main method. Then you can access the application via `http://[YOUR IP]:8080`. Note that you will get a "Page Not Found" error from Micronaut since we haven't defined any controller endpoints yet.
 
 Try this now:
 

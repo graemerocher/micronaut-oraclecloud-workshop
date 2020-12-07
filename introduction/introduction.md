@@ -10,7 +10,7 @@ Estimated Workshop Time: 180 minutes
 
 ### About Micronaut
 
-Micronaut is an innovative new server side Java technology that precomputes your framework infrastructure at compilation time. Micronaut can be combined with GraalVM Native Image to build native applications that use less memory and are smaller and faster because of ahead of time compilation technology.
+Micronaut is an innovative new server-side Java technology that precomputes your framework infrastructure at compilation time. Micronaut can be combined with GraalVM Native Image to build native applications that use less memory and are smaller and faster because of ahead of time (AOT) compilation technology.
 
 Micronaut also includes a persistence framework called Micronaut Data that precomputes your SQL queries at compilation name making it a great fit for working with Autonomous Database.
 
@@ -35,8 +35,8 @@ This 4-hour lab walks you through the steps to use Micronaut, Micronaut Data and
 
 ### Prerequisites
 - Understanding of the Java programming language
-- A Modern Web Browser (Chrome, Firefox etc.)
-- Access to the Lab Virtual Environment (Provided by Instructor)
+- A modern web browser (Chrome, Firefox etc.)
+- Access to the Lab Virtual Environment (provided by instructor)
 
 ## More Information
 - [Micronaut](https://micronaut.io/)

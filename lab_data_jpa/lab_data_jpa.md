@@ -21,16 +21,14 @@ In this lab you will:
 
 ## Configuring Micronaut Data JPA
 
-To simplify reading and writing objects to the database from the tables you created in the previous lab we're going to use [Micronaut Data JDBC](https://micronaut-projects.github.io/micronaut-data/latest/guide/#sql) which allows pre-computing your SQL queries at compilation time.
-
-To configure Micronau Data JPA you need to add the following dependencies to your `build.gradle` files `dependencies` block:
+To configure Micronau Data JPA, add the following dependencies to your `build.gradle` file's `dependencies` block:
 
     <copy>
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     </copy>
 
-Or if you are using Maven first add the `micronaut-data-jpa` dependency under `<dependencies>`:
+Or if you are using Maven, first add the `micronaut-data-jpa` dependency under `<dependencies>`:
 
     <copy>
     <dependency>
@@ -63,11 +61,11 @@ Now add the following configuration to your `src/main/resources/application.yml`
           enabled: true
     </copy>
 
-This enables the lookup of entities from compilation time produced metadata (avoiding a full classpath scan).
+This enables the lookup of entities from metadata produced at compilation time (avoiding a full classpath scan).
 
 ## Mapping Entities to Database Tables
 
-To map entities to the underlying databse tables simply define classes that match the table names (the default convention is underscore-separated lowercase, however this is configurable) and annotate them with `javax.persistence.Entity`.
+To map entities to the underlying databse tables, simply define classes that match the table names (the default convention is underscore-separated lowercase, but this is configurable) and annotate them with `javax.persistence.Entity`.
 
 For example try and alter the existing `Owner` class as follows:
 
@@ -205,7 +203,7 @@ The next step is to define data access repository interfaces. First define an `O
     }
     </copy>
 
-The `@Repository` annotation is used to designate this interface as a data access repository.
+The `@Repository` annotation designates this interface as a data access repository.
 
 Define another repository interface to manage instances of `Pet` in a file called `src/main/java/example/micronaut/PetRepository.java`:
 
@@ -221,7 +219,7 @@ Define another repository interface to manage instances of `Pet` in a file calle
     }
     </copy>
 
-Each of these repository interfaces extend from [CrudRepository](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/repository/CrudRepository.html) which contains methods to perform Create, Read, Update and Delete operations.
+Both of these repository interfaces extend from [CrudRepository](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/repository/CrudRepository.html) which contains methods to perform Create, Read, Update and Delete operations.
 
 ## Writing Data
 
@@ -313,9 +311,9 @@ Finally re-write the `OwnerService` which currently uses an in-memory collection
     }
     </copy>
 
-There are a few important aspects to note about this code. First to create the initial set of `Owner` instances the logic has been moved into an `init` method that is annotated with [@EventListener](https://docs.micronaut.io/latest/api/io/micronaut/runtime/event/annotation/EventListener.html) and receives [StartupEvent](https://docs.micronaut.io/latest/api/io/micronaut/context/event/StartupEvent.html). This ensures that the initialization logic is executed when the `ApplicationContext` first starts. See the section on [Context Events](https://docs.micronaut.io/latest/guide/index.html#contextEvents) in the Micronaut documentation for further informatio.
+There are a few important aspects to note about this code. First, to create the initial set of `Owner` instances the logic has been moved into an `init` method that is annotated with [@EventListener](https://docs.micronaut.io/latest/api/io/micronaut/runtime/event/annotation/EventListener.html) and receives [StartupEvent](https://docs.micronaut.io/latest/api/io/micronaut/context/event/StartupEvent.html). This ensures that the initialization logic is executed when the `ApplicationContext` first starts. See the section on [Context Events](https://docs.micronaut.io/latest/guide/index.html#contextEvents) in the Micronaut documentation for further information.
 
-Secondly the `init` method is wrapped in `javax.transaction.Transactional` which ensures that the method executes within the context of a database transaction and if anything goes wrong during the execution of the method the changes will be rolled back.
+Secondly the `init` method is annotated with `javax.transaction.Transactional`, which ensures that the method executes within the context of a database transaction and changes will be rolled back if an exception occurs during the execution of the method.
 
 The remainder of the methods of `OwnerService` have been rewritten to use methods that read and write to the database.
 

@@ -1,7 +1,7 @@
 # Validating Input with Micronaut Validation
 
 ## Introduction
-In this you will learn how to ensure incoming data is validated.
+In this lab you will learn how to ensure incoming data is validated.
 
 Estimated Lab Time: 10 minutes
 
@@ -64,9 +64,9 @@ Try adding some validation constraints to the fields of the `OwnerConfiguration`
 
 In this example the `@NotBlank` annotation ensures the name cannot be blank and the `@Min` annotation ensures owners must be at least 18 years of age.
 
-Notice as well the addition of the [@Context](https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Context.html) annotation, this ensure that any configurations are bound to the lifecycle of the `ApplicationContext` such that they are created on startup instead of lazily initialized. This ensures any validation rules are executed on application startup.
+Notice as well the addition of the [@Context](https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Context.html) annotation, which ensures that any configurations are bound to the lifecycle of the `ApplicationContext` such that they are created on startup instead of being initialized lazily. This ensures that validation rules are executed on application startup.
 
-Try modify the `testOwners` test now and pass in invalid data such as an `age` that violates the previously defined constraint:
+Try modify the `testOwners` test now in `OwnerServiceTest` and pass in invalid data such as an `age` that violates the previously defined constraint:
 
     <copy>
     @Test
@@ -141,7 +141,7 @@ Now add a new route to the `OwnerController` that handles POST requests and allo
     }
     </copy>
 
-The add method takes 2 arguments the `Owner` name and age and uses validation constraints on the parameters to ensure only validate arguments are supplied. The valid owner instance is constructed and passed to the `OwnerService`'s `addOwner` method.
+The `add` method takes two arguments, the `Owner` `name` and `age`, and uses validation constraints on the parameters to ensure only valid arguments are supplied. The valid owner instance is constructed and passed to the `OwnerService`'s `addOwner` method.
 
 Try running your application again as described in Lab 1 and then run the following `curl` command from Terminal, again supplying an invalid `age` value:
 
@@ -208,7 +208,7 @@ Now modify the `add` method of the `OwnerController` to instead validate an inst
     }
     </copy>
 
-In this case the `javax.validation.Valid` annotation is used to indicate that only a valid instance of `Owner` is accepted. Note that the `io.micronaut.http.annotation.Body` is used to indicate that the whole body should be bound to the `Owner` parameter.
+In this case the `javax.validation.Valid` annotation is used to indicate that only a valid instance of `Owner` is accepted. Note that the `io.micronaut.http.annotation.Body` annotation is used to indicate that the whole body should be bound to the `Owner` parameter.
 
 Now you can repeat the same `curl` command from the previous section and the same error will result.
 

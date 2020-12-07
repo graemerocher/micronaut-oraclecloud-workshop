@@ -17,7 +17,7 @@ In this lab you will:
 
 In the previous lab the tests you wrote invoked the `OwnerController` implementation directly and did not actually involve sending or receiving JSON over HTTP.
 
-Micronaut features a built-in declarative HTTP client that can be used to simplify the creation of HTTP clients. To try it out use this modified version of `OwnerControllerTest`.
+Micronaut features a built-in declarative HTTP client that simplifies the creation of HTTP clients. To try it out use this modified version of `OwnerControllerTest`.
 
     <copy>
     package example.micronaut;
@@ -73,13 +73,13 @@ Micronaut features a built-in declarative HTTP client that can be used to simpli
 
 The key part of this code is the `OwnerClient` interface which is defined as an inner class and then injected as a bean. By specifying a URI of `/owners` to the declarative client it is assumed you will be making requests to the current server.
 
-> If you wish to debug the HTTP requests and responses try adding a logger definition like `<logger name="io.micronaut.http.client" level="trace" />`
+> To debug the HTTP requests and responses try adding a logger definition like `<logger name="io.micronaut.http.client" level="trace" />` in `logback.xml`.
 
-Micronaut will at compilation time produces an implementation of the `OwnerClient` interface which is injectable into your code (If you are interested to know how this works see, the [Introduction Advice](https://docs.micronaut.io/latest/guide/index.html#introductionAdvice) section of the Micronaut documentation).
+Micronaut will at compilation time produce an implementation of the `OwnerClient` interface which is injectable into your code. If you are interested to know how this works, see the [Introduction Advice](https://docs.micronaut.io/latest/guide/index.html#introductionAdvice) section of the Micronaut documentation.
 
 ## Non-Blocking Client Requests
 
-It should be noted that in the example in the previous section the `OwnerClient` interface is returning `Owner` and `Collection` directly which means that Micronaut must block until the response is received from a client. This is fine for unit testing but in production code it is far better to avoid blocking I/O where you can. To achieve this you can instead return Reactive types from the interface such as those defined by [RxJava](https://github.com/ReactiveX/RxJava).
+It should be noted that in the example in the previous section the `OwnerClient` interface returns `Owner` and `Collection` directly, which means that Micronaut must block until the response is received from a client. This is fine for unit testing, but in production code it is far better to avoid blocking I/O where you can. To achieve this you can instead return Reactive types from the interface such as those defined by [RxJava](https://github.com/ReactiveX/RxJava).
 
 Try the following example:
 
@@ -140,9 +140,9 @@ Note that the test itself is still blocking to obtain the results, however in pr
 
 ## HTTP Services
 
-When using HTTP clients in production for communication between Microservices you typically don't hard code a URI to the current server such as `/owner`.
+When using HTTP clients in production for communication between Microservices you typically don't hard-code a URI to the current server such as `/owner`.
 
-Micronaut features the notion of Service IDs that can be used to abstract the destination of a HTTP request. Service IDs form part of Micronaut's support for [Service Discovery](https://docs.micronaut.io/latest/guide/index.html#serviceDiscovery) including various strategies for discovering services from Consul to Kubernetes.
+Micronaut features the notion of Service IDs to abstract the destination of a HTTP request. Service IDs form part of Micronaut's support for [Service Discovery](https://docs.micronaut.io/latest/guide/index.html#serviceDiscovery) including various strategies for discovering services, for example Consul and Kubernetes.
 
 To demonstrate Service IDs in action modify the `OwnerClient` defined in the previous section as follows:
 
@@ -157,7 +157,7 @@ To demonstrate Service IDs in action modify the `OwnerClient` defined in the pre
     }
     </copy>
 
-Notice an `id` of `owners` is used and the `path` attribute is used to include the root context to prefix all requests with.
+Notice an `id` of `owners` is used, and the `path` attribute is used to include the root context to prefix all requests with.
 
 Now modify `src/main/resources/application.yml` as follows:
 
@@ -178,7 +178,7 @@ Now modify `src/main/resources/application.yml` as follows:
         age: 30
     </copy>
 
-The above configures Micronaut to look for services with an ID of `owners` at the given address or addresses (if there are many Micronaut will client-side load balance between them) using the `micronaut.http.services.owners.url` property where `owners` is the Service ID.
+The above configures Micronaut to look for services with an ID of `owners` at the given address or addresses (if there are multiple Micronaut will client-side load balance between them) using the `micronaut.http.services.owners.url` property where `owners` is the Service ID.
 
 Now ensure your application is _not_ running and run `OwnerControllerTest`, which will fail with errors like the following:
 
@@ -188,7 +188,7 @@ io.micronaut.http.client.exceptions.HttpClientException: Connect Error: Connecti
     at io.micronaut.http.client.netty.DefaultHttpClient.lambda$null$33(DefaultHttpClient.java:1111)
 ```
 
-This is expected because nothing is running localhost on port 8080. Now try start the server by running the `Application` class as explained in Lab 1 and then run the `OwnerControllerTest` again.
+This is expected because nothing is running on localhost on port 8080. Now start the server by running the `Application` class as explained in Lab 1 and then run the `OwnerControllerTest` again.
 
 The test passes! You can also modify `application.yml` to include multiple destination servers:
 
@@ -204,9 +204,9 @@ micronaut:
           - http://localhost:8085
 ```
 
-> It is also important to remember that Micronaut can be configured with the environment so you could define an environment variable called `MICRONAUT_HTTP_SERVICES_OWNERS_URLS` and provide a comma separated list of URLs to connect to
+> It is also important to remember that Micronaut can be configured with the environment so you could define an environment variable called `MICRONAUT_HTTP_SERVICES_OWNERS_URLS` and provide a comma-separated list of URLs to connect to
 
-Of course there are many ways in which services can be discovered by ID that differ depending your deployment architecture. See the documentation on [Service Discovery](https://docs.micronaut.io/latest/guide/index.html#serviceDiscovery) to find out some of the possibilities for your cloud.
+Of course there are many ways in which services can be discovered by ID that differ depending your deployment architecture. See the documentation on [Service Discovery](https://docs.micronaut.io/latest/guide/index.html#serviceDiscovery) to see the possibilities for your cloud.
 
 ## Cleanup Changes
 
@@ -225,7 +225,7 @@ Before you go make sure to cleanup the changes by restoring your `application.ym
         age: 30
     </copy>
 
-An reverting the changes to `OwnerClient`:
+and reverting the changes to `OwnerClient`:
 
     <copy>
     @Client("/owners")

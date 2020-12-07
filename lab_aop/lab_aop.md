@@ -1,7 +1,7 @@
 # Using Aspect Oriented Programming in Micronaut
 
 ## Introduction
-In this lab you will learn how Aspect Oriented Programming (AOP) allows you to define functionality to address cross cutting concerns in your application.
+In this lab you will learn how Aspect Oriented Programming (AOP) lets you define functionality to address cross-cutting concerns in your application.
 
 Estimated Lab Time: 10 minutes
 
@@ -43,7 +43,7 @@ Firsts define a class in a file called `src/main/java/example/micronaut/LoggingI
                 log.trace("Method {} resulted in : {}", context.getExecutableMethod(), result);
                 return result;
             } catch(RuntimeException e) {
-                log.trace("Method {} caused error : {}",
+                log.trace("Method {} caused exception : {}",
                         context.getExecutableMethod(),
                         e.getMessage());
                 throw e;
@@ -52,7 +52,7 @@ Firsts define a class in a file called `src/main/java/example/micronaut/LoggingI
     }
     </copy>
 
-A `MethodInterceptor` like the one above intercepts a method invocation and allows you to wrap the invocation in additional functionality before proceeding (by calling `proceed()`). In the above case the method invocation is logged and the result logged or if an error occurs the error message is logged before the error is rethrown.
+A `MethodInterceptor` like the one above intercepts method invocation and lets you wrap the invocation with additional functionality before proceeding (by calling `proceed()`). In the above case the method invocation is logged and the result is logged, or if an exception occurs the exception message is logged before the exception is rethrown.
 
 ## Add an Around Advice Annotation
 
@@ -74,11 +74,11 @@ To apply this interceptor to a class you need a trigger annotation. Create a new
     }
     </copy>
 
-The annotation itself is annotated with [@Around](https://docs.micronaut.io/latest/api/io/micronaut/aop/Around.html) which indicates this interceptor will be applied around a method invocation and the `@Type` annotation is used to indicate the implementation interceptor.
+The annotation itself is annotated with [@Around](https://docs.micronaut.io/latest/api/io/micronaut/aop/Around.html) which indicates this interceptor will be applied "around" a method invocation (i.e. it runs before and after the method) and the `@Type` annotation is used to indicate the implementation interceptor.
 
 ## Apply the Annotation to a Bean
 
-Now apply the `@Logged` annotation to the `getInitialOwners()` method you defined in the previous lab:
+Now apply the `@Logged` annotation to the `getInitialOwners()` method you defined in `OwnerService` in the previous lab:
 
     <copy>
     @Logged
@@ -89,7 +89,7 @@ Now apply the `@Logged` annotation to the `getInitialOwners()` method you define
     }
     </copy>
 
-Next modify your logging configuration by modifying the `src/main/resources/logback.xml` file to include the following definition:
+Next modify your logging configuration by editing the `src/main/resources/logback.xml` file to include the following definition:
 
     <copy>
     <configuration>

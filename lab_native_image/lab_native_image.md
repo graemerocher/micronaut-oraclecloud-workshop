@@ -19,11 +19,11 @@ In this lab you will:
 
 [GraalVM Native Image](https://www.graalvm.org/reference-manual/native-image/) is a technology that allows performing a closed world static analysis of a Java application and turn the Java application into a native executable designed to execute on a specific target environment.
 
-Whilst building a native image can take some time the benefits include a dramatic reduction in startup time and reduced overall memory consumption both of which can significantly reduce the cost of running Cloud applications over time.
+Whilst building a native image can take some time, the benefits include a dramatic reduction in startup time and reduced overall memory consumption, both of which can significantly reduce the cost of running Cloud applications over time.
 
 ## Configuring Native Image Support
 
-To get started modify your Gradle build by adding the following dependencies to your `build.gradle` file within the `dependencies` block:
+To get started, add the following dependency to your `build.gradle` file within the `dependencies` block:
 
     <copy>
     annotationProcessor("io.micronaut:micronaut-graal")
@@ -43,7 +43,7 @@ Before proceeding you should refresh your project dependencies:
 
 ![Project Dialog](../images/dependency-refresh.png)
 
-Next since this application needs to establish a secure connection to Autonomous Database you need to pass the `--enable-all-security-services` flag to native image.
+Next since this application needs to establish a secure connection to Autonomous Database, you need to pass the `--enable-all-security-services` flag to native image.
 
 To do this with Gradle add the following to `build.gradle`:
 
@@ -73,7 +73,7 @@ Any other classes that you need to add reflectively can be added to the `@TypeHi
 
 ## Building a Native Image with Gradle
 
-If you are using Gradle and the GraalVM SDK with Native Image installed (Native Image is an optional component installable via `gu install native-image`) then building a native image is trivial.
+If you are using Gradle and the GraalVM SDK with Native Image installed (Native Image is an optional component installable via `gu install native-image`), then building a native image is trivial.
 
 Open up the Terminal pane and run the following command:
 
@@ -121,7 +121,9 @@ Now run the following command in Terminal to build the native image:
     ./mvnw clean package -Dpackaging=native-image
     </copy>
 
-Which will build the native image into the `target/native-image` directory which you can run with:
+After some time the native image executable with be built into the `target/native-image` directory.
+
+You can now run the native executable from Terminal:
 
     <copy>
     ./target/example

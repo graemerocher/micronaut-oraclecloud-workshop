@@ -17,7 +17,7 @@ In this lab you will:
 
 So far during the Hands-on Lab you have been issuing `curl` requests from Terminal to try out the API, however a far better way to test your API is to write integration tests.
 
-The [Micronaut Test](https://micronaut-projects.github.io/micronaut-test/latest/guide/) module makes writing integration tests a breeze by allowing you to define the `@MicronautTest` annotation on any test which has the impact of bootstrapping Micronaut and allowing you to dependency inject beans into the test itself.
+The [Micronaut Test](https://micronaut-projects.github.io/micronaut-test/latest/guide/) module makes writing integration tests a breeze by allowing you to define the `@MicronautTest` annotation on any test. This has the effect of bootstrapping Micronaut and letting you dependency inject beans into the test itself.
 
 To test this out create a new test in the file `src/main/java/example/micronaut/OwnerControllerTest.java` with the following contents:
 
@@ -60,7 +60,7 @@ Sometimes you need to test the different ways in which your application can be c
 
 When you run tests Micronaut automatically activates the `test` environment which causes the above file to be loaded (see Lab 2 where environments were covered).
 
-If your requirements are more dynamic however there are a couple of options. The first is the [@Property](https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Property.html) annotation. To try this out modify `OwnerServiceTest` adding `@MicronautTest` and `@Property` to feed the initial user list:
+If your requirements are more dynamic however there are other options. One is the [@Property](https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Property.html) annotation. To try this out modify `OwnerServiceTest` adding `@MicronautTest` and `@Property` to feed the initial user list:
 
     <copy>
     package example.micronaut;
@@ -95,7 +95,7 @@ If your requirements are more dynamic however there are a couple of options. The
 
 In this example `@Property` is used to add an additional initial owner to the collection when the application starts up.
 
-An alternative to this approach which allows programmatic configuration to be fed to the application that is created is `TestPropertyProvider`. Try modify the test code as follows:
+`TestPropertyProvider` is an alternative to this approach which allows programmatic configuration to be fed to the application. Try modifying the test code as follows:
 
     <copy>
     package example.micronaut;
@@ -139,13 +139,13 @@ An alternative to this approach which allows programmatic configuration to be fe
     }
     </copy>
 
-In this case the `getProperties()` method is used to customize configuration, note however that you must define `@TestInstance(TestInstance.Lifecycle.PER_CLASS)` on the class for JUnit 5 tests for this approach to work.
+In this case the `getProperties()` method is used to customize configuration. Note however that you must annotate the class with `@TestInstance(TestInstance.Lifecycle.PER_CLASS)` for JUnit 5 tests for this approach to work.
 
 ## Mocking Beans
 
-It is a pretty common requirement to mock parts of the application, in particular those that may need to do network I/O or access a remote potentially unavailable resource.
+It is a common requirement to mock parts of the application, in particular those that need to do network I/O or access a potentially unavailable remote resource.
 
-To aid mocking and make your application more extensible it is generally good practise to use interfaces as much as possible. To demonstrate this extract the methods from the `OwnerService` into a new interface in a file called `src/main/java/example/micronaut/OwnerOperations.java`:
+To aid mocking and make your application more extensible it is good practise to use interfaces as much as possible. To demonstrate this extract the methods from the `OwnerService` into a new interface in a file called `src/main/java/example/micronaut/OwnerOperations.java`:
 
     <copy>
     package example.micronaut;

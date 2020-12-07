@@ -1,7 +1,7 @@
 # Deploying Micronaut Applications to the Cloud
 
 ## Introduction
-In this lab you will learn how to deploy your Micronaut application to a VM, a Docker Container Registry and Kubernetes.
+In this lab you will learn how to deploy your Micronaut application to a VM, a Docker Container Registry, and Kubernetes.
 
 Estimated Lab Time: 10 minutes
 
@@ -16,37 +16,39 @@ In this lab you will:
 
 - Access to your project instance
 
-## Deploying a Runnable JAR to a VM
+## Deploying an Executable JAR to a VM
 
 ### Gradle
 
-To deploy the application as a Runnable JAR open up Terminal (ALT + F12) and run the following command in Gradle:
+To build the application as an executable JAR, open up Terminal (ALT + F12) and run the following:
 
     <copy>
     ./gradlew assemble
     </copy>
 
-A runnable JAR file will be built that is ready to be executed in production on a VM.
+An executable JAR file will be built that is ready to be run in production on a VM.
 
-To run the JAR file if you built with Gradle run:
+To execute the JAR file run:
 
     <copy>
     java -jar build/libs/example-0.1-all.jar
     </copy>
 
+Once the application is up and running, you can access it via `http://[YOUR IP]:8080/owners`.
+
 > NOTE: Make sure you run the JAR that ends with `-all`!
 
 ### Maven
 
-To deploy the application as a Runnable JAR open up Terminal (ALT + F12) and run the following command in Maven:
+To build the application as an executable JAR open up Terminal (ALT + F12) and run the following command in Maven:
 
     <copy>
     ./mvnw package
     </copy>
 
-A runnable JAR file will be built that is ready to be executed in production on a VM.
+An executable JAR file will be built that is ready to be run in production on a VM.
 
-To run the JAR file if you built with Maven run:
+To execute the JAR file run:
 
     <copy>
     java -jar target/example-0.1.jar
@@ -79,13 +81,13 @@ Once the application is up and running, you can access it via `http://[YOUR IP]:
 
 ## Deploying a Container to Oracle Container Registry
 
-A common way to deploy applications is via Containers and services such as [Oracle Container Engine for Kubernetes](https://www.oracle.com/cloud-native/container-engine-kubernetes/) allow orchestrating and running these containers.
+A common way to deploy applications is via Containers and services such as [Oracle Container Engine for Kubernetes](https://www.oracle.com/cloud-native/container-engine-kubernetes/) which allows orchestrating and running these containers.
 
 [Oracle Cloud Infrastructure Registry (OCIR)](https://docs.cloud.oracle.com/en-us/iaas/Content/Registry/Concepts/registryoverview.htm) allows pushing Docker containers to Oracle Cloud that can be used as a public or private Docker registry.
 
 ### Gradle
 
-To Deploy a container to OCIR via Gradle your `build.gradle` first needs to be configured. The example presented in this workshop has already been configured with the following entries:
+To deploy a container to OCIR via Gradle your `build.gradle` first needs to be configured. The example presented in this workshop has already been configured with the following entries:
 
     <copy>
     dockerBuild {

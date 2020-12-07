@@ -3,7 +3,7 @@
 ## Introduction
 In this lab you will learn how to define Data access repository interfaces that simplify your database access code.
 
-> IMPORTANT: If you prefer a full ORM and JPA you can skip this lab and go onto the next lab directly which explains how to use Micronaut Data JPA.
+> IMPORTANT: If you prefer a full ORM and JPA you can skip this lab and go directly to the next lab which explains how to use Micronaut Data JPA.
 
 Estimated Lab Time: 10 minutes
 
@@ -21,16 +21,16 @@ In this lab you will:
 
 ## Configuring Micronaut Data JDBC
 
-To simplify reading and writing objects to the database from the tables you created in the previous lab we're going to use [Micronaut Data JDBC](https://micronaut-projects.github.io/micronaut-data/latest/guide/#sql) which allows pre-computing your SQL queries at compilation time.
+To simplify reading and writing objects to the database tables you created in the previous lab we're going to use [Micronaut Data JDBC](https://micronaut-projects.github.io/micronaut-data/latest/guide/#sql) which allows pre-computing your SQL queries at compilation time.
 
-To configure Micronau Data JDBC you need to add the following dependencies to your `build.gradle` files `dependencies` block:
+To configure Micronau Data JDBC, add the following dependencies to your `build.gradle` file's `dependencies` block:
 
     <copy>
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
     implementation("io.micronaut.data:micronaut-data-jdbc")
     </copy>
 
-Or if you are using Maven first add the `micronaut-data-jdbc` dependency under `<dependencies>`:
+Or if you are using Maven, first add the `micronaut-data-jdbc` dependency under `<dependencies>`:
 
     <copy>
     <dependency>
@@ -52,7 +52,7 @@ Then add `micronaut-data-processor` under `<annotationProcessorPaths>`:
 
 ## Mapping Entities to Database Tables
 
-To map entities to the underlying databse tables simply define classes that match the table names (the default convention is underscore-separated lowercase, however this is configurable) and annotate them with `@MappedEntity`.
+To map entities to the underlying databse tables, simply define classes that match the table names (the default convention is underscore-separated lowercase, but this is configurable) and annotate them with `@MappedEntity`.
 
 For example try and alter the existing `Owner` class as follows:
 
@@ -101,7 +101,7 @@ For example try and alter the existing `Owner` class as follows:
     }
     </copy>
 
-The only real difference is the addition of `@MappedEntity` as well as an `id` field that is mutable field that represents the database identifier.
+The significant differences are the addition of `@MappedEntity` and a mutable `id` field that represents the database identifier.
 
 Now create a new class that represents the `Pet` entity in a file called `src/main/java/example/micronaut/Pet.java`:
 
@@ -191,7 +191,7 @@ The next step is to define data access repository interfaces. First define an `O
 
 > Notice the `Dialect` used here is set to `Oracle` so that Micronaut Data JDBC knows how to produce the correct SQL dialect at compilation time.
 
-The `@JdbcRepository` annotation is used to designate this interface as a data access repository.
+The `@JdbcRepository` annotation designates this interface as a data access repository.
 
 Define another repository interface to manage instances of `Pet` in a file called `src/main/java/example/micronaut/PetRepository.java`:
 
@@ -208,7 +208,7 @@ Define another repository interface to manage instances of `Pet` in a file calle
     }
     </copy>
 
-Each of these repository interfaces extend from [CrudRepository](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/repository/CrudRepository.html) which contains methods to perform Create, Read, Update and Delete operations.
+Both of these repository interfaces extend from [CrudRepository](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/repository/CrudRepository.html) which contains methods to perform Create, Read, Update and Delete operations.
 
 ## Writing Data
 
@@ -300,9 +300,9 @@ Finally re-write the `OwnerService` which currently uses an in-memory collection
     }
     </copy>
 
-There are a few important aspects to note about this code. First to create the initial set of `Owner` instances the logic has been moved into an `init` method that is annotated with [@EventListener](https://docs.micronaut.io/latest/api/io/micronaut/runtime/event/annotation/EventListener.html) and receives [StartupEvent](https://docs.micronaut.io/latest/api/io/micronaut/context/event/StartupEvent.html). This ensures that the initialization logic is executed when the `ApplicationContext` first starts. See the section on [Context Events](https://docs.micronaut.io/latest/guide/index.html#contextEvents) in the Micronaut documentation for further informatio.
+There are a few important aspects to note about this code. First, to create the initial set of `Owner` instances the logic has been moved into an `init` method that is annotated with [@EventListener](https://docs.micronaut.io/latest/api/io/micronaut/runtime/event/annotation/EventListener.html) and receives [StartupEvent](https://docs.micronaut.io/latest/api/io/micronaut/context/event/StartupEvent.html). This ensures that the initialization logic is executed when the `ApplicationContext` first starts. See the section on [Context Events](https://docs.micronaut.io/latest/guide/index.html#contextEvents) in the Micronaut documentation for further information.
 
-Secondly the `init` method is wrapped in `javax.transaction.Transactional` which ensures that the method executes within the context of a database transaction and if anything goes wrong during the execution of the method the changes will be rolled back.
+Secondly the `init` method is annotated with `javax.transaction.Transactional`, which ensures that the method executes within the context of a database transaction and changes will be rolled back if an exception occurs during the execution of the method.
 
 The remainder of the methods of `OwnerService` have been rewritten to use methods that read and write to the database.
 
@@ -345,7 +345,7 @@ Now modify the `PetRepository` data access repository interface to include metho
     }
     </copy>
 
-Micronaut Data supports [method patterns](https://micronaut-projects.github.io/micronaut-data/latest/guide/#querying) which are automatically implemented for you at compilation time, producing the appropriate JPA-QL query.
+Micronaut Data supports [method patterns](https://micronaut-projects.github.io/micronaut-data/latest/guide/#querying) which are automatically implemented for you at compilation time, producing the appropriate SQL query.
 
 Note that the [@Join](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/annotation/Join.html) annotation is used to fetch the associated `Owner` instance for each `Pet` with a single query.
 
