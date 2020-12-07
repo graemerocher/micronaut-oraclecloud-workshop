@@ -53,6 +53,20 @@ To do this with Gradle add the following to `build.gradle`:
     }
     </copy>
 
+Or if you are using Maven, add the following configuration under `<plugins>`:
+
+    <copy>
+    <plugin>
+    <groupId>org.graalvm.nativeimage</groupId>
+    <artifactId>native-image-maven-plugin</artifactId>
+    <configuration>
+      <buildArgs combine.children="append">
+        <buildArg>--enable-all-security-services</buildArg>
+      </buildArgs>
+    </configuration>
+    </plugin>
+    </copy>
+
 Finally, if you chose to use JPA/Hibernate (Lab 11 instead of Lab 10) then you need to add the following definition `@TypeHint` to your `Application` class:
 
     <copy>
@@ -91,31 +105,9 @@ You can now run the native executable from Terminal:
 
 ## Building a Native Image with Maven
 
-If you are a building a Native Image with Maven add the following under `<annotationProcessorPaths>`:
+If you are using Maven and the GraalVM SDK with Native Image installed (Native Image is an optional component installable via `gu install native-image`), then building a native image is trivial.
 
-    <copy>
-    <path>
-      <groupId>io.micronaut</groupId>
-      <artifactId>micronaut-graal</artifactId>
-      <version>${micronaut.version}</version>
-    </path>
-    </copy>
-
-Then run under `<plugins>` add the following configuration in order to enable security services via the `--enable-all-security-services` flag to connect to Autonomous Database:
-
-    <copy>
-    <plugin>
-    <groupId>org.graalvm.nativeimage</groupId>
-    <artifactId>native-image-maven-plugin</artifactId>
-    <configuration>
-      <buildArgs combine.children="append">
-        <buildArg>--enable-all-security-services</buildArg>
-      </buildArgs>
-    </configuration>
-    </plugin>
-    </copy>
-
-Now run the following command in Terminal to build the native image:
+Open up the Terminal pane and run the following command:
 
     <copy>
     ./mvnw clean package -Dpackaging=native-image
