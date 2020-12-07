@@ -231,10 +231,10 @@ and reverting the changes to `OwnerClient`:
     @Client("/owners")
     interface OwnerClient {
         @Get("/")
-        Collection<Owner> getOwners();
+        Flowable<Owner> getOwners();
 
         @Post("/")
-        Owner add(@Body Owner owner);
+        Single<Owner> add(@Body Owner owner);
     }
     </copy>
 

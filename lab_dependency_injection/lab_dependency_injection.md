@@ -47,6 +47,8 @@ The `OwnerService` class is annotated with `@Singleton` which means it is now ma
 To demonstrate this define a test in `src/test/java/example/micronaut/OwnerServiceTest.java`:
 
     <copy>
+    package example.micronaut;
+
     import io.micronaut.context.ApplicationContext;
     import org.junit.jupiter.api.Test;
     import static org.junit.jupiter.api.Assertions.*;
@@ -70,7 +72,7 @@ Here you can see the test uses Micronaut's `ApplicationContext`, which is a cont
     void testOwnerService() {
         try (ApplicationContext context = ApplicationContext.run()) {
             OwnerService ownerService = context.getBean(OwnerService.class);
-            assertEquals(
+            assertSame(
                 ownerService,
                 context.getBean(OwnerService.class)
             );
@@ -94,6 +96,13 @@ Life cycle methods can be added via `javax.annotation.PostConstruct` and `javax.
     void destroyed() {
         System.out.println("OwnerService destroyed");
     }
+    </copy>
+
+You'll also need these imports:
+
+    <copy>
+    import javax.annotation.PostConstruct;
+    import javax.annotation.PreDestroy;
     </copy>
 
 Now run `OwnerServiceTest` again and you will see the following output:
@@ -217,6 +226,13 @@ So how do you make the `OwnerConfiguration` instances available? Try adding the 
             );
         }
     }
+    </copy>
+
+You'll also need these imports:
+
+    <copy>
+    import java.util.Collection;
+    import java.util.Map;
     </copy>
 
 Notice that for each entry under the `owner` configuration namespace you get a new instance of `OwnerConfiguration` thanks to how `@EachProperty` works. Also notice how you can pass configuration to the `run` method of the `ApplicationContext` in order to configure your application.

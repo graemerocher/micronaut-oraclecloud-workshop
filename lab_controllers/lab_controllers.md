@@ -47,9 +47,16 @@ To expose an individual route over HTTP you need to define methods annotated wit
 
     <copy>
     @Get("/")
-    java.util.Collection<Owner> getOwners() {
+    Collection<Owner> getOwners() {
         return ownerService.getInitialOwners();
     }
+    </copy>
+
+You'll also need these imports:
+
+    <copy>
+    import io.micronaut.http.annotation.Get;
+    import java.util.Collection;
     </copy>
 
 This uses the `io.micronaut.http.annotation.Get` annotation to indicate that HTTP `GET` requests to the root URI under `/owners` should match this method and invoke it. The return type represents the response that will be sent over HTTP which by default is assumed to be JSON.

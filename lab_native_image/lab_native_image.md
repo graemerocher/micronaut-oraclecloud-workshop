@@ -35,7 +35,7 @@ Or if you are using Maven add `micronaut-graal` under `<annotationProcessorPaths
     <path>
       <groupId>io.micronaut</groupId>
       <artifactId>micronaut-graal</artifactId>
-      version>${micronaut.version}</version>
+      <version>${micronaut.version}</version>
     </path>
     </copy>
 
@@ -55,19 +55,19 @@ To do this with Gradle add the following to `build.gradle`:
 
 Finally, if you chose to use JPA/Hibernate (Lab 11 instead of Lab 10) then you need to add the following definition `@TypeHint` to your `Application` class:
 
-<copy>
-import io.micronaut.core.annotation.TypeHint;
+    <copy>
+    import io.micronaut.core.annotation.TypeHint;
 
-@TypeHint(Pet.PetHealth.class)
-public class Application {
+    @TypeHint(Pet.PetHealth.class)
+    public class Application {
 
-    public static void main(String[] args) {
-        Micronaut.run(Application.class, args);
+        public static void main(String[] args) {
+            Micronaut.run(Application.class, args);
+        }
     }
-}
-</copy>
+    </copy>
 
-Whilst Micronaut doesn't use reflection itself (and Micronaut Data JDBC doesn't aswell), third-party libraries like Hibernate that do may need reflection configuration. The `@TypeHint` annotation allows the inner `PetHealth` enum to be accessed reflectively by Hibernate.
+Whilst Micronaut doesn't use reflection itself (and Micronaut Data JDBC doesn't as well), third-party libraries like Hibernate that do may need reflection configuration. The `@TypeHint` annotation allows the inner `PetHealth` enum to be accessed reflectively by Hibernate.
 
 Any other classes that you need to add reflectively can be added to the `@TypeHint` annotation as required.
 

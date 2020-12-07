@@ -141,6 +141,14 @@ Now add a new route to the `OwnerController` that handles POST requests and allo
     }
     </copy>
 
+You'll also need these imports:
+
+    <copy>
+    import io.micronaut.http.annotation.Post;
+    import javax.validation.constraints.Min;
+    import javax.validation.constraints.NotBlank;
+    </copy>
+
 The `add` method takes two arguments, the `Owner` `name` and `age`, and uses validation constraints on the parameters to ensure only valid arguments are supplied. The valid owner instance is constructed and passed to the `OwnerService`'s `addOwner` method.
 
 Try running your application again as described in Lab 1 and then run the following `curl` command from Terminal, again supplying an invalid `age` value:
@@ -206,6 +214,13 @@ Now modify the `add` method of the `OwnerController` to instead validate an inst
         ownerService.addOwner(owner);
         return owner;
     }
+    </copy>
+
+You'll also need these imports:
+
+    <copy>
+    import io.micronaut.http.annotation.Body;
+    import javax.validation.Valid;
     </copy>
 
 In this case the `javax.validation.Valid` annotation is used to indicate that only a valid instance of `Owner` is accepted. Note that the `io.micronaut.http.annotation.Body` annotation is used to indicate that the whole body should be bound to the `Owner` parameter.

@@ -182,6 +182,7 @@ Next modify `OwnerController` to inject the interface you have defined instead o
     import io.micronaut.http.annotation.Post;
 
     import javax.validation.Valid;
+    import java.util.Collection;
 
     @Controller("/owners")
     public class OwnerController {
@@ -192,7 +193,7 @@ Next modify `OwnerController` to inject the interface you have defined instead o
         }
 
         @Get("/")
-        java.util.Collection<Owner> getOwners() {
+        Collection<Owner> getOwners() {
             return ownerOperations.getInitialOwners();
         }
 
