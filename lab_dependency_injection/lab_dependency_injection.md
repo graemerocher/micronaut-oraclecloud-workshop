@@ -3,7 +3,7 @@
 ## Introduction
 In this lab you will learn how Dependency Injection forms the foundation of how Micronaut works.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 20 minutes
 
 ### Objectives
 

@@ -3,7 +3,7 @@
 ## Introduction
 In this lab you will learn how to work with integration testing in Micronaut.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 15 minutes
 
 ### Objectives
 

@@ -5,7 +5,7 @@ In this lab you will learn how to define Data access repository interfaces that 
 
 > IMPORTANT If you have already completed the previous lab on Micronaut Data JDBC you can skip this lab and go onto the next lab directly.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 20 minutes
 
 ### Objectives
 

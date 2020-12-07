@@ -3,7 +3,7 @@
 ## Introduction
 In this lab you will learn how Aspect Oriented Programming (AOP) lets you define functionality to address cross-cutting concerns in your application.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 15 minutes
 
 ### Objectives
 

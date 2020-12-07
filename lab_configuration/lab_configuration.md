@@ -3,7 +3,7 @@
 ## Introduction
 In this lab you will learn how to apply configuration changes to your Micronaut application.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 15 minutes
 
 ### Objectives
 

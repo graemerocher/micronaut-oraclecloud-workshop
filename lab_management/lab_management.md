@@ -3,7 +3,7 @@
 ## Introduction
 In this lab you will learn how to enable management features in Micronaut, including health checks and metrics.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 15 minutes
 
 ### Objectives
 

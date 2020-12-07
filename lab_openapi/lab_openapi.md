@@ -3,7 +3,7 @@
 ## Introduction
 In this lab you will learn how to use Micronaut's support for OpenAPI and Swagger to generate API documentation.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 20 minutes
 
 ### Objectives
 

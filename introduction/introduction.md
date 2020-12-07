@@ -6,7 +6,7 @@ This workshop is for Java Developers looking to start building applications with
 
 The workshop features several labs that walk you through the steps to get going with Micronaut and Oracle Cloud.
 
-Estimated Workshop Time: 180 minutes
+Estimated Workshop Time: 240 minutes
 
 ### About Micronaut
 

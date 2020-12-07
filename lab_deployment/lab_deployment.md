@@ -3,7 +3,7 @@
 ## Introduction
 In this lab you will learn how to deploy your Micronaut application to a VM, a Docker Container Registry, and Kubernetes.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 20 minutes
 
 ### Objectives
 
