@@ -33,8 +33,10 @@ Try adding some validation constraints to the fields of the `OwnerConfiguration`
     @EachProperty("owners")
     @Context
     public class OwnerConfiguration {
+
         @NotBlank
         private String name;
+
         @Min(18)
         private int age;
 
@@ -75,7 +77,7 @@ Try modify the `testOwners` test now and pass in invalid data such as an `age` t
                 "owners.barney.name", "Barney",
                 "owners.barney.age", "30"
         );
-    	...
+        ...
     }
     </copy>
 
@@ -86,7 +88,7 @@ Bean definition [example.micronaut.OwnerConfiguration] could not be loaded: Erro
 
 Message: Validation failed for bean definition [example.micronaut.OwnerConfiguration]
 List of constraint violations:[
-	age - must be greater than or equal to 18
+    age - must be greater than or equal to 18
 ]
 ```
 
@@ -119,7 +121,7 @@ To demonstrate this first modify the `OwnerService` to store users in an in-memo
         public Collection<Owner> getInitialOwners() {
             return owners;
         }
-        
+
         public void addOwner(Owner owner) {
             owners.add(owner);
         }
@@ -172,8 +174,10 @@ Try modifying the `Owner` class with the validation constraints such as the belo
 
     @Introspected
     public class Owner {
+
         @NotBlank
         private final String name;
+
         @Min(18)
         private final int age;
 

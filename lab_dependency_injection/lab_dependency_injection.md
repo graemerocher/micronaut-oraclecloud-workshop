@@ -23,9 +23,9 @@ The primary difference is that Micronaut will at compilation time compute the in
 
 In order for Micronaut to do that you need designate which classes in your application are managed "beans".
 
-This is done by defining an annotation on the class that itself is annotated with `javax.inject.Scope`. 
+This is done by defining an annotation on the class that itself is annotated with `javax.inject.Scope`.
 
-A scope defines the lifecycle of a bean and aspects such as how many instances are allowed. The most common scope is `javax.inject.Singleton` which indicates that at most 1 instance is allowed of the object. 
+A scope defines the lifecycle of a bean and aspects such as how many instances are allowed. The most common scope is `javax.inject.Singleton` which indicates that at most 1 instance is allowed of the object.
 
 For more information on other available scopes see the [Scopes](https://docs.micronaut.io/latest/guide/index.html#scopes) section of the Micronaut documentation.
 
@@ -52,7 +52,7 @@ To demonstrate this define a test in `src/test/java/example/micronaut/OwnerServi
     import static org.junit.jupiter.api.Assertions.*;
 
     public class OwnerServiceTest {
-        
+
         @Test
         void testOwnerService() {
             try (ApplicationContext context = ApplicationContext.run()) {
@@ -66,16 +66,16 @@ To demonstrate this define a test in `src/test/java/example/micronaut/OwnerServi
 Here you can see the test uses Micronaut's `ApplicationContext`, which is a container object that manages all beans, to lookup an instance of `OwnerService`. Whilst this example is not particularly interesting, if you invoke `getBean` multiple times you will see that the instances are the same:
 
     <copy>
-	@Test
-	void testOwnerService() {
-	    try (ApplicationContext context = ApplicationContext.run()) {
-	        OwnerService ownerService = context.getBean(OwnerService.class);
-	        assertEquals(
-	        	ownerService,
-				context.getBean(OwnerService.class)
-	    	);
-	    }
-	}
+    @Test
+    void testOwnerService() {
+        try (ApplicationContext context = ApplicationContext.run()) {
+            OwnerService ownerService = context.getBean(OwnerService.class);
+            assertEquals(
+                ownerService,
+                context.getBean(OwnerService.class)
+            );
+        }
+    }
     </copy>
 
 The `@Singleton` scope ensures that only one instance is created.
@@ -105,7 +105,7 @@ OwnerService destroyed
 
 This is because the `ApplicationContext` is created and destroyed in the `try-with-resources` block so when the bean is created it is triggers the `created` method and when the context is destroyed it triggers the `destroyed` method.
 
-## Injecting Beans 
+## Injecting Beans
 
 To demonstrating dependency injection better, let's tackle a more interesting case. First define a class POJO that is going to represent the owners of a pets in a hypothetical petclinic in a file called `src/main/java/example/micronaut/Owner.java`:
 
@@ -193,7 +193,6 @@ Micronaut will automatically lookup and populate the available `OwnerConfigurati
 
 However, constructor injection is prefered as it encourages immutability and more clearly expresses the requirements of the class.
 
-
 So how do you make the `OwnerConfiguration` instances available? Try adding the following test to the `OwnerServiceTest` you created early:
 
     <copy>
@@ -229,7 +228,6 @@ You can additionally lookup an individual named instance used the `@javax.inject
         this.ownerConfiguration = fredConfiguration;
     }
     </copy>
-
 
 You may now *proceed to the next lab*.
 

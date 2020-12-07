@@ -43,9 +43,9 @@ Firsts define a class in a file called `src/main/java/example/micronaut/LoggingI
                 log.trace("Method {} resulted in : {}", context.getExecutableMethod(), result);
                 return result;
             } catch(RuntimeException e) {
-                log.trace("Method {} caused error : {}", 
-                			context.getExecutableMethod(), 
-            				e.getMessage());
+                log.trace("Method {} caused error : {}",
+                        context.getExecutableMethod(),
+                        e.getMessage());
                 throw e;
             }
         }
@@ -84,7 +84,7 @@ Now apply the `@Logged` annotation to the `getInitialOwners()` method you define
     @Logged
     List<Owner> getInitialOwners() {
         return ownerConfiguration.stream()
-                 .map(OwnerConfiguration::create)
+                .map(OwnerConfiguration::create)
                 .collect(Collectors.toList());
     }
     </copy>
@@ -93,7 +93,7 @@ Next modify your logging configuration by modifying the `src/main/resources/logb
 
     <copy>
     <configuration>
-    	<!-- remaining contents omitted for brevity -->
+        <!-- remaining contents omitted for brevity -->
 
         <logger name="example.micronaut" level="trace" />
     </configuration>
@@ -106,7 +106,7 @@ TRACE example.micronaut.OwnerService - Executing : List getInitialOwners()
 TRACE example.micronaut.OwnerService - Method List getInitialOwners() resulted in : [example.micronaut.Owner@12294df9, example.micronaut.Owner@60f0698f]
 ```
 
-You have successfully written your first AOP Around advice! 
+You have successfully written your first AOP Around advice!
 
 You may now *proceed to the next lab*.
 

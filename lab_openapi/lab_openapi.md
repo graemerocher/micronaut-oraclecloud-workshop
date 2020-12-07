@@ -24,56 +24,54 @@ Micronaut features the ability to [generate your API documentation](https://micr
 
 To get started modify your Gradle build by adding the following dependencies to your `build.gradle` file within the `dependencies` block:
 
-	<copy>
-	annotationProcessor("io.micronaut.openapi:micronaut-openapi")
-	implementation("io.swagger.core.v3:swagger-annotations")
-	</copy>
+    <copy>
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi")
+    implementation("io.swagger.core.v3:swagger-annotations")
+    </copy>
 
 Or if you are using Maven first add the `swagger-annotations` dependency under `<dependencies>`:
 
-	<copy>
-	<dependency>
-		<groupId>io.swagger.core.v3</groupId>
-		<artifactId>swagger-annotations</artifactId>
-		<scope>compile</scope>
-	</dependency>
-	</copy>	
+    <copy>
+    <dependency>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <scope>compile</scope>
+    </dependency>
+    </copy>
 
 Then add `micronaut-openapi` under `<annotationProcessorPaths>`:
 
-	<copy>
+    <copy>
     <path>
       <groupId>io.micronaut.openapi</groupId>
       <artifactId>micronaut-openapi</artifactId>
       <version>${micronaut.openapi.version}</version>
     </path>
-	</copy>	
+    </copy>
 
 Before proceeding you should refresh your project dependencies:
 
-![Project Dialog](../images/dependency-refresh.png)	
+![Project Dialog](../images/dependency-refresh.png)
 
 Now open up your `Application` class and add the following annotations to the class:
 
-	<copy>
-	import io.swagger.v3.oas.annotations.*;
-	import io.swagger.v3.oas.annotations.info.*;
+    <copy>
+    import io.swagger.v3.oas.annotations.*;
+    import io.swagger.v3.oas.annotations.info.*;
 
-	@OpenAPIDefinition(
-	    info = @Info(
-	        title = "pets-api",
-	        version = "0.1"
-	    )
-	)
-	</copy>
+    @OpenAPIDefinition(
+        info = @Info(
+            title = "pets-api",
+            version = "0.1"
+        )
+    )
+    </copy>
 
 With that in place open up Terminal and run `./gradlew compileJava` and you will note output like:
 
-
-	Task :compileJava
-	Note: Generating OpenAPI Documentation
-	Note: Writing OpenAPI YAML to destination: .../build/classes/java/main/META-INF/swagger/pets-api-0.1.yml
-
+    Task :compileJava
+    Note: Generating OpenAPI Documentation
+    Note: Writing OpenAPI YAML to destination: .../build/classes/java/main/META-INF/swagger/pets-api-0.1.yml
 
 Congratulations you are producing an initial version of the API!
 
@@ -81,78 +79,78 @@ Congratulations you are producing an initial version of the API!
 
 Micronaut produces a static OpenAPI YAML file to the `META-INF/swagger` directory. To expose the OpenAPI documentation via the HTTP server you can configure this path as a static resource in `application.yml`:
 
-	<copy>
-	micronaut:
-		router:
-	        static-resources:
-	            swagger:
-	                paths: classpath:META-INF/swagger
-	                mapping: /swagger/**
-	</copy>
+    <copy>
+    micronaut:
+      router:
+        static-resources:
+          swagger:
+            paths: classpath:META-INF/swagger
+            mapping: /swagger/**
+    </copy>
 
 To server Swagger UI documentation create file called `openapi.properties` in the root of your project with the follow definition within it:
 
-	<copy>
-	swagger-ui.enabled=true
-	</copy>	
+    <copy>
+    swagger-ui.enabled=true
+    </copy>
 
 Now open Terminal and run your application with `./gradlew run` or `./mvn mn:run` for Maven and navigate to `http://[YOUR IP]:8080/swagger/views/swagger-ui/index.html`.
 
 You will see the generated API documentation:
 
-![Swagger UI](images/swagger-ui.png)	
+![Swagger UI](images/swagger-ui.png)
 
 ## Improving API Documentation
 
 Looking at the produced documentation, you will notice that an explanation of how the API works is a little thin on the ground. For example the endpoint for `/{owner}/pets/{pet}` lacks any descriptive documentation:
 
-![Missing Endpoint Docs](images/owner-api-before.png)	
+![Missing Endpoint Docs](images/owner-api-before.png)
 
 Also the generated `Owner` schema lacks documentation:
 
-![Missing Schema Docs](images/owner-schema-before.png)	
+![Missing Schema Docs](images/owner-schema-before.png)
 
 To resolve these issues first add some javadoc to the `Owner` entity description the class and the properties:
 
-	<copy>
-	/**
-	 * Represents an Owner of the pets application.
-	 */
-	@Entity
-	public class Owner {
-		// remaining code omitted for brevity
+    <copy>
+    /**
+     * Represents an Owner of the pets application.
+     */
+    @Entity
+    public class Owner {
+        // remaining code omitted for brevity
 
-	    /**
-	     * The name of the owner
-	     */
-	    public String getName() {
-	        return name;
-	    }
+        /**
+         * The name of the owner
+         */
+        public String getName() {
+            return name;
+        }
 
-	    /**
-	     * The age of the owner
-	     */
-	    public int getAge() {
-	        return age;
-	    }
-	}
-	</copy>
+        /**
+         * The age of the owner
+         */
+        public int getAge() {
+            return age;
+        }
+    }
+    </copy>
 
 Next add javadoc API documentation to the endpoint:
 
-	<copy>
-	/**
-	 * Gets a Pet for the given Owner name and Pet name
-	 * @param owner The name of the Owner
-	 * @param pet The name of Pet
-	 * @return A pet if it exists
-	 */
-	@Get("/{owner}/pets/{pet}")
-	@ApiResponse(responseCode = "404", description = "If a pet is not found")
-	Pet getPet(String owner, String pet) {
-	    return ownerOperations.getPet(owner, pet);
-	}
-	</copy>
+    <copy>
+    /**
+     * Gets a Pet for the given Owner name and Pet name
+     * @param owner The name of the Owner
+     * @param pet The name of Pet
+     * @return A pet if it exists
+     */
+    @Get("/{owner}/pets/{pet}")
+    @ApiResponse(responseCode = "404", description = "If a pet is not found")
+    Pet getPet(String owner, String pet) {
+        return ownerOperations.getPet(owner, pet);
+    }
+    </copy>
 
 In this case in addition to the javadoc, the `io.swagger.v3.oas.annotations.responses.ApiResponse` annotation is used to document what happens in the case a `Pet` is not found. When `null` is returned from a controller method in Micronaut a 404 responses is automatically produced.
 
@@ -160,14 +158,13 @@ Now from terminal run the application again and access the OpenAPI documentation
 
 Note the improvements to the API documentation:
 
-![Improved Endpoint Docs](images/owner-api-after.png)	
+![Improved Endpoint Docs](images/owner-api-after.png)
 
 And the schema documentation:
 
-![Improved Schema Docs](images/owner-schema-after.png)	
+![Improved Schema Docs](images/owner-schema-after.png)
 
 Micronaut uses the documentation already present in your source code to enhance your API!
-
 
 You may now *proceed to the next lab*.
 

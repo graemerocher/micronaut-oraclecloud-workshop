@@ -24,17 +24,17 @@ In the examples so far we have used in-memory data structures to store data. Let
 
 First add the following dependencies if you are using Gradle to the `build.gradle` file in the root of your project inside the `dependencies` block:
 
-	<copy>
-	runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari:3.3.4")
+    <copy>
+    runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari:3.3.4")
     runtimeOnly("com.oracle.database.jdbc:ojdbc8")
     runtimeOnly("com.oracle.database.security:oraclepki:19.8.0.0")
     runtimeOnly("com.oracle.database.security:osdt_cert:19.8.0.0")
     runtimeOnly("com.oracle.database.security:osdt_core:19.8.0.0")
-	</copy>
+    </copy>
 
 Alternatively if you are using Maven add the following dependencies to your `pom.xml` inside the `<dependencies>` element:
 
-	<copy>
+    <copy>
     <dependency>
       <groupId>io.micronaut.sql</groupId>
       <artifactId>micronaut-jdbc-hikari</artifactId>
@@ -46,31 +46,31 @@ Alternatively if you are using Maven add the following dependencies to your `pom
       <artifactId>micronaut-jdbc</artifactId>
       <scope>compile</scope>
       <version>3.3.4</version>
-    </dependency>   	
-	<dependency>
-		<groupId>com.oracle.database.jdbc</groupId>
-		<artifactId>ojdbc8</artifactId>
-		<scope>runtime</scope>
-	</dependency>
-	<dependency>
-		<groupId>com.oracle.database.security</groupId>
-		<artifactId>oraclepki</artifactId>
-		<version>19.8.0.0</version>
-		<scope>runtime</scope>
-	</dependency>		
-	<dependency>
-		<groupId>com.oracle.database.security</groupId>
-		<artifactId>osdt_cert</artifactId>
-		<version>19.8.0.0</version>
-		<scope>runtime</scope>
-	</dependency>			
-	<dependency>
-		<groupId>com.oracle.database.security</groupId>
-		<artifactId>osdt_core</artifactId>
-		<version>19.8.0.0</version>
-		<scope>runtime</scope>
-	</dependency>			
-	</copy>
+    </dependency>
+    <dependency>
+        <groupId>com.oracle.database.jdbc</groupId>
+        <artifactId>ojdbc8</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.oracle.database.security</groupId>
+        <artifactId>oraclepki</artifactId>
+        <version>19.8.0.0</version>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.oracle.database.security</groupId>
+        <artifactId>osdt_cert</artifactId>
+        <version>19.8.0.0</version>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.oracle.database.security</groupId>
+        <artifactId>osdt_core</artifactId>
+        <version>19.8.0.0</version>
+        <scope>runtime</scope>
+    </dependency>
+    </copy>
 
 The above configuration adds the Oracle JDBC driver and support for JDBC in Micronaut via the Hikari Connection Pool.
 
@@ -78,29 +78,29 @@ In order to connect to Autonomous Database you typically need to download a [Wal
 
 In this virtual lab the wallet file is already downloaded and extracted to the `/tmp/wallet` directory and the necessary `TNS_ADMIN` environment variable set, so all that is required is to correctly configure the JDBC connection which you can do by modifying the `src/main/resources/application.yml` configuration file with the following settings:
 
-	<copy>
-	micronaut:
-	  application:
-	    name: demo
+    <copy>
+    micronaut:
+      application:
+        name: demo
       executors:
-      	io:
-      	   type: fixed
-      	   n-threads: 75
-	  server:
-	    thread-selection: IO	
-	datasources:
-	  default:
-	    url: "jdbc:oracle:thin:@${DB_NAME}"
-	    driverClassName: oracle.jdbc.OracleDriver
-	    databaseName: "${DB_SCHEMA}"
-	    username: "${DB_USER}"
-	    password: "${DB_PASSWORD}"
-	    dialect: ORACLE
-	    data-source-properties:
-	      oracle:
-	        jdbc:
-	          fanEnabled: false
-	</copy>	
+        io:
+          type: fixed
+          n-threads: 75
+      server:
+        thread-selection: IO
+    datasources:
+      default:
+        url: "jdbc:oracle:thin:@${DB_NAME}"
+        driverClassName: oracle.jdbc.OracleDriver
+        databaseName: "${DB_SCHEMA}"
+        username: "${DB_USER}"
+        password: "${DB_PASSWORD}"
+        dialect: ORACLE
+        data-source-properties:
+          oracle:
+            jdbc:
+              fanEnabled: false
+    </copy>
 
 > In addition to the database configuration described below, this configuration also sets `micronaut.server.thread-selection` to `IO` which tells Micronaut to run all server operations on the I/O thread pool since the application is going to be doing primarily blocking operations via JDBC and the underlying server (Netty) is based on an event-loop model. The I/O executor is also configured to occupy 75 threads. This may be adjusted according to your production server.
 
@@ -119,40 +119,39 @@ The above configuration configures the "default" datasource to connect to Autono
 
 Once you have configured the `DataSource` the next thing to do is to add a dependency on `micronaut-flyway` to your `build.gradle` configuration inside the `dependencies` block:
 
-	<copy>
+    <copy>
     runtimeOnly("io.micronaut.flyway:micronaut-flyway")
-	</copy>
-
+    </copy>
 
 Or alternatively if Maven is being used to your `pom.xml` under `<dependencies>`:
 
-	<copy>
-	<dependency>
-		<groupId>io.micronaut.flyway</groupId>
-		<artifactId>micronaut-flyway</artifactId>
-		<scope>runtime</scope>
-	</dependency>
-	</copy>
+    <copy>
+    <dependency>
+        <groupId>io.micronaut.flyway</groupId>
+        <artifactId>micronaut-flyway</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    </copy>
 
 This enables support for the Open Source [Flyway database migration toolkit](https://flywaydb.org) which allows you to define SQL scripts that manage and version your database schema so that you can gradually evolve the schema along with new versions of your application.
 
 To enable Flyway to run on startup add the following configuration to your `application.yml`:
 
-	<copy>
-	flyway:
-	  datasources: 
-	    default: 
-	      enabled: true 
-	</copy>
+    <copy>
+    flyway:
+      datasources:
+        default:
+          enabled: true
+    </copy>
 
 In addition create a new file called `src/main/resources/application-test.yml` which will contain your test configuration and set Flyway to clean the schema when then application starts to ensure tests run with fresh data:
 
-	<copy>
-	flyway:
-	  datasources:
-	    default:
-	      clean-schema: true
-	</copy>
+    <copy>
+    flyway:
+      datasources:
+        default:
+          clean-schema: true
+    </copy>
 
 > Note that in a real world scenario you would setup a separate database to run your tests against
 
@@ -160,10 +159,10 @@ In addition create a new file called `src/main/resources/application-test.yml` w
 
 The next step is to define a SQL migration script that will create the application's initial schema. To do that create a new SQL script in a file called `src/main/resources/db/migration/V1__create-schema.sql` and add the following SQL:
 
-	<copy>
-	CREATE TABLE owner (id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(255) NOT NULL, age NUMBER(2) NOT NULL);
-	CREATE TABLE pet (id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(255) NOT NULL, age NUMBER(2) NOT NULL, owner_id NUMBER NOT NULL);
-	</copy>
+    <copy>
+    CREATE TABLE owner (id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(255) NOT NULL, age NUMBER(2) NOT NULL);
+    CREATE TABLE pet (id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(255) NOT NULL, age NUMBER(2) NOT NULL, owner_id NUMBER NOT NULL);
+    </copy>
 
 The SQL above will create 2 tables called `owner` and `pet` which will store the data for owners and their pets in Autonomous Database.
 

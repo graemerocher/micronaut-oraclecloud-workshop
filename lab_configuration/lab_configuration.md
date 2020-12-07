@@ -23,13 +23,13 @@ By default Micronaut will search any configuration files you have located in `sr
 
 Let's try and modify the application configuration. Alter the `src/main/resources/application.yml` file and add configuration to alter the [server port](https://docs.micronaut.io/latest/guide/configurationreference.html#io.micronaut.http.server.HttpServerConfiguration) to 8081 by default:
 
-	<copy>
-	micronaut:
-	  application:
-	    name: demo
-	  server:
-	    port: 8081
-	</copy>
+    <copy>
+    micronaut:
+      application:
+        name: demo
+      server:
+        port: 8081
+    </copy>
 
 > TIP: A full [configuration reference](https://docs.micronaut.io/latest/guide/configurationreference.html) is available on the Micronaut documentation website
 
@@ -42,16 +42,15 @@ Now run your application again and you will notice it starts on port 8081:
 
 Take special note that Micronaut has detected the `oraclecloud` environment since this application is running in Oracle Cloud.
 
-
 ## Environment Specific Configuration
 
 You can configure Micronaut differently based on the currently detected environment.
 
 To demonstrate this create a new configuration file in `.properties` file format called `src/main/resources/application-oraclecloud.properties` and place the following configuration within the file:
 
-	<copy>
-	micronaut.server.port=8085
-	</copy>
+    <copy>
+    micronaut.server.port=8085
+    </copy>
 
 Now run the application again and note the output:
 
@@ -71,7 +70,7 @@ Micronaut has a specific property resolution order which is [described in the us
 3. OS environment variables
 4. Configuration files loaded in order from the system property 'micronaut.config.files' or the environment variable `MICRONAUT_CONFIG_FILES`
 5. Environment-specific properties from application-{environment}.{extension}
-6. Application-specific properties from application.{extension} 
+6. Application-specific properties from application.{extension}
 
 To demonstrate this open Terminal and run the following commands:
 
@@ -103,11 +102,11 @@ Then remove the Oracle Cloud specific configuration by simply deleting `applicat
 
 Finally, restore your `application.yml` to a clean slate by replacing its contents with:
 
-	<copy>
-	micronaut:
-		application:
-			name: demo
-	</copy>
+    <copy>
+    micronaut:
+      application:
+        name: demo
+    </copy>
 
 You may now *proceed to the next lab*.
 

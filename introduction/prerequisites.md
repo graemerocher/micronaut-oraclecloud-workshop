@@ -25,6 +25,4 @@ The IDE is based on JetBrains Projector with IntelliJ Community Edition and you 
 
 5. Navigate to `/home/opc/demo` and open the directory
 
-    ![Project Dialog](images/open-dialog.png)    
-
-    
+    ![Project Dialog](images/open-dialog.png)

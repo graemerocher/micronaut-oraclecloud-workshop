@@ -41,7 +41,6 @@ To get started with an example create a file called `src/main/java/example/micro
 
 As you can see the `OwnerController` defines a constructor that injects the `OwnerService` and on the class the `@Controller` annotation is used to define the root URI to this controller.
 
-
 ## Specify Routes
 
 To expose an individual route over HTTP you need to define methods that are annotated with an applicable annotation for each HTTP method you wish to expose. Try add the following definition:
@@ -54,7 +53,6 @@ To expose an individual route over HTTP you need to define methods that are anno
     </copy>
 
 This uses the `io.micronaut.http.annotation.Get` annotation to indicate that HTTP `GET` requests to the root URI under `/owners` should match this method and invoke it. The return type represents the response that will be sent over HTTP which by default is assumed to be JSON.
-
 
 ## Return JSON Responses
 
@@ -72,8 +70,6 @@ To create a Bean Introspection you can annotate any classes required with [@Intr
         // remaining code
     }
     </copy>
-
-
 
 Now let's expose some `Owner` objects over HTTP. To see that in action configure some initial owners by modifying your `src/main/resources/application.yml` file so that 2 `OwnerConfiguration` beans are created:
 

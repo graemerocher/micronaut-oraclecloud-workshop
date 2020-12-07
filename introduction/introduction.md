@@ -2,26 +2,23 @@
 
 ## About this Workshop
 
-This workshop is for Java Developers looking to start building applications with [Micronaut](https://micronaut.io) and [Oracle Cloud](https://www.oracle.com/cloud/) with [Autonomous Database](https://www.oracle.com/autonomous-database/). 
+This workshop is for Java Developers looking to start building applications with [Micronaut](https://micronaut.io) and [Oracle Cloud](https://www.oracle.com/cloud/) with [Autonomous Database](https://www.oracle.com/autonomous-database/).
 
-The workshop features several labs that walk you through the
-steps to get going with Micronaut and Oracle Cloud.
+The workshop features several labs that walk you through the steps to get going with Micronaut and Oracle Cloud.
 
 Estimated Workshop Time: 180 minutes
 
-### About Micronaut 
+### About Micronaut
 
 Micronaut is an innovative new server side Java technology that precomputes your framework infrastructure at compilation time. Micronaut can be combined with GraalVM Native Image to build native applications that use less memory and are smaller and faster because of ahead of time compilation technology.
 
 Micronaut also includes a persistence framework called Micronaut Data that precomputes your SQL queries at compilation name making it a great fit for working with Autonomous Database.
 
-
 ### Objectives
-This 4-hour lab walks you through the steps to use Micronaut, Micronaut Data
-and Oracle Cloud to connected to an Oracle Database.
+This 4-hour lab walks you through the steps to use Micronaut, Micronaut Data and Oracle Cloud to connected to an Oracle Database.
 
 - Lab 1: Getting to know Micronaut
-- Lab 2: Configuring Micronaut 
+- Lab 2: Configuring Micronaut
 - Lab 3: Understanding Dependency Injection
 - Lab 4: Understanding Aspect Oriented Programming (AOP)
 - Lab 5: Writing Web Controllers
@@ -36,7 +33,6 @@ and Oracle Cloud to connected to an Oracle Database.
 - Lab 14: Building a Native Image
 - Lab 15: Going to Production
 
-
 ### Prerequisites
 - Understanding of the Java programming language
 - A Modern Web Browser (Chrome, Firefox etc.)
@@ -45,7 +41,6 @@ and Oracle Cloud to connected to an Oracle Database.
 ## More Information
 - [Micronaut](https://micronaut.io/)
 - [GraalVM](https://www.graalvm.org/)
-
 
 ## Acknowledgements
 - **Owners** - Graeme Rocher, Architect, Oracle Labs - Databases and Optimization

@@ -19,62 +19,61 @@ In the previous lab the tests you wrote invoked the `OwnerController` implementa
 
 Micronaut features a built-in declarative HTTP client that can be used to simplify the creation of HTTP clients. To try it out use this modified version of `OwnerControllerTest`.
 
-	<copy>
-	package example.micronaut;
+    <copy>
+    package example.micronaut;
 
-	import io.micronaut.http.HttpStatus;
-	import io.micronaut.http.annotation.Body;
-	import io.micronaut.http.annotation.Get;
-	import io.micronaut.http.annotation.Post;
-	import io.micronaut.http.client.annotation.Client;
-	import io.micronaut.http.client.exceptions.HttpClientResponseException;
-	import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-	import org.junit.jupiter.api.Test;
+    import io.micronaut.http.HttpStatus;
+    import io.micronaut.http.annotation.Body;
+    import io.micronaut.http.annotation.Get;
+    import io.micronaut.http.annotation.Post;
+    import io.micronaut.http.client.annotation.Client;
+    import io.micronaut.http.client.exceptions.HttpClientResponseException;
+    import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+    import org.junit.jupiter.api.Test;
 
-	import javax.inject.Inject;
-	import java.util.Collection;
+    import javax.inject.Inject;
+    import java.util.Collection;
 
-	import static org.junit.jupiter.api.Assertions.*;
+    import static org.junit.jupiter.api.Assertions.*;
 
-	@MicronautTest
-	public class OwnerControllerTest  {
-	    @Inject OwnerClient ownerClient;
+    @MicronautTest
+    public class OwnerControllerTest  {
+        @Inject OwnerClient ownerClient;
 
-	    @Test
-	    void testAddOwnerInvalid() {
-	        HttpClientResponseException e = assertThrows(HttpClientResponseException.class, () ->
-	                ownerClient.add(new Owner("Bob", 10))
-	        );
-	        assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
-	        assertEquals("owner.age: must be greater than or equal to 18", e.getMessage());
+        @Test
+        void testAddOwnerInvalid() {
+            HttpClientResponseException e = assertThrows(HttpClientResponseException.class, () ->
+                    ownerClient.add(new Owner("Bob", 10))
+            );
+            assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
+            assertEquals("owner.age: must be greater than or equal to 18", e.getMessage());
 
-	    }
+        }
 
-	    @Test
-	    void testAddOwnerValid() {
-	        Owner bob = ownerClient.add(new Owner("Bob", 35));
-	        assertNotNull(bob);
-	        assertEquals("Bob", bob.getName());
-	        assertEquals(35, bob.getAge());
+        @Test
+        void testAddOwnerValid() {
+            Owner bob = ownerClient.add(new Owner("Bob", 35));
+            assertNotNull(bob);
+            assertEquals("Bob", bob.getName());
+            assertEquals(35, bob.getAge());
 
-	        assertEquals(3, ownerClient.getOwners().size());
-	    }
+            assertEquals(3, ownerClient.getOwners().size());
+        }
 
-	    @Client("/owners")
-	    interface OwnerClient {
-	        @Get("/")
-	        Collection<Owner> getOwners();
+        @Client("/owners")
+        interface OwnerClient {
+            @Get("/")
+            Collection<Owner> getOwners();
 
-	        @Post("/")
-	        Owner add(@Body Owner owner);
-	    }
-	}
-	</copy>
+            @Post("/")
+            Owner add(@Body Owner owner);
+        }
+    }
+    </copy>
 
 The key part of this code is the `OwnerClient` interface which is defined as an inner class and then injected as a bean. By specifying a URI of `/owners` to the declarative client it is assumed you will be making requests to the current server.
 
 > If you wish to debug the HTTP requests and responses try adding a logger definition like `<logger name="io.micronaut.http.client" level="trace" />`
-
 
 Micronaut will at compilation time produces an implementation of the `OwnerClient` interface which is injectable into your code (If you are interested to know how this works see, the [Introduction Advice](https://docs.micronaut.io/latest/guide/index.html#introductionAdvice) section of the Micronaut documentation).
 
@@ -84,58 +83,58 @@ It should be noted that in the example in the previous section the `OwnerClient`
 
 Try the following example:
 
-	<copy>
-	package example.micronaut;
+    <copy>
+    package example.micronaut;
 
-	import io.micronaut.http.HttpStatus;
-	import io.micronaut.http.annotation.Body;
-	import io.micronaut.http.annotation.Get;
-	import io.micronaut.http.annotation.Post;
-	import io.micronaut.http.client.annotation.Client;
-	import io.micronaut.http.client.exceptions.HttpClientResponseException;
-	import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-	import io.reactivex.Flowable;
-	import io.reactivex.Single;
-	import org.junit.jupiter.api.Test;
+    import io.micronaut.http.HttpStatus;
+    import io.micronaut.http.annotation.Body;
+    import io.micronaut.http.annotation.Get;
+    import io.micronaut.http.annotation.Post;
+    import io.micronaut.http.client.annotation.Client;
+    import io.micronaut.http.client.exceptions.HttpClientResponseException;
+    import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+    import io.reactivex.Flowable;
+    import io.reactivex.Single;
+    import org.junit.jupiter.api.Test;
 
-	import javax.inject.Inject;
+    import javax.inject.Inject;
 
-	import static org.junit.jupiter.api.Assertions.*;
+    import static org.junit.jupiter.api.Assertions.*;
 
-	@MicronautTest
-	public class OwnerControllerTest  {
-	    @Inject OwnerClient ownerClient;
+    @MicronautTest
+    public class OwnerControllerTest  {
+        @Inject OwnerClient ownerClient;
 
-	    @Test
-	    void testAddOwnerInvalid() {
-	        HttpClientResponseException e = assertThrows(HttpClientResponseException.class, () ->
-	                ownerClient.add(new Owner("Bob", 10)).blockingGet()
-	        );
-	        assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
-	        assertEquals("owner.age: must be greater than or equal to 18", e.getMessage());
+        @Test
+        void testAddOwnerInvalid() {
+            HttpClientResponseException e = assertThrows(HttpClientResponseException.class, () ->
+                    ownerClient.add(new Owner("Bob", 10)).blockingGet()
+            );
+            assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
+            assertEquals("owner.age: must be greater than or equal to 18", e.getMessage());
 
-	    }
+        }
 
-	    @Test
-	    void testAddOwnerValid() {
-	        Owner bob = ownerClient.add(new Owner("Bob", 35)).blockingGet();
-	        assertNotNull(bob);
-	        assertEquals("Bob", bob.getName());
-	        assertEquals(35, bob.getAge());
+        @Test
+        void testAddOwnerValid() {
+            Owner bob = ownerClient.add(new Owner("Bob", 35)).blockingGet();
+            assertNotNull(bob);
+            assertEquals("Bob", bob.getName());
+            assertEquals(35, bob.getAge());
 
-	        assertEquals(3, ownerClient.getOwners().toList().blockingGet().size());
-	    }
+            assertEquals(3, ownerClient.getOwners().toList().blockingGet().size());
+        }
 
-	    @Client("/owners")
-	    interface OwnerClient {
-	        @Get("/")
-	        Flowable<Owner> getOwners();
+        @Client("/owners")
+        interface OwnerClient {
+            @Get("/")
+            Flowable<Owner> getOwners();
 
-	        @Post("/")
-	        Single<Owner> add(@Body Owner owner);
-	    }
-	}
-	</copy>
+            @Post("/")
+            Single<Owner> add(@Body Owner owner);
+        }
+    }
+    </copy>
 
 Note that the test itself is still blocking to obtain the results, however in production code you can use [Reactive response processing](https://docs.micronaut.io/latest/guide/index.html#reactiveServer) to for example invoke another HTTP service and return a response without blocking at all.
 
@@ -147,7 +146,7 @@ Micronaut features the notion of Service IDs that can be used to abstract the de
 
 To demonstrate Service IDs in action modify the `OwnerClient` defined in the previous section as follows:
 
-	<copy>
+    <copy>
     @Client(id = "owners", path = "/owners")
     interface OwnerClient {
         @Get("/")
@@ -156,28 +155,28 @@ To demonstrate Service IDs in action modify the `OwnerClient` defined in the pre
         @Post("/")
         Single<Owner> add(@Body Owner owner);
     }
-	</copy>
+    </copy>
 
 Notice an `id` of `owners` is used and the `path` attribute is used to include the root context to prefix all requests with.
 
 Now modify `src/main/resources/application.yml` as follows:
 
-	<copy>
-	micronaut:
-	  application:
-	    name: demo
-	  http:
-	    services:
-	      owners:
-	        urls: http://localhost:8080
-	owners:
-	  fred:
-	    name: Fred
-	    age: 35
-	  barney:
-	    name: Barney
-	    age: 30
-	</copy>
+    <copy>
+    micronaut:
+      application:
+        name: demo
+      http:
+        services:
+          owners:
+            urls: http://localhost:8080
+    owners:
+      fred:
+        name: Fred
+        age: 35
+      barney:
+        name: Barney
+        age: 30
+    </copy>
 
 The above configures Micronaut to look for services with an ID of `owners` at the given address or addresses (if there are many Micronaut will client-side load balance between them) using the `micronaut.http.services.owners.url` property where `owners` is the Service ID.
 
@@ -186,7 +185,7 @@ Now ensure your application is _not_ running and run `OwnerControllerTest`, whic
 ```
 13:57:03.693 [Test worker] ERROR i.m.r.intercept.RecoveryInterceptor - Type [example.micronaut.OwnerControllerTest$OwnerClient$Intercepted] executed with error: Connect Error: Connection refused: localhost/127.0.0.1:8080
 io.micronaut.http.client.exceptions.HttpClientException: Connect Error: Connection refused: localhost/127.0.0.1:8080
-	at io.micronaut.http.client.netty.DefaultHttpClient.lambda$null$33(DefaultHttpClient.java:1111)
+    at io.micronaut.http.client.netty.DefaultHttpClient.lambda$null$33(DefaultHttpClient.java:1111)
 ```
 
 This is expected because nothing is running localhost on port 8080. Now try start the server by running the `Application` class as explained in Lab 1 and then run the `OwnerControllerTest` again.
@@ -213,22 +212,22 @@ Of course there are many ways in which services can be discovered by ID that dif
 
 Before you go make sure to cleanup the changes by restoring your `application.yml` to the following:
 
-	<copy>
-	micronaut:
-	  application:
-	    name: demo
-	owners:
-	  fred:
-	    name: Fred
-	    age: 35
-	  barney:
-	    name: Barney
-	    age: 30
-	</copy>
+    <copy>
+    micronaut:
+      application:
+        name: demo
+    owners:
+      fred:
+        name: Fred
+        age: 35
+      barney:
+        name: Barney
+        age: 30
+    </copy>
 
 An reverting the changes to `OwnerClient`:
 
-	<copy>
+    <copy>
     @Client("/owners")
     interface OwnerClient {
         @Get("/")
@@ -237,7 +236,7 @@ An reverting the changes to `OwnerClient`:
         @Post("/")
         Owner add(@Body Owner owner);
     }
-	</copy>	
+    </copy>
 
 You may now *proceed to the next lab*.
 
