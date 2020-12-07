@@ -201,8 +201,6 @@ Define another repository interface to manage instances of `Pet` in a file calle
     import io.micronaut.data.annotation.Repository;
     import io.micronaut.data.repository.CrudRepository;
 
-    import java.util.Collection;
-
     @Repository
     public interface PetRepository extends CrudRepository<Pet, Long> {
     }
@@ -224,6 +222,13 @@ To see these in action, let's first modify the `OwnerConfiguration` and add a `p
     public void setPets(List<String> pets) {
         this.pets = pets;
     }
+    </copy>
+
+You'll also need these imports:
+
+    <copy>
+    import java.util.Collections;
+    import java.util.List;
     </copy>
 
 Now modify `application.yml` to include some pets for each initial `Owner`:
@@ -390,6 +395,12 @@ Finally modify `OwnerController` to include new routes to retrieve all an `Owner
     }
     </copy>
 
+You'll also need this import:
+
+    <copy>
+    import edu.umd.cs.findbugs.annotations.Nullable;
+    </copy>
+
 Note that the `getPets` method demonstrates the use of [URI Templates](https://docs.micronaut.io/latest/guide/index.html#routing) within routes in Micronaut. You can specify optional URI variables with the `{..}` syntax and add optional query parameters with `{?health}`.
 
 > The syntax for URI templates is based on the [RFC-6570 URI template specification](https://tools.ietf.org/html/rfc6570)
@@ -415,6 +426,13 @@ And define a test within `OwnerControllerTest` that executes the new route:
                 pets.size()
         );
     }
+    </copy>
+
+You'll also need these imports:
+
+    <copy>
+    import edu.umd.cs.findbugs.annotations.Nullable;
+    import java.util.Collection;
     </copy>
 
 Run your test and see the result!

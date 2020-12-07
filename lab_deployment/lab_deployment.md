@@ -31,7 +31,7 @@ An executable JAR file will be built that is ready to be run in production on a 
 To execute the JAR file run:
 
     <copy>
-    java -jar build/libs/example-0.1-all.jar
+    java -jar build/libs/demo-0.1-all.jar
     </copy>
 
 Once the application is up and running, you can access it via `http://[YOUR IP]:8080/owners`.
@@ -43,7 +43,7 @@ Once the application is up and running, you can access it via `http://[YOUR IP]:
 To build the application as an executable JAR open up Terminal (ALT + F12) and run the following command in Maven:
 
     <copy>
-    ./mvnw package
+    ./mvnw package -DskipTests
     </copy>
 
 An executable JAR file will be built that is ready to be run in production on a VM.
@@ -51,7 +51,7 @@ An executable JAR file will be built that is ready to be run in production on a 
 To execute the JAR file run:
 
     <copy>
-    java -jar target/example-0.1.jar
+    java -jar target/demo-0.1.jar
     </copy>
 
 Once the application is up and running, you can access it via `http://[YOUR IP]:8080/owners`.
@@ -87,7 +87,7 @@ A common way to deploy applications is via Containers and services such as [Orac
 
 ### Gradle
 
-To deploy a container to OCIR via Gradle your `build.gradle` first needs to be configured. The example presented in this workshop has already been configured with the following entries:
+To deploy a container to OCIR via Gradle your `build.gradle` first needs to be configured. Add the following to `build.gradle`:
 
     <copy>
     dockerBuild {
@@ -109,7 +109,7 @@ Images in OCIR are specified in the form `[REGION].ocir.io/[TENANCY]/[REPOSITORY
 * `[NAME]` - The name of the image
 * `[VERSION]` - The version of the image
 
-The example above is publishing to the Phoenix region (`phx`) using the Tenancy `cloudnative-devrel`, a repository name prefixed with `micronaut-labs/` and followed by the name of the current Docker user which is exposed in an environment variable called `DOCKER_USER` for this example.
+The example above will publish to the Phoenix region (`phx`) using the Tenancy `cloudnative-devrel`, a repository name prefixed with `micronaut-labs/` and followed by the name of the current Docker user which is exposed in an environment variable called `DOCKER_USER` for this example.
 
 Now to publish a Docker Container for the JVM version use:
 
@@ -125,7 +125,7 @@ And to publish the GraalVM native version use:
 
 ### Maven
 
-To Deploy a container to OCIR via Maven your `pom.xml` first needs to be configured. The example presented in this workshop has already been configured with the following plugin under the `<plugins>` section:
+To Deploy a container to OCIR via Maven your `pom.xml` first needs to be configured. Add the following plugin under the `<plugins>` section in `pom.xml`:
 
     <copy>
       <plugin>

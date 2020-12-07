@@ -59,18 +59,19 @@ In a real world application you would either secure your application with [Micro
 
 Now run your application, then open up terminal and issue a request to `http://localhost:8080/health`:
 
-TODO: replace with output from Oracle Cloud
-
     curl -i http://localhost:8080/health
+
+The output should look like this:
+
     HTTP/1.1 200 Ok
     Date: Fri, 27 Nov 2020 11:10:14 GMT
     Content-Type: application/json
-    content-length: 416
+    content-length: 508
     connection: keep-alive
 
-    {"name":"demo","status":"UP","details":{"jdbc":{"name":"demo","status":"UP","details":{"jdbc:h2:mem:devDb":{"name":"demo","status":"UP","details":{"database":"H2","version":"1.4.199 (2019-03-13)"}}}},"compositeDiscoveryClient()":{"name":"demo","status":"UP"},"diskSpace":{"name":"demo","status":"UP","details":{"total":1000240963584,"free":35355635712,"threshold":10485760}},"service":{"name":"demo","status":"UP"}}}%
+    {"name":"demo","status":"UP","details":{"jdbc":{"name":"demo","status":"UP","details":{"jdbc:oracle:thin:@projector29405_high":{"name":"demo","status":"UP","details":{"database":"Oracle","version":"Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production\nVersion 19.5.0.0.0"}}}},"compositeDiscoveryClient()":{"name":"demo","status":"UP"},"diskSpace":{"name":"demo","status":"UP","details":{"total":41645027328,"free":21681156096,"threshold":10485760}},"service":{"name":"demo","status":"UP"}}}
 
-As you can see a HTTP 200 response is returned with a status of `UP` indicated. There are various built-in health checks that monitor diskspace and database health.
+As you can see a HTTP 200 response is returned with a status of `UP` indicated. There are various built-in health checks that monitor disk space and database health.
 
 ## Defining Health Checks
 
@@ -79,9 +80,16 @@ You can define additional project-specific [HealthIndicator](https://docs.micron
 To try this out add two new methods to the `PetRepository` interface:
 
     <copy>
-    io.reactivex.Single<Boolean> existsByHealth(Pet.PetHealth health);
+    Single<Boolean> existsByHealth(Pet.PetHealth health);
 
     void updatePet(@Id Long id, Pet.PetHealth health);
+    </copy>
+
+You'll also need these imports:
+
+    <copy>
+    import io.micronaut.data.annotation.Id;
+    import io.reactivex.Single;
     </copy>
 
 The first checks if any `Pet` instances exist that correspond the given `PetHealth` enum. The second allows you to update a `Pet` instance's `PetHealth` by ID, which we will use for testing.

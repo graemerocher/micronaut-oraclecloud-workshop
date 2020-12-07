@@ -95,7 +95,7 @@ Open up the Terminal pane and run the following command:
     ./gradlew nativeImage
     </copy>
 
-After some time the native image executable with be built to `build/native-image/application`.
+After some time the native image executable will be built to `build/native-image/application`.
 
 You can now run the native executable from Terminal:
 
@@ -118,7 +118,7 @@ After some time the native image executable with be built into the `target/nativ
 You can now run the native executable from Terminal:
 
     <copy>
-    ./target/example
+    ./target/demo
     </copy>
 
 You may now *proceed to the next lab*.

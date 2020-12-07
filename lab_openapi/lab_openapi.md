@@ -56,15 +56,19 @@ Before proceeding you should refresh your project dependencies:
 Now edit your `Application` class and add the following annotations to the class:
 
     <copy>
-    import io.swagger.v3.oas.annotations.*;
-    import io.swagger.v3.oas.annotations.info.*;
-
     @OpenAPIDefinition(
         info = @Info(
             title = "pets-api",
             version = "0.1"
         )
     )
+    </copy>
+
+You'll also need these imports:
+
+    <copy>
+    import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+    import io.swagger.v3.oas.annotations.info.Info;
     </copy>
 
 With that in place open Terminal and run `./gradlew compileJava` and you will see output like:
@@ -150,6 +154,12 @@ Next add javadoc API documentation to the endpoint:
     Pet getPet(String owner, String pet) {
         return ownerOperations.getPet(owner, pet);
     }
+    </copy>
+
+You'll also need this import:
+
+    <copy>
+    import io.swagger.v3.oas.annotations.responses.ApiResponse;
     </copy>
 
 In this case in addition to the javadoc, the `io.swagger.v3.oas.annotations.responses.ApiResponse` annotation is used to document what happens in the case a `Pet` is not found. When `null` is returned from a controller method in Micronaut a 404 response is automatically produced.
