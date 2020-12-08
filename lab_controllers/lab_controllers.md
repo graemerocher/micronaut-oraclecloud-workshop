@@ -1,7 +1,7 @@
 # Writing Web Controllers with Micronaut
 
 ## Introduction
-In this you will learn how to write a REST API that produces JSON output.
+In this lab you will learn how to write a REST API that produces JSON output.
 
 Estimated Lab Time: 10 minutes
 
@@ -39,26 +39,31 @@ To get started with an example create a file called `src/main/java/example/micro
     }
     </copy>
 
-As you can see the `OwnerController` defines a constructor that injects the `OwnerService` and on the class the `@Controller` annotation is used to define the root URI to this controller.
-
+As you can see the `OwnerController` defines a constructor that injects the `OwnerService` and the class is annotated with `@Controller` to define the root URI for this controller.
 
 ## Specify Routes
 
-To expose an individual route over HTTP you need to define methods that are annotated with an applicable annotation for each HTTP method you wish to expose. Try add the following definition:
+To expose an individual route over HTTP you need to define methods annotated with an applicable annotation for each HTTP method you wish to expose. Try adding the following definition:
 
     <copy>
     @Get("/")
-    java.util.Collection<Owner> getOwners() {
+    Collection<Owner> getOwners() {
         return ownerService.getInitialOwners();
     }
     </copy>
 
-This uses the `io.micronaut.http.annotation.Get` annotation to indicate that HTTP `GET` requests to the root URI under `/owners` should match this method and invoke it. The return type represents the response that will be sent over HTTP which by default is assumed to be JSON.
+You'll also need these imports:
 
+    <copy>
+    import io.micronaut.http.annotation.Get;
+    import java.util.Collection;
+    </copy>
+
+This uses the `io.micronaut.http.annotation.Get` annotation to indicate that HTTP `GET` requests to the root URI under `/owners` should match this method and invoke it. The return type represents the response that will be sent over HTTP which by default is assumed to be JSON.
 
 ## Return JSON Responses
 
-As mentioned the default response content type is JSON. However to allow many tasks to be peformed without the use of reflection on a Java object such as JSON serialization/deserialization, validation and so on Micronaut needs access what is known as a [Bean Introspection](https://docs.micronaut.io/latest/guide/index.html#introspection) which allows reading and writing to Java objects according to the rules defined in the [JavaBean specification](https://www.oracle.com/java/technologies/javase/javabeans-spec.html).
+As mentioned the default response content type is JSON. However to allow many tasks to be peformed without the use of reflection on a Java object such as JSON serialization/deserialization, validation and so on, Micronaut needs access what is known as a [Bean Introspection](https://docs.micronaut.io/latest/guide/index.html#introspection) which allows reading and writing to Java objects according to the rules defined in the [JavaBean specification](https://www.oracle.com/java/technologies/javase/javabeans-spec.html).
 
 To create a Bean Introspection you can annotate any classes required with [@Introspected](https://docs.micronaut.io/latest/api/io/micronaut/core/annotation/Introspected.html). Modify the `Owner` class you created earlier and add the annotation:
 
@@ -73,9 +78,7 @@ To create a Bean Introspection you can annotate any classes required with [@Intr
     }
     </copy>
 
-
-
-Now let's expose some `Owner` objects over HTTP. To see that in action configure some initial owners by modifying your `src/main/resources/application.yml` file so that 2 `OwnerConfiguration` beans are created:
+Now let's expose some `Owner` objects over HTTP. To see that in action configure some initial owners by modifying your `src/main/resources/application.yml` file so that two `OwnerConfiguration` beans are created:
 
     <copy>
     micronaut:

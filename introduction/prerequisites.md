@@ -12,12 +12,12 @@ This avoids the need for attendees to get setup locally with the necessary tooli
 * Docker
 * JetBrains Projector IDE
 
-Prior to beginning your instructor will provide you with web address to access the in-browser Cloud IDE which will be used for the remainder of the workshop to demonstrate how to build applications with Micronaut and deploy them to Oracle Cloud.
+Prior to beginning, your instructor will provide you with the web address to access the in-browser Cloud IDE which you will use for the remainder of the workshop to learn how to build applications with Micronaut and deploy them to Oracle Cloud.
 
 The IDE is based on JetBrains Projector with IntelliJ Community Edition and you should perform the following steps before you begin:
 
 1. Navigate to the URL provided by your instructor
-2. You will likely receive an HTTPS warning about the certificate, in Chrome you should click "Advanced" and then the "Proceed" link to continue.
+2. You will likely receive an HTTPS warning about the certificate. In Chrome you should click "Advanced" and then the "Proceed" link to continue.
 3. If for any reason the page doesn't load try hit the refresh button.
 4. From the "Project Dialog" select "Open or Import"
 
@@ -25,6 +25,4 @@ The IDE is based on JetBrains Projector with IntelliJ Community Edition and you 
 
 5. Navigate to `/home/opc/demo` and open the directory
 
-    ![Project Dialog](images/open-dialog.png)    
-
-    
+    ![Project Dialog](images/open-dialog.png)
