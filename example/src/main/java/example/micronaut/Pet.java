@@ -1,23 +1,27 @@
 package example.micronaut;
 
-import javax.persistence.*;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import io.micronaut.data.annotation.GeneratedValue;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.annotation.MappedEntity;
+import io.micronaut.data.annotation.Relation;
 
-@Entity
+@MappedEntity
 public class Pet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
-    private String name;
-    @ManyToOne
-    private Owner owner;
+
+    private final String name;
+
+    @Relation(Relation.Kind.MANY_TO_ONE)
+    private final Owner owner;
+
     private PetHealth health = PetHealth.VACCINATED;
 
-    public void setName(String name) {
+    public Pet(String name, @NonNull Owner owner) {
         this.name = name;
-    }
-
-    public void setOwner(Owner owner) {
         this.owner = owner;
     }
 
@@ -41,7 +45,7 @@ public class Pet {
         return health;
     }
 
-    public void setHealth(PetHealth health) {
+    public void setHealth(@NonNull PetHealth health) {
         this.health = health;
     }
 

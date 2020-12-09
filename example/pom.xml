@@ -84,9 +84,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>io.micronaut.data</groupId>
-      <artifactId>micronaut-data-hibernate-jpa</artifactId>
-      <scope>compile</scope>
+        <groupId>io.micronaut.data</groupId>
+        <artifactId>micronaut-data-jdbc</artifactId>
+        <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
