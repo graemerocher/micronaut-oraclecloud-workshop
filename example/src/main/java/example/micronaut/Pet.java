@@ -10,7 +10,7 @@ import io.micronaut.data.annotation.Relation;
 public class Pet {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(GeneratedValue.Type.IDENTITY)
     private Long id;
 
     private final String name;

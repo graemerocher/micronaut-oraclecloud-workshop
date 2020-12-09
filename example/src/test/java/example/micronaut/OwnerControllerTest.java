@@ -26,9 +26,7 @@ public class OwnerControllerTest  {
     void testAddOwnerInvalid() {
         HttpClientResponseException e = assertThrows(HttpClientResponseException.class, () ->
                 {
-                    Owner owner = new Owner();
-                    owner.setName("Bob");
-                    owner.setAge(10);
+                    Owner owner = new Owner("Bob", 10);
                     ownerClient.add(owner).blockingGet();
                 }
         );
@@ -39,9 +37,7 @@ public class OwnerControllerTest  {
 
     @Test
     void testAddOwnerValid() {
-        Owner owner = new Owner();
-        owner.setName("Bob");
-        owner.setAge(35);
+        Owner owner = new Owner("Bob", 35);
         Owner bob = ownerClient.add(owner).blockingGet();
         assertNotNull(bob);
         assertEquals("Bob", bob.getName());

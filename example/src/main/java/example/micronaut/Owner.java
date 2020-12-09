@@ -9,8 +9,9 @@ import javax.validation.constraints.NotBlank;
 @MappedEntity
 public class Owner {
 
-    @GeneratedValue
+
     @Id
+    @GeneratedValue(GeneratedValue.Type.IDENTITY)
     private Long id;
 
     @NotBlank
