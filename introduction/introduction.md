@@ -6,6 +6,14 @@ This workshop is for Java Developers looking to start building applications with
 
 The workshop features several labs that walk you through the steps to get going with Micronaut and Oracle Cloud.
 
+The source code with completed example code is [available on Github](https://github.com/graemerocher/micronaut-oraclecloud-workshop).
+
+Several branches exist in the source code for different permutations of the application:
+
+* The `jdbc` branch includes an example with Micronaut Data JDBC and Autonomous Database
+* The `jdbc-h2` branch includes an example with Micronaut Data JDBC and H2 Database that can be run locally without the Cloud.
+* The `jpa-h2` branch includes an example with Micronaut Data JPA and H2 Database that can be run locally without the Cloud.
+
 Estimated Workshop Time: 240 minutes
 
 ### About Micronaut
