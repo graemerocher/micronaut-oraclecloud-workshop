@@ -29,10 +29,6 @@ datasources:
       oracle:
         jdbc:
           fanEnabled: false
-jpa:
-  default:
-    entity-scan:
-      enabled: true
 owners:
   fred:
     name: Fred

@@ -1,43 +1,33 @@
 package example.micronaut;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import io.micronaut.data.annotation.GeneratedValue;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.annotation.MappedEntity;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
-/**
- * Represents an Owner of the pets application.
- */
-@Entity
+@MappedEntity
 public class Owner {
+
+    @GeneratedValue
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank
-    private String name;
+    private final String name;
+
     @Min(18)
-    private int age;
+    private final int age;
 
-    public void setName(String name) {
+    public Owner(String name, int age) {
         this.name = name;
-    }
-
-    public void setAge(int age) {
         this.age = age;
     }
 
-    /**
-     * The name of the owner
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * The age of the owner
-     */
     public int getAge() {
         return age;
     }
