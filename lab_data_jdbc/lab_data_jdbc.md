@@ -68,8 +68,8 @@ For example try and alter the existing `Owner` class as follows:
     @MappedEntity
     public class Owner {
 
-        @GeneratedValue
         @Id
+        @GeneratedValue(GeneratedValue.Type.IDENTITY)
         private Long id;
 
         @NotBlank
@@ -118,7 +118,7 @@ Now create a new class that represents the `Pet` entity in a file called `src/ma
     public class Pet {
 
         @Id
-        @GeneratedValue
+        @GeneratedValue(GeneratedValue.Type.IDENTITY)
         private Long id;
 
         private final String name;
