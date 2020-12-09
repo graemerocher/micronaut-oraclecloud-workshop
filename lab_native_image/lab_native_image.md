@@ -57,13 +57,13 @@ Or if you are using Maven, add the following configuration under `<plugins>`:
 
     <copy>
     <plugin>
-    <groupId>org.graalvm.nativeimage</groupId>
-    <artifactId>native-image-maven-plugin</artifactId>
-    <configuration>
-      <buildArgs combine.children="append">
-        <buildArg>--enable-all-security-services</buildArg>
-      </buildArgs>
-    </configuration>
+        <groupId>org.graalvm.nativeimage</groupId>
+        <artifactId>native-image-maven-plugin</artifactId>
+        <configuration>
+          <buildArgs combine.children="append">
+            <buildArg>--enable-all-security-services</buildArg>
+          </buildArgs>
+        </configuration>
     </plugin>
     </copy>
 
@@ -118,7 +118,7 @@ After some time the native image executable with be built into the `target/nativ
 You can now run the native executable from Terminal:
 
     <copy>
-    ./target/demo
+    ./target/example
     </copy>
 
 You may now *proceed to the next lab*.

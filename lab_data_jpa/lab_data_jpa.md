@@ -21,7 +21,7 @@ In this lab you will:
 
 ## Configuring Micronaut Data JPA
 
-To configure Micronau Data JPA, add the following dependencies to your `build.gradle` file's `dependencies` block:
+To configure Micronaut Data JPA, add the following dependencies to your `build.gradle` file's `dependencies` block:
 
     <copy>
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
@@ -132,6 +132,8 @@ Now create a new class that represents the `Pet` entity in a file called `src/ma
 
     <copy>
     package example.micronaut;
+
+    import edu.umd.cs.findbugs.annotations.NonNull;
 
     import javax.persistence.Entity;
     import javax.persistence.GeneratedValue;
