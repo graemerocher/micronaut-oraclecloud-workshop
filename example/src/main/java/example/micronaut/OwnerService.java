@@ -30,13 +30,9 @@ public class OwnerService implements OwnerOperations {
             for (OwnerConfiguration ownerConfiguration : ownerConfigurations) {
                 Owner owner = ownerConfiguration.create();
                 ownerRepository.save(owner);
-                List<Pet> pets = ownerConfiguration.getPets().stream().map(n -> {
-                            Pet pet = new Pet();
-                            pet.setName(n);
-                            pet.setOwner(owner);
-                            return pet;
-                        }
-                ).collect(Collectors.toList());
+                List<Pet> pets = ownerConfiguration.getPets().stream()
+                        .map(n -> new Pet(n, owner))
+                        .collect(Collectors.toList());
                 petRepository.saveAll(pets);
             }
         }

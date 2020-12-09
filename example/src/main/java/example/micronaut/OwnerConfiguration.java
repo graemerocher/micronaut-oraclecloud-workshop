@@ -40,9 +40,6 @@ public class OwnerConfiguration {
     }
 
     Owner create() {
-        Owner owner = new Owner();
-        owner.setName(name);
-        owner.setAge(age);
-        return owner;
+        return new Owner(name, age);
     }
 }
