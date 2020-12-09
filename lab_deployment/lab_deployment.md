@@ -38,6 +38,8 @@ Once the application is up and running, you can access it via `http://[YOUR IP]:
 
 > NOTE: Make sure you run the JAR that ends with `-all`!
 
+> NOTE: Remember to use the `http` protocol when accessing the instance on port 8080 and not `https` otherwise you will receive an error.
+
 ### Maven
 
 To build the application as an executable JAR open up Terminal (ALT + F12) and run the following command in Maven:
@@ -55,6 +57,8 @@ To execute the JAR file run:
     </copy>
 
 Once the application is up and running, you can access it via `http://[YOUR IP]:8080/owners`.
+
+> NOTE: Remember to use the `http` protocol when accessing the instance on port 8080 and not `https` otherwise you will receive an error.
 
 ## Deploying the Native Image to a VM
 
@@ -78,6 +82,8 @@ To deploy the native executable built with Maven run:
     </copy>
 
 Once the application is up and running, you can access it via `http://[YOUR IP]:8080/owners`.
+
+> NOTE: Remember to use the `http` protocol when accessing the instance on port 8080 and not `https` otherwise you will receive an error.
 
 ## Deploying a Container to Oracle Container Registry
 

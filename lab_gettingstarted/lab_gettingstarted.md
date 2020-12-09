@@ -46,6 +46,8 @@ The `io.micronaut.runtime.Micronaut` class bootstraps Micronaut and starts the a
 
 You can run the application by right-clicking in the cloud IDE and running the main method. Then you can access the application via `http://[YOUR IP]:8080`. Note that you will get a "Page Not Found" error from Micronaut since we haven't defined any controller endpoints yet.
 
+> NOTE: Remember to use the `http` protocol when accessing the instance on port 8080 and not `https` otherwise you will receive an error.
+
 Try this now:
 
 ![Running the application](images/running.png)

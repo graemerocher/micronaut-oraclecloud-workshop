@@ -100,6 +100,8 @@ To serve Swagger UI documentation, create a file named `openapi.properties` in t
 
 Now open Terminal and run your application with `./gradlew run` or `./mvn mn:run` for Maven and navigate to `http://[YOUR IP]:8080/swagger/views/swagger-ui/index.html`.
 
+> NOTE: Remember to use the `http` protocol when accessing the instance on port 8080 and not `https` otherwise you will receive an error.
+
 You will see the generated API documentation:
 
 ![Swagger UI](images/swagger-ui.png)
@@ -165,6 +167,8 @@ You'll also need this import:
 In this case in addition to the javadoc, the `io.swagger.v3.oas.annotations.responses.ApiResponse` annotation is used to document what happens in the case a `Pet` is not found. When `null` is returned from a controller method in Micronaut a 404 response is automatically produced.
 
 Now from terminal run the application again and access the OpenAPI documentation at `http://[YOUR IP]:8080/swagger/views/swagger-ui/index.html`.
+
+> NOTE: Remember to use the `http` protocol when accessing the instance on port 8080 and not `https` otherwise you will receive an error.
 
 Note the improvements to the API documentation:
 
