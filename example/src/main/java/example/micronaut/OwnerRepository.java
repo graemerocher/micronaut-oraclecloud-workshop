@@ -7,7 +7,7 @@ import io.micronaut.data.repository.CrudRepository;
 
 import java.util.Collection;
 
-@JdbcRepository(dialect = Dialect.ORACLE)
+@JdbcRepository(dialect = Dialect.H2)
 public interface OwnerRepository extends CrudRepository<Owner, Long> {
     @NonNull
     @Override

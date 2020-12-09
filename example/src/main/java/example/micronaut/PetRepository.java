@@ -8,7 +8,7 @@ import io.micronaut.data.model.query.builder.sql.Dialect;
 import io.micronaut.data.repository.CrudRepository;
 import java.util.Collection;
 
-@JdbcRepository(dialect = Dialect.ORACLE)
+@JdbcRepository(dialect = Dialect.H2)
 public interface PetRepository extends CrudRepository<Pet, Long> {
     @Join("owner")
     Collection<Pet> findByOwnerName(String owner);
