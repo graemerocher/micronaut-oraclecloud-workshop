@@ -161,7 +161,7 @@ The next step is to define a SQL migration script that will create the applicati
 
     <copy>
     CREATE TABLE owner (id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(255) NOT NULL, age NUMBER(2) NOT NULL);
-    CREATE TABLE pet (id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(255) NOT NULL, age NUMBER(2) NOT NULL, owner_id NUMBER NOT NULL);
+    CREATE TABLE pet (id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, name VARCHAR(255) NOT NULL, health VARCHAR(18) NOT NULL, owner_id NUMBER NOT NULL);
     </copy>
 
 The SQL above will create `owner` and `pet` tables to store data for owners and their pets in Autonomous Database.
