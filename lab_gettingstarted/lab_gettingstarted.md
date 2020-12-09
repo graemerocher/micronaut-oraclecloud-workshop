@@ -30,7 +30,7 @@ The following logical structure exists for the application:
 You can run a Micronaut application using the `Application` class which features an executable `main` method. A simple `Application` class looks like the following:
 
 ```java
-package com.example;
+package example.micronaut;
 
 import io.micronaut.runtime.Micronaut;
 
