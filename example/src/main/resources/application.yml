@@ -19,16 +19,12 @@ micronaut:
         enabled: true
 datasources:
   default:
-    url: "jdbc:oracle:thin:@${DB_NAME}"
-    driverClassName: oracle.jdbc.OracleDriver
-    databaseName: "${DB_SCHEMA}"
-    username: "${DB_USER}"
-    password: "${DB_PASSWORD}"
-    dialect: ORACLE
-    data-source-properties:
-      oracle:
-        jdbc:
-          fanEnabled: false
+    url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+    schema-generate: CREATE_DROP
+    dialect: H2
 jpa:
   default:
     entity-scan:
