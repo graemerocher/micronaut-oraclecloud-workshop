@@ -23,7 +23,7 @@ In this lab you will:
 
 To simplify reading and writing objects to the database tables you created in the previous lab we're going to use [Micronaut Data JDBC](https://micronaut-projects.github.io/micronaut-data/latest/guide/#sql) which allows pre-computing your SQL queries at compilation time.
 
-To configure Micronau Data JDBC, add the following dependencies to your `build.gradle` file's `dependencies` block:
+To configure Micronaut Data JDBC, add the following dependencies to your `build.gradle` file's `dependencies` block:
 
     <copy>
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
@@ -198,7 +198,6 @@ Define another repository interface to manage instances of `Pet` in a file calle
     <copy>
     package example.micronaut;
 
-
     import io.micronaut.data.jdbc.annotation.JdbcRepository;
     import io.micronaut.data.model.query.builder.sql.Dialect;
     import io.micronaut.data.repository.CrudRepository;
@@ -334,12 +333,13 @@ Now modify the `PetRepository` data access repository interface to include metho
     package example.micronaut;
 
     import io.micronaut.data.annotation.Join;
-    import io.micronaut.data.annotation.Repository;
+    import io.micronaut.data.jdbc.annotation.JdbcRepository;
+    import io.micronaut.data.model.query.builder.sql.Dialect;
     import io.micronaut.data.repository.CrudRepository;
 
     import java.util.Collection;
 
-    @Repository
+    @JdbcRepository(dialect = Dialect.ORACLE)
     public interface PetRepository extends CrudRepository<Pet, Long> {
         @Join("owner")
         Collection<Pet> findByOwnerName(String owner);

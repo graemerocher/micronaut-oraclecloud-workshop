@@ -53,7 +53,7 @@ An executable JAR file will be built that is ready to be run in production on a 
 To execute the JAR file run:
 
     <copy>
-    java -jar target/demo-0.1.jar
+    java -jar target/example-0.1.jar
     </copy>
 
 Once the application is up and running, you can access it via `http://[YOUR IP]:8080/owners`.
