@@ -8,8 +8,9 @@ Estimated Lab Time: 20 minutes
 ### Objectives
 
 In this lab you will:
-* Learn how to define tests with `@MicronautTest`
-* Understand how beans can be mocked
+* Using the Micronaut HTTP Client
+* Non-Blocking Requests
+* Service Discovery
 
 ### Prerequisites
 
