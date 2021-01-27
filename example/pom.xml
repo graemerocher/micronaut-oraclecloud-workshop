@@ -166,6 +166,11 @@
               <version>${micronaut.openapi.version}</version>
             </path>
             <path>
+              <groupId>io.swagger.core.v3</groupId>
+              <artifactId>swagger-annotations</artifactId>
+              <version>${swagger.version}</version>
+            </path>
+            <path>
               <groupId>io.micronaut</groupId>
               <artifactId>micronaut-graal</artifactId>
               <version>${micronaut.version}</version>
