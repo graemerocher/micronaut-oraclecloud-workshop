@@ -1,4 +1,5 @@
-## Feature http-client documentation
+## Workshop Example Application
 
-- [Micronaut Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+This is the completed example application from the Micronaut Oracle Cloud workshop.
 
+The steps to run this application are described in the the https://graemerocher.github.io/micronaut-oraclecloud-workshop/workshop/[Workshop material].
