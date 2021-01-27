@@ -9,8 +9,9 @@ Estimated Lab Time: 20 minutes
 
 In this lab you will:
 * Learn how to build an executable JAR file that can be deployed to any VM
+* Learn how to build native executable that can be deployed to any VM
 * Understand how to build and deploy Docker images to Oracle Container Registry
-* Learn how to deploy a Micronaut application to Kubernetes
+
 
 ### Prerequisites
 
