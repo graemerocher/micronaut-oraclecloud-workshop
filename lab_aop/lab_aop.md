@@ -11,6 +11,10 @@ In this lab you will:
 * How to write a method interceptor
 * How to apply the interceptor to your code
 
+### Benefits
+Micronaut's AOP mechanism is reflection free and there are several good reasons for that.
+[Micronaut (AOP): Awesome Flexibility Without the Complexity](https://micronaut.io/blog/2019-10-07-micronaut-aop-awesome-flexibility-without-complexity.html)
+
 ### Prerequisites
 - Access to your project instance
 
