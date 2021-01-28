@@ -54,6 +54,14 @@ To test this out create a new test in the file `src/main/java/example/micronaut/
 
 The `OwnerControllerTest` injects the `OwnerController` and checks our validation logic is working as anticipated. Note this is running your real production code and is not mocking anything.
 
+If you are using Gradle and receive an error for a `ParameterResolutionException` during test execution, then add the following to your `build.gradle`:
+
+    <copy>
+    test {
+        exclude '**/*Test$Intercepted*'
+    }
+    </copy>
+
 ## Supplying Configuration to a Test
 
 Sometimes you need to test the different ways in which your application can be configured. One way to do this is to create a file called `src/main/test/resources/application-test.yml`.
