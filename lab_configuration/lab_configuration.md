@@ -86,7 +86,7 @@ And note the output:
 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1952ms. Server Running: http://localhost:8090
 ```
 
-As you can see the configuration resolved via the environment variable is resolved and replaces the values that were defined earlier in either `application.yml` or `application-oraclecloud.properties`.
+As you can see the configuration is automatically resolved via the environment variable and replaces the values that were defined earlier in either `application.yml` or `application-oraclecloud.properties`.
 
 Note that with environment variables you use upper-case and underscore separated variable names which Micronaut normalizes into the lower-case equivalent. In this case `MICRONAUT_SERVER_PORT` becomes `micronaut.server.port`.
 
