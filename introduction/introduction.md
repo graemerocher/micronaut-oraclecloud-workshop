@@ -20,7 +20,7 @@ Estimated Workshop Time: 240 minutes
 
 Micronaut is an innovative new server-side Java technology that precomputes your framework infrastructure at compilation time. Micronaut can be combined with GraalVM Native Image to build native applications that use less memory and are smaller and faster because of ahead of time (AOT) compilation technology.
 
-Micronaut also includes a persistence framework called Micronaut Data that precomputes your SQL queries at compilation name making it a great fit for working with Autonomous Database.
+Micronaut also includes a persistence framework called Micronaut Data that precomputes your SQL queries at compilation time, making it a great fit for working with Autonomous Database.
 
 ### Objectives
 This 4-hour lab walks you through the steps to use Micronaut, Micronaut Data and Oracle Cloud to connected to an Oracle Database.
