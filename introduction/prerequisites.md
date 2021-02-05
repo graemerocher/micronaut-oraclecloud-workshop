@@ -6,13 +6,23 @@ This workshop is designed to be delivered virtually and entirely through your we
 
 This avoids the need for attendees to get setup locally with the necessary tooling and development environment. The virtual environment provided is pre-configured with:
 
-* Micronaut 2.2.0
-* GraalVM 20.3.0 for JDK 11
+* Micronaut 2.3.0
+* GraalVM 21.0.0 for JDK 11
 * The Oracle Cloud CLI
 * Docker
-* JetBrains Projector IDE
+* JetBrains Projector IDE 
 
-Prior to beginning, your instructor will provide you with the web address to access the in-browser Cloud IDE which you will use for the remainder of the workshop to learn how to build applications with Micronaut and deploy them to Oracle Cloud.
+## Setup Virtual Environment
+
+Prior to beginning, the lab you need to create the virtual environment to run the lab. To do this you are going to use a Terraform stack with Oracle Cloud Resource Manager. Click the following button to create the stack:
+
+
+[![Deploy to Oracle Cloud][magic_button]][magic_jidea_terraform_stack]
+
+[magic_button]: https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg
+[magic_jidea_terraform_stack]: https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://objectstorage.us-ashburn-1.oraclecloud.com/n/cloudnative-devrel/b/micronaut-hol/o/terraform%2Fjidea-image.zip
+
+## Launch IDE in Web Browser
 
 The IDE is based on JetBrains Projector with IntelliJ Community Edition and you should perform the following steps before you begin:
 
