@@ -6,7 +6,7 @@ This workshop is designed to be delivered virtually and entirely through your we
 
 This avoids the need for attendees to get setup locally with the necessary tooling and development environment. The virtual environment provided is pre-configured with:
 
-* Micronaut 2.3.0
+* Micronaut 2.3.1
 * GraalVM 21.0.0 for JDK 11
 * The Oracle Cloud CLI
 * Docker
@@ -14,13 +14,37 @@ This avoids the need for attendees to get setup locally with the necessary tooli
 
 ## Setup Virtual Environment
 
-Prior to beginning, the lab you need to create the virtual environment to run the lab. To do this you are going to use a Terraform stack with Oracle Cloud Resource Manager. Click the following button to create the stack:
+Prior to beginning, the lab you need to create the virtual environment to run the lab. The virtual environment requires that you have completed the sign-up for Oracle Cloud as described in the [Signup for Oracle Cloud](index.html?lab=signup-for-oracle-cloud) section.
 
+Once you have your Oracle Cloud account ready, click the following button:
 
-[![Deploy to Oracle Cloud][magic_button]][magic_jidea_terraform_stack]
+[![Create Oracle Cloud Stack][magic_button]][magic_jidea_terraform_stack]
 
 [magic_button]: https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg
 [magic_jidea_terraform_stack]: https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://objectstorage.us-ashburn-1.oraclecloud.com/n/cloudnative-devrel/b/micronaut-hol/o/terraform%2Fjidea-image.zip
+
+Clicking the button will take you to Oracle Cloud Resource Manager where you will use a pre-prepared Terraform stack to initialize the infrastructure for the lab.
+
+From the "Create Stack" screen accept the terms and conditions then click "Next" as seen below:
+
+![Create Stack - Step 1](images/create-stack1.png)
+
+On the next page leave all the settings on the defaults and click "Next" again as seen below:
+
+![Create Stack - Step 2](images/create-stack2.png)
+
+On the next page leave all the settings on the defaults and click "Create" again as seen below:
+
+![Create Stack - Step 3](images/create-stack3.png)
+
+Now that you have a Terraform stack, it is time to plan the execution by clicking "Terraform Actions" -> "Plan" from the "Stack Details" page as shown below:
+
+![Plan Stack - Step 4](images/create-stack4.png)
+
+Then click the "Plan" button on the bottom right to trigger a new job that will plan the Terraform execution:
+
+![Plan Stack - Step 5](images/create-stack5.png)
+
 
 ## Launch IDE in Web Browser
 
