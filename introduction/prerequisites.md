@@ -53,10 +53,12 @@ Then click the "Apply" button on the bottom right to trigger a new job that will
 
 Actually applying the Terraform stack can take up to 15 minutes to complete. Once complete the applied stack will output several variables including the IP address of a machine that is running a virtual instance of IntelliJ Community Edition accessible via a modern web browser (preferably Chrome-based).
 
-To find the the URL of your IDE instance navigate to the "Outputs" of the plan and copy the "projector_link" value and paste it into your browser navigation bar (good idea to bookmark the link just in case!).
-
 
 ## Launch IDE in Web Browser
+To find the the URL of your IDE instance navigate to the "Outputs" of the plan you ran in the previous section and copy the "projector_link" value and paste it into your browser navigation bar (good idea to bookmark the link just in case!).
+
+![Plan Outputs - Step 8](images/create-stack8.png)
+
 The IDE is based on JetBrains Projector with IntelliJ Community Edition and you should perform the following steps before you begin:
 
 1. Navigate to the URL provided in the output of the stack in the previous section
