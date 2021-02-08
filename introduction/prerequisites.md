@@ -1,7 +1,6 @@
 # Prerequisites
 
 ## Before We Begin
-
 This workshop is designed to be delivered virtually and entirely through your web browser hence the only prerequisite is a modern browser such as Chrome, Edge or Firefox.
 
 This avoids the need for attendees to get setup locally with the necessary tooling and development environment. The virtual environment provided is pre-configured with:
@@ -13,7 +12,6 @@ This avoids the need for attendees to get setup locally with the necessary tooli
 * JetBrains Projector IDE 
 
 ## Setup Virtual Environment
-
 Prior to beginning, the lab you need to create the virtual environment to run the lab. The virtual environment requires that you have completed the sign-up for Oracle Cloud as described in the [Signup for Oracle Cloud](index.html?lab=signup-for-oracle-cloud) section.
 
 Once you have your Oracle Cloud account ready, click the following button:
@@ -53,20 +51,23 @@ Then click the "Apply" button on the bottom right to trigger a new job that will
 
 ![Apply Stack - Step 7](images/create-stack7.png)
 
-Actually applying the Terraform stack can take up to 15 minutes to complete.
+Actually applying the Terraform stack can take up to 15 minutes to complete. Once complete the applied stack will output several variables including the IP address of a machine that is running a virtual instance of IntelliJ Community Edition accessible via a modern web browser (preferably Chrome-based).
+
+To find the the URL of your IDE instance navigate to the "Outputs" of the plan and copy the "projector_link" value and paste it into your browser navigation bar (good idea to bookmark the link just in case!).
 
 
 ## Launch IDE in Web Browser
-
 The IDE is based on JetBrains Projector with IntelliJ Community Edition and you should perform the following steps before you begin:
 
-1. Navigate to the URL provided by your instructor
+1. Navigate to the URL provided in the output of the stack in the previous section
 2. You will likely receive an HTTPS warning about the certificate. In Chrome you should click "Advanced" and then the "Proceed" link to continue.
-3. If for any reason the page doesn't load try hit the refresh button.
-4. From the "Project Dialog" select "Open or Import"
+3. If for any reason the page doesn't load try hit the refresh button. Note that it can take a minute or two before the IDE server is up and running so keep refreshing until it does.
+4. Accept the Terms and Conditions of use the IDE
+5. Choose either Gradle or Maven when prompted depending on your build tool preference.
 
-    ![Project Dialog](images/project-dialog.png)
+    ![Maven or Gradle Dialog](images/gradle-or-maven.png)
 
-5. Navigate to `/home/opc/demo` and open the directory
+The example project you will use during the course of this lab will automatically open up and you should see the following project:
 
-    ![Project Dialog](images/open-dialog.png)
+![Micronaut Project](images/micronaut-project.png)
+

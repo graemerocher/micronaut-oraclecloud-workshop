@@ -40,11 +40,12 @@ This 4-hour lab walks you through the steps to use Micronaut, Micronaut Data and
 - Lab 13: Adding Management and Monitoring
 - Lab 14: Building a Native Image
 - Lab 15: Going to Production
+- Lab 16: Terminating Cloud Resources (Optional)
 
 ### Prerequisites
 - Understanding of the Java programming language
 - A modern web browser (Chrome, Firefox etc.)
-- Access to the Lab Virtual Environment (provided by instructor)
+- An Oracle Cloud account with credit available (signing up for a new account provides free credit).
 
 ## More Information
 - [Micronaut](https://micronaut.io/)
