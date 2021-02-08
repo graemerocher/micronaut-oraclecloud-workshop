@@ -14,6 +14,14 @@ This avoids the need for attendees to get setup locally with the necessary tooli
 ## Setup Virtual Environment
 Prior to beginning, the lab you need to create the virtual environment to run the lab. The virtual environment requires that you have completed the sign-up for Oracle Cloud as described in the [Signup for Oracle Cloud](index.html?lab=signup-for-oracle-cloud) section.
 
+The lab uses [Oracle Cloud Resource Manager](https://www.oracle.com/devops/resource-manager/) and Terraform to create a virtual environment including the following:
+
+* An instance of Autonomous Database
+* A Virtual Machine to run the Projector Cloud IDE
+* A Virtual Cloud Network (VCN)
+
+> **WARNING:** Since this lab uses virtual resources it is important to shut these resources down when you have finished the lab to avoid incurring unneeded costs. Lab 16 on "Terminating Cloud Resources" explains how to use Terraform to shutdown all cloud resources.
+
 Once you have your Oracle Cloud account ready, click the following button:
 
 [![Create Oracle Cloud Stack][magic_button]][magic_jidea_terraform_stack]
