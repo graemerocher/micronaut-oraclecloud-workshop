@@ -21,7 +21,7 @@ Once you have your Oracle Cloud account ready, click the following button:
 [![Create Oracle Cloud Stack][magic_button]][magic_jidea_terraform_stack]
 
 [magic_button]: https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg
-[magic_jidea_terraform_stack]: https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://objectstorage.us-ashburn-1.oraclecloud.com/n/cloudnative-devrel/b/micronaut-hol/o/terraform%2Fjidea-image.zip
+[magic_jidea_terraform_stack]: https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://objectstorage.us-ashburn-1.oraclecloud.com/n/cloudnative-devrel/b/micronaut-hol/o/terraform%2Fmicronaut-hol-with-projector-v1.zip
 
 Clicking the button will take you to Oracle Cloud Resource Manager where you will use a pre-prepared Terraform stack to initialize the infrastructure for the lab.
 
@@ -44,6 +44,16 @@ Now that you have a Terraform stack, it is time to plan the execution by clickin
 Then click the "Plan" button on the bottom right to trigger a new job that will plan the Terraform execution:
 
 ![Plan Stack - Step 5](images/create-stack5.png)
+
+Note that the Terraform execution plan will run and may take a couple of minutes to complete. Once it has completed successfully go back to the "Stack Details" page and click "Terraform Actions" -> "Apply" as shown below:
+
+![Apply Stack - Step 6](images/create-stack6.png)
+
+Then click the "Apply" button on the bottom right to trigger a new job that will apply the Terraform execution:
+
+![Apply Stack - Step 7](images/create-stack7.png)
+
+Actually applying the Terraform stack can take up to 15 minutes to complete.
 
 
 ## Launch IDE in Web Browser
