@@ -64,7 +64,7 @@ If you are using Gradle and receive an error for a `ParameterResolutionException
 
 ## Supplying Configuration to a Test
 
-Sometimes you need to test the different ways in which your application can be configured. One way to do this is to create a file called `src/main/test/resources/application-test.yml`.
+Sometimes you need to test the different ways in which your application can be configured. One way to do this is to create a file called `src/main/resources/application-test.yml`.
 
 When you run tests Micronaut automatically activates the `test` environment which causes the above file to be loaded (see Lab 2 where environments were covered).
 
