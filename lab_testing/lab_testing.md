@@ -19,7 +19,7 @@ So far during the Hands-on Lab you have been issuing `curl` requests from Termin
 
 The [Micronaut Test](https://micronaut-projects.github.io/micronaut-test/latest/guide/) module makes writing integration tests a breeze by allowing you to define the `@MicronautTest` annotation on any test. This has the effect of bootstrapping Micronaut and letting you dependency inject beans into the test itself.
 
-To test this out create a new test in the file `src/main/java/example/micronaut/OwnerControllerTest.java` with the following contents:
+To test this out create a new test in the file `src/test/java/example/micronaut/OwnerControllerTest.java` with the following contents:
 
     <copy>
     package example.micronaut;
