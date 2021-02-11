@@ -213,7 +213,13 @@ Next modify `OwnerController` to inject the interface you have defined instead o
     }
     </copy>
 
-Now if you wish to supply a mock version of `OwnerOperations` you can use the `@MockBean` annotation on a method of your test. Try the following altered version of `OwnerControllerTest` where the test itself implements a mock version of `OwnerOperations`:
+Now if you wish to supply a mock version of `OwnerOperations` you can use the `@MockBean` annotation on a method of your test. 
+
+The `@MockBean` annotation allows you to replace an injectable bean for only the scope of the executing test using a method of the test itself. 
+
+> **TIP**: For more information on testing with mocks and Micronaut see the documentation for [Micronaut Test](https://micronaut-projects.github.io/micronaut-test/latest/guide/index.html#junit5)
+
+In the following altered version of `OwnerControllerTest` a new method called `ownerOperations` is added that replaces the the default implementation of `OwnerOperations` (in this case `OwnerService`) with and implementation provided by the test itself:
 
     <copy>
     package example.micronaut;
