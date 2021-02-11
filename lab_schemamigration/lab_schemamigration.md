@@ -22,6 +22,8 @@ In this lab you will:
 
 In the examples so far we have used in-memory data structures to store data. Let's now configure access to [Oracle Autonomous Database](https://www.oracle.com/autonomous-database/).
 
+> **NOTE**: If you decided at the beginning of the workshop to develop locally see the section at the end on of this lab on using the H2 in-memory database.
+
 First, if you are using Gradle add the following dependencies to the `build.gradle` file in the root of your project inside the `dependencies` block:
 
     <copy>
@@ -107,6 +109,46 @@ Within the virtual environment of the lab the following environment variables ex
 In the `datasources` configuration we use the ability to specify `${..}` expressions to reference these environment variables within the configuration and appropriately configure the [datasource properties](https://micronaut-projects.github.io/micronaut-sql/latest/guide/configurationreference.html#io.micronaut.configuration.jdbc.hikari.DatasourceConfiguration).
 
 The above configuration configures the "default" datasource to connect to Autonomous database and exposes a `javax.sql.DataSource` bean that can be dependency-injected into your application's classes.
+
+## (Optional): Configure H2 In-Memory Database
+
+If you decided at the beginning of the lab to develop locally and not use Oracle Cloud and Autonomous Database then you will instead need to configure the H2 in-memory database to continue, otherwise you can skip this section.
+
+First, if you are using Gradle add the following dependencies to the `build.gradle` file in the root of your project inside the `dependencies` block:
+
+    <copy>
+    runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari")
+    runtimeOnly("com.h2database:h2")
+    </copy>
+
+Or if you are using Maven:
+
+    <copy>
+    <dependency>
+      <groupId>io.micronaut.sql</groupId>
+      <artifactId>micronaut-jdbc-hikari</artifactId>
+      <scope>compile</scope>
+    </dependency>    
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    </copy>
+
+Then replace the `datasources` configuration the the following:
+
+    <copy>
+    datasources:
+      default:
+        url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+        driverClassName: org.h2.Driver
+        username: sa
+        password: ''
+        schema-generate: CREATE_DROP
+        dialect: H2
+    </copy>
+
 
 ## Configuring Flyway
 

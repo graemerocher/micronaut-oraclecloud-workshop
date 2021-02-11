@@ -11,6 +11,16 @@ This avoids the need for attendees to get setup locally with the necessary tooli
 * Docker
 * JetBrains Projector IDE 
 
+If you already have a local development enviroment and Micronaut installed you can choose to work through the workshop locally using an in-memory database instead of Oracle Autonomous Database. 
+
+Simply create a new Micronaut application via [Micronaut Launch](https://micronaut.io/launch) called "example" or via `curl`:
+
+	<copy>
+	curl https://launch.micronaut.io/example.zip -o example.zip && unzip example.zip -d example && cd example
+	</copy>
+
+The above command will create the example application that can be used as a starting point to work through the workshop locally.	
+
 ## Setup Virtual Environment
 Prior to beginning, the lab you need to create the virtual environment to run the lab. The virtual environment requires that you have completed the sign-up for Oracle Cloud as described in the [Signup for Oracle Cloud](index.html?lab=signup-for-oracle-cloud) section.
 

@@ -189,7 +189,7 @@ The next step is to define data access repository interfaces. First define an `O
 
     </copy>
 
-> Notice the `Dialect` used here is set to `Oracle` so that Micronaut Data JDBC knows how to produce the correct SQL dialect at compilation time.
+> **NOTE**: Notice the `Dialect` used here is set to `Oracle` so that Micronaut Data JDBC knows how to produce the correct SQL dialect at compilation time. If you chose to use the H2 in-memory database at the start of the workshop you should instead use `H2` as the dialect.
 
 The `@JdbcRepository` annotation designates this interface as a data access repository.
 
@@ -206,6 +206,8 @@ Define another repository interface to manage instances of `Pet` in a file calle
     public interface PetRepository extends CrudRepository<Pet, Long> {
     }
     </copy>
+
+> **NOTE**: Notice the `Dialect` used here is set to `Oracle` so that Micronaut Data JDBC knows how to produce the correct SQL dialect at compilation time. If you chose to use the H2 in-memory database at the start of the workshop you should instead use `H2` as the dialect.
 
 Both of these repository interfaces extend from [CrudRepository](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/repository/CrudRepository.html) which contains methods to perform Create, Read, Update and Delete operations.
 
