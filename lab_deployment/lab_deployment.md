@@ -70,7 +70,7 @@ The Native Image you built in the previous Lab can also easily be executed direc
 To deploy the native executable built with Gradle run:
 
     <copy>
-    ./build/native-image/example
+    ./build/native-image/application
     </copy>
 
 Once the application is up and running, you can access it via `http://[YOUR IP]:8080/owners`.
