@@ -61,27 +61,15 @@
             "filename": "../lab_data_jdbc/lab_data_jdbc.md"
         },
         {
-            "title": "Lab 11: Writing JPA Data Access Repositories",
-            "filename": "../lab_data_jpa/lab_data_jpa.md"
-        },
-        {
-            "title": "Lab 12: Exposing OpenAPI Documentation",
+            "title": "Lab 11: Exposing OpenAPI Documentation",
             "filename": "../lab_openapi/lab_openapi.md"
         },
         {
-            "title": "Lab 13: Adding Management & Monitoring",
-            "filename": "../lab_management/lab_management.md"
-        },
-        {
-            "title": "Lab 14: Building a Native Image",
+            "title": "Lab 12: Building a Native Image",
             "filename": "../lab_native_image/lab_native_image.md"
         },
         {
-            "title": "Lab 15: Going to Production",
-            "filename": "../lab_deployment/lab_deployment.md"
-        },
-        {
-            "title": "Lab 16: Terminating Cloud Resources",
+            "title": "Lab 13: Terminating Cloud Resources",
             "filename": "../destroy/destroy.md"
         }
 

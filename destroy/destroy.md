@@ -9,10 +9,7 @@ Estimated Lab Time: 5 minutes
 In this lab you will:
 * Use your Terraform Stack to tear down OCI resources
 
-### Prerequisites
-- An Oracle Cloud account, Free Trial, LiveLabs or a Paid account
-  
-## **STEP 1:** Destroying 
+## Destroying Cloud Resources
 
 To clean up all of the OCI resources created by Terraform at the start of this lab perform the following steps:
 

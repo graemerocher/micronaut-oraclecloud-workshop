@@ -35,12 +35,9 @@ This 4-hour lab walks you through the steps to use Micronaut, Micronaut Data and
 - Lab 8: Defining an HTTP Client
 - Lab 9: Setting up a Database Schema
 - Lab 10: Writing JDBC Data Access Repositories
-- Lab 11: Writing JPA Data Access Repositories
-- Lab 12: Exposing OpenAPI Documentation
-- Lab 13: Adding Management and Monitoring
-- Lab 14: Building a Native Image
-- Lab 15: Going to Production
-- Lab 16: Terminating Cloud Resources (Optional)
+- Lab 11: Exposing OpenAPI Documentation
+- Lab 12: Building a Native Image
+- Lab 13: Terminating Cloud Resources (Optional)
 
 ### Prerequisites
 - Understanding of the Java programming language
