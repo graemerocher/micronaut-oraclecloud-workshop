@@ -53,7 +53,7 @@ Then click the "Apply" button on the bottom right to trigger a new job that will
 
 Actually applying the Terraform stack can take up to 15 minutes to complete. Once complete the applied stack will output several variables including the IP address of a machine that is running a virtual instance of IntelliJ Community Edition accessible via a modern web browser (preferably Chrome-based).
 
-While you wait enjoy the presentation material from your instructor for the workshop!
+While you wait enjoy the presentation material from your instructor for the workshop.
 
 
 ## Launch IDE in Web Browser

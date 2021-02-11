@@ -43,7 +43,6 @@ public class OwnerService implements OwnerOperations {
     }
 
     @Override
-    @Logged
     public Collection<Owner> getInitialOwners() {
         return ownerRepository.findAll();
     }
