@@ -43,21 +43,13 @@ On the next page leave all the settings on the defaults and click "Create" again
 
 ![Create Stack - Step 3](images/create-stack3.png)
 
-Now that you have a Terraform stack, it is time to plan the execution by clicking "Terraform Actions" -> "Plan" from the "Stack Details" page as shown below:
+Now that you have a Terraform stack, it is time to apply the stack by clicking "Terraform Actions" -> "Apply" from the "Stack Details" page as shown below:
 
-![Plan Stack - Step 4](images/create-stack4.png)
-
-Then click the "Plan" button on the bottom right to trigger a new job that will plan the Terraform execution:
-
-![Plan Stack - Step 5](images/create-stack5.png)
-
-Note that the Terraform execution plan will run and may take a couple of minutes to complete. Once it has completed successfully go back to the "Stack Details" page and click "Terraform Actions" -> "Apply" as shown below:
-
-![Apply Stack - Step 6](images/create-stack6.png)
+![Plan Stack - Step 4](images/apply-stack1.png)
 
 Then click the "Apply" button on the bottom right to trigger a new job that will apply the Terraform execution:
 
-![Apply Stack - Step 7](images/create-stack7.png)
+![Apply Stack - Step 7](images/apply-stack2.png)
 
 Actually applying the Terraform stack can take up to 15 minutes to complete. Once complete the applied stack will output several variables including the IP address of a machine that is running a virtual instance of IntelliJ Community Edition accessible via a modern web browser (preferably Chrome-based).
 
