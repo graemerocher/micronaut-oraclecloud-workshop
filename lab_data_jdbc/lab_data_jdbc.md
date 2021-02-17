@@ -3,8 +3,6 @@
 ## Introduction
 In this lab you will learn how to define Data access repository interfaces that simplify your database access code.
 
-> IMPORTANT: If you prefer a full ORM and JPA you can skip this lab and go directly to the next lab which explains how to use Micronaut Data JPA.
-
 Estimated Lab Time: 20 minutes
 
 ### Objectives
@@ -353,6 +351,8 @@ Now modify the `PetRepository` data access repository interface to include metho
         Collection<Pet> findByOwnerNameAndHealth(String owner, Pet.PetHealth health);
     }
     </copy>
+
+> **NOTE**: Notice the `Dialect` used here is set to `Oracle` so that Micronaut Data JDBC knows how to produce the correct SQL dialect at compilation time. If you chose to use the H2 in-memory database at the start of the workshop you should instead use `H2` as the dialect.
 
 Micronaut Data supports [method patterns](https://micronaut-projects.github.io/micronaut-data/latest/guide/#querying) which are automatically implemented for you at compilation time, producing the appropriate SQL query.
 

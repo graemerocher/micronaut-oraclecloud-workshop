@@ -21,7 +21,7 @@ Micronaut is fundamentally based on Dependency Injection (DI) techniques that ha
 
 The primary difference is that Micronaut will at compilation time compute the injection rules necessary to wire together your application.
 
-In order for Micronaut to do that you need designate which classes in your application are managed "beans".
+In order for Micronaut to do that you need to designate which classes in your application are managed "beans".
 
 This is done by defining an annotation on the class that itself is annotated with `javax.inject.Scope`.
 
@@ -180,14 +180,14 @@ With that in place you can inject all of the `OwnerConfiguration` instances into
 
     @Singleton
     public class OwnerService {
-        private final List<OwnerConfiguration> ownerConfiguration;
+        private final List<OwnerConfiguration> ownerConfigurations;
 
-        public OwnerService(List<OwnerConfiguration> ownerConfiguration) {
-            this.ownerConfiguration = ownerConfiguration;
+        public OwnerService(List<OwnerConfiguration> ownerConfigurations) {
+            this.ownerConfigurations = ownerConfigurations;
         }
 
         public Collection<Owner> getInitialOwners() {
-            return ownerConfiguration.stream()
+            return ownerConfigurations.stream()
                      .map(OwnerConfiguration::create)
                     .collect(Collectors.toList());
         }
@@ -197,7 +197,7 @@ With that in place you can inject all of the `OwnerConfiguration` instances into
 Micronaut will automatically lookup and populate the available `OwnerConfiguration` instances using constructor injection. You can also alternatively use field injection in the form:
 
     <copy>
-    @javax.inject.Inject List<OwnerConfiguration> ownerConfiguration;
+    @javax.inject.Inject List<OwnerConfiguration> ownerConfigurations;
     </copy>
 
 However, constructor injection is prefered as it encourages immutability and more clearly expresses the requirements of the class.

@@ -86,6 +86,7 @@ If your requirements are more dynamic however there are other options. One is th
     @Property(name = "owners.bob.age", value = "25")
     public class OwnerServiceTest {
         @Inject OwnerService ownerService;
+
         @Test
         void testOwners() {
             Collection<Owner> initialOwners = ownerService.getInitialOwners();
@@ -226,16 +227,18 @@ In the following altered version of `OwnerControllerTest` a new method called `o
 
     import io.micronaut.test.annotation.MockBean;
     import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-    import static org.junit.jupiter.api.Assertions.*;
     import org.junit.jupiter.api.Test;
     import javax.inject.Inject;
     import javax.validation.ConstraintViolationException;
     import java.util.ArrayList;
     import java.util.Collection;
+    import static org.junit.jupiter.api.Assertions.*;
 
     @MicronautTest
     public class OwnerControllerTest implements OwnerOperations {
+
         @Inject OwnerController ownerController;
+
         private final Collection<Owner> owners = new ArrayList<>();
 
         @Test

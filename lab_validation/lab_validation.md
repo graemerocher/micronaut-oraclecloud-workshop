@@ -110,8 +110,8 @@ To demonstrate this first modify the `OwnerService` to store users in an in-memo
     public class OwnerService {
         private final Collection<Owner> owners = new ConcurrentLinkedDeque<>();
 
-        public OwnerService(List<OwnerConfiguration> ownerConfiguration) {
-            for (OwnerConfiguration configuration : ownerConfiguration) {
+        public OwnerService(List<OwnerConfiguration> ownerConfigurations) {
+            for (OwnerConfiguration configuration : ownerConfigurations) {
                 Owner owner = configuration.create();
                 owners.add(owner);
             }
