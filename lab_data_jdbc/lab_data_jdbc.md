@@ -3,8 +3,6 @@
 ## Introduction
 In this lab you will learn how to define Data access repository interfaces that simplify your database access code.
 
-> IMPORTANT: If you prefer a full ORM and JPA you can skip this lab and go directly to the next lab which explains how to use Micronaut Data JPA.
-
 Estimated Lab Time: 20 minutes
 
 ### Objectives

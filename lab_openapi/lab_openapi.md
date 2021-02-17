@@ -122,7 +122,7 @@ To resolve these issues, first add some javadoc to the `Owner` entity describing
     /**
      * Represents an Owner of the pets application.
      */
-    @Entity
+    @MappedEntity
     public class Owner {
         // remaining code omitted for brevity
 
