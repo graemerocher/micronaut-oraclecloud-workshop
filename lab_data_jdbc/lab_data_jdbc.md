@@ -352,6 +352,8 @@ Now modify the `PetRepository` data access repository interface to include metho
     }
     </copy>
 
+> **NOTE**: Notice the `Dialect` used here is set to `Oracle` so that Micronaut Data JDBC knows how to produce the correct SQL dialect at compilation time. If you chose to use the H2 in-memory database at the start of the workshop you should instead use `H2` as the dialect.
+
 Micronaut Data supports [method patterns](https://micronaut-projects.github.io/micronaut-data/latest/guide/#querying) which are automatically implemented for you at compilation time, producing the appropriate SQL query.
 
 Note that the [@Join](https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/annotation/Join.html) annotation is used to fetch the associated `Owner` instance for each `Pet` with a single query.
