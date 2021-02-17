@@ -16,7 +16,7 @@ If you already have a local development enviroment and Micronaut installed you c
 Simply create a new Micronaut application via [Micronaut Launch](https://micronaut.io/launch) called "example" or via `curl`:
 
 	<copy>
-	curl https://launch.micronaut.io/example.zip -o example.zip && unzip example.zip -d example && cd example
+	curl https://launch.micronaut.io/create/DEFAULT/example?javaVersion=JDK_11 -o example.zip && unzip example.zip -d example && cd example
 	</copy>
 
 The above command will create the example application that can be used as a starting point to work through the workshop locally.	
