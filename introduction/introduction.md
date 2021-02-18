@@ -44,7 +44,7 @@ This 4-hour lab walks you through the steps to use Micronaut, Micronaut Data and
 
 ### Prerequisites
 - Understanding of the Java programming language
-- A modern web browser (Chrome, Firefox etc.)
+- Chrome Web Browser
 - An Oracle Cloud account with credit available (signing up for a new account provides free credit).
 
 ## More Information
