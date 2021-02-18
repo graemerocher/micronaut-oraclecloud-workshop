@@ -94,6 +94,14 @@ Open up the Terminal pane and run the following command:
     <copy>
     ./gradlew nativeImage
     </copy>
+ 
+> NOTE: If you will experience a failure like:
+> ```
+> * What went wrong:
+> Execution failed for task ':nativeImage'.
+> A problem occurred starting process 'command 'native-image''
+> ```
+> you have to restart the IntelliJ JIdea projector with command `sudo systemctl restart projector`. Once done refresh the browser tab with IDE.
 
 After some time the native image executable will be built to `build/native-image/application`.
 
