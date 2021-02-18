@@ -67,7 +67,14 @@ The IDE is based on JetBrains Projector with IntelliJ Community Edition and you 
 2. You will likely receive an HTTPS warning about the certificate. In Chrome you should click "Advanced" and then the "Proceed" link to continue.
 3. If for any reason the page doesn't load try hit the refresh button. Note that it can take a minute or two before the IDE server is up and running so keep refreshing until it does.
 4. Accept the Terms and Conditions of use the IDE
-5. Choose either Gradle or Maven when prompted depending on your build tool preference.
+
+	![Accept Terms](images/projector-accepterms.png)
+
+5. Either agree or not to send usage statistics
+
+	![Usage Stats](images/projector-datausage.png)	
+
+6. Choose either Gradle or Maven when prompted depending on your build tool preference.
 
     ![Maven or Gradle Dialog](images/gradle-or-maven.png)
 
