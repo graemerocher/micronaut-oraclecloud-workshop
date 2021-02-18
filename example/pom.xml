@@ -15,9 +15,9 @@
 
   <properties>
     <packaging>jar</packaging>
-    <jdk.version>11</jdk.version>
+    <jdk.version>1.8</jdk.version>
     <!-- If you are building with JDK 9 or higher, you can uncomment the lines below to set the release version -->
-     <release.version>11</release.version>
+     <release.version>1.8</release.version>
     <micronaut.version>2.3.0</micronaut.version>
     <exec.mainClass>example.micronaut.Application</exec.mainClass>
     <micronaut.data.version>2.2.4</micronaut.data.version>
