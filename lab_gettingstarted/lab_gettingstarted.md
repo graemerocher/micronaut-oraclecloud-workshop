@@ -57,6 +57,8 @@ It is often convenient to have changes you make to your application reflected au
 
 To do this open Terminal (by clicking ALT+F12 or the Terminal button at the bottom of the window) and type `./gradlew run -t` for Gradle or `./mvnw mn:run` for Maven.
 
+> NOTE: Do not forget to stop the Micronaut application you started in previous step.
+
 Now every time you make a change to one of the sources the server will automatically restart and reflect the change.
 
 ![Running the application](images/autorestart.png)
